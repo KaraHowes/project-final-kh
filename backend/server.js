@@ -29,16 +29,16 @@ const MemberSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
-		required: true,
+		//required: true,
 		trim: true,
 	},
 	location: {
 		type: String,
-		required: true,
+		//required: true,
 	},
 	colour: {
 		type: String,
-		required: true,
+		//required: true,
 	},
 	gender: {
 		type: String

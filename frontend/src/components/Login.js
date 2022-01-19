@@ -14,6 +14,7 @@ const Login = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	
 
 	useEffect(() => {
 		if (accessToken) {
@@ -29,6 +30,7 @@ const Login = () => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
+			mode:'cors',
 			body: JSON.stringify({ membername, password }),
 		};
 
