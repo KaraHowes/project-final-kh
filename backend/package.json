@@ -1,19 +1,19 @@
 {
-  "name": "project-final-kh",
+  "name": "project-final-kh-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "Starter project to get up and running with express quickly",
+  "description": "Final project - backend ",
   "scripts": {
     "start": "babel-node server.js",
     "dev": "nodemon server.js --exec babel-node",
     "lint": "eslint ."
   },
-  "author": "",
+  "author": "Kara Howes",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.16.7",
+    "@babel/core": "^7.16.10",
     "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-env": "^7.16.10",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
