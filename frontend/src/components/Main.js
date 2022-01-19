@@ -14,7 +14,7 @@ const Main = () => {
 
 	useEffect(() => {
 		if (!accessToken) {
-			navigate('/login');
+			navigate('/signin');
 		}
 	}, [accessToken, navigate]);
 
@@ -42,7 +42,7 @@ const Main = () => {
 	return (
 		<div>
 			<div>
-				<Link to="/login">To '/login' !</Link>
+				<Link to="/signin">To '/login' !</Link>
 			</div>
 			<h1>Protected happy thoughts:</h1>
 			{thoughtsItems.map((item) => (
