@@ -12,7 +12,7 @@ mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
 mongoose.Promise = Promise;
 
 const MemberSchema = new mongoose.Schema({
-	username: {
+	membername: {
 		type: String,
 		unique: true,
 		required: true,
@@ -34,16 +34,9 @@ const MemberSchema = new mongoose.Schema({
 	},
 	location: {
 		type: String,
-		//required: true,
+		
 	},
-	colour: {
-		type: String,
-		//required: true,
-	},
-	gender: {
-		type: String
-	}
-
+	
 });
 
 const Member = mongoose.model('Member', MemberSchema);
@@ -110,7 +103,7 @@ app.get("/", (req, res) => {
 
  // To register 
   app.post('/signup', async (req, res) => {
-	const { username, password, email, location, colour, gender } = req.body;
+	const { membername, password, email, location, colour, gender } = req.body;
 
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -120,7 +113,7 @@ app.get("/", (req, res) => {
 		}
 // creates the instance of a new member
 		const newMember = await new Member({
-			username, // this is the same as username:username
+			membername, // this is the same as username:username
 			password: bcrypt.hashSync(password, salt),
 			email,
 			location,
@@ -131,7 +124,7 @@ app.get("/", (req, res) => {
 		res.status(201).json({
 			response: {
 				userId: newMember._id,
-				username: newMember.username,
+				username: newMember.membername,
 				accessToken: newMember.accessToken,
 				email: newMember.email,
 				location: newMember.location,
@@ -146,16 +139,16 @@ app.get("/", (req, res) => {
 
 //endpoint to sign-in 
 app.post('/signin', async (req, res) => {
-	const { username, password } = req.body;
+	const { membername, password } = req.body;
 
 	try {
-		const member = await Member.findOne({ username });
+		const member = await Member.findOne({ membername });
 
 		if (member && bcrypt.compareSync(password, member.password)) {
 			res.status(200).json({
 				response: {
 					userId: member._id,
-					username: member.username,
+					username: member.membername,
 					accessToken: member.accessToken,
 				},
 				success: true,
