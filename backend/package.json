@@ -1,7 +1,7 @@
 {
   "name": "project-final-kh-backend",
   "version": "1.0.0",
-  "type": "module",
+  
   "description": "Final project - backend ",
   "scripts": {
     "start": "babel-node server.js",
