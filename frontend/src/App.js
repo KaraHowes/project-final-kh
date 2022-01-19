@@ -7,11 +7,11 @@ import Main from './components/Main';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 
-import user from './reducers/user';
+import member from './reducers/member';
 import thoughts from './reducers/thoughts';
 
 const reducer = combineReducers({
-	user: user.reducer,
+	member: member.reducer,
 	thoughts: thoughts.reducer,
 });
 

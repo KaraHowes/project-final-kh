@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { API_URL } from '../utils/constants';
+import { API_URL } from '../utils/urls';
 import thoughts from '../reducers/thoughts';
 
 const Main = () => {
 	const thoughtsItems = useSelector((store) => store.thoughts.items);
-	const accessToken = useSelector((store) => store.user.accessToken);
+	const accessToken = useSelector((store) => store.member.accessToken);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Main = () => {
 					dispatch(thoughts.actions.setError(data.response));
 				}
 			});
-	}, [accessToken]);
+	}, [accessToken, dispatch]);
 
 	return (
 		<div>

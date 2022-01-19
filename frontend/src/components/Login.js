@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { API_URL } from '../utils/constants';
-import user from '../reducers/user';
+import { API_URL } from '../utils/urls';
+import member from '../reducers/member';
 
 const Login = () => {
-	const [username, setUsername] = useState('');
+	const [membername, setMembername] = useState('');
 	const [password, setPassword] = useState('');
 	const [mode, setMode] = useState('signup');
 
-	const accessToken = useSelector((store) => store.user.accessToken);
+	const accessToken = useSelector((store) => store.member.accessToken);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = () => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ membername, password }),
 		};
 
 		fetch(API_URL(mode), options)
@@ -38,17 +38,17 @@ const Login = () => {
 				console.log(data);
 				if (data.success) {
 					batch(() => {
-						dispatch(user.actions.setUserId(data.response.userId));
-						dispatch(user.actions.setUsername(data.response.username));
-						dispatch(user.actions.setAccessToken(data.response.accessToken));
-						dispatch(user.actions.setError(null));
+						dispatch(member.actions.setMemberId(data.response.memberId));
+						dispatch(member.actions.setMembername(data.response.membername));
+						dispatch(member.actions.setAccessToken(data.response.accessToken));
+						dispatch(member.actions.setError(null));
 					});
 				} else {
 					batch(() => {
-						dispatch(user.actions.setUserId(null));
-						dispatch(user.actions.setUsername(null));
-						dispatch(user.actions.setAccessToken(null));
-						dispatch(user.actions.setError(data.response));
+						dispatch(member.actions.setMemberId(null));
+						dispatch(member.actions.setMembername(null));
+						dispatch(member.actions.setAccessToken(null));
+						dispatch(member.actions.setError(data.response));
 					});
 				}
 			});
@@ -78,8 +78,8 @@ const Login = () => {
 				<input
 					id="username"
 					type="text"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
+					value={membername}
+					onChange={(e) => setMembername(e.target.value)}
 				/>
 				<label htmlFor="password">Password</label>
 				<input

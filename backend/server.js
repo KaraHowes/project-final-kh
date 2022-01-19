@@ -3,81 +3,84 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
+import listEndpoints from "express-list-endpoints";
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
+
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/finalKH';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
 mongoose.Promise = Promise;
 
-const UserSchema = new mongoose.Schema({
+const MemberSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		unique: true,
 		required: true,
+		trim: true,
 	},
 	password: {
 		type: String,
 		required: true,
+		trim: true,
 	},
 	accessToken: {
 		type: String,
 		default: () => crypto.randomBytes(128).toString('hex'),
 	},
-});
-
-const User = mongoose.model('User', UserSchema);
-
-const ThoughtSchema = new mongoose.Schema({
-	message: {
+	email: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+	location: {
 		type: String,
 		required: true,
 	},
+	colour: {
+		type: String,
+		required: true,
+	},
+	gender: {
+		type: String
+	}
+
 });
 
-const Thought = mongoose.model('Thought', ThoughtSchema);
+const Member = mongoose.model('Member', MemberSchema);
 
-// Defines the port the app will run on. Defaults to 8080, but can be
-// overridden when starting the server. For example:
-//
-//   PORT=9000 npm start
+const BagSchema = new mongoose.Schema({
+	  colour: {
+		  type: String, 
+		  required: true,  
+	  },
+	  location: {
+		  type: String,
+		  required: true,
+	  }, 
+	  createdAt: {
+		type: Date,
+		default: Date.now,
+		// can also be written as () => Date.now(), as an anonymous call-back function
+		required: true,
+	  },
+});
+
+const Bag = mongoose.model('Bag', BagSchema);
+
+// Defines the port the app will run on. Defaults to 8080
 const port = process.env.PORT || 8080;
 const app = express();
 
-// Add middlewares to enable cors and json body parsing
-// v1 - Allow all domains
 app.use(cors());
-
-// v2 - Allow only one specific domain
-// app.use(
-// 	cors({
-// 		origin: 'https://my-project-frontend.com',
-// 	})
-// );
-
-// v3 - Allow multiple domains
-// const allowedDomains = [
-// 	'https://my-project-frontend.com',
-// 	'http://localhost:3000',
-// ];
-// app.use(
-// 	cors({
-// 		origin: (origin, callback) => {
-// 			if (allowedDomains.includes(origin)) {
-// 				return callback(null, true);
-// 			} else {
-// 				return callback(new Error('This domain is not allowed'), false);
-// 			}
-// 		},
-// 	})
-// );
-
 app.use(express.json());
 
-const authenticateUser = async (req, res, next) => {
-	const accessToken = req.header('Authorization');
+// authenticates member
+const authenticateMember = async (req, res, next) => {
+	const accessToken = req.header('Authorization'); // to send in header is kind of unique for accessToken
 
 	try {
-		const user = await User.findOne({ accessToken });
-		if (user) {
+		const member = await Member.findOne({ accessToken });
+		if (member) {
 			next();
 		} else {
 			res.status(401).json({
@@ -97,25 +100,17 @@ const authenticateUser = async (req, res, next) => {
 
 // Start defining your routes here
 
-app.get('/thoughts', authenticateUser);
-app.get('/thoughts', async (req, res) => {
-	const thoughts = await Thought.find({});
-	res.status(201).json({ response: thoughts, success: true });
+app.get("/", (req, res) => {
+	res.send(
+	  "Hello all, Welcome to Thek-Friends. Add /endpoints in URL bar to view all RESTful endpoints"
+	);
 });
+  // to view all endpoints
+  app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));
 
-app.post('/thoughts', async (req, res) => {
-	const { message } = req.body;
-
-	try {
-		const newThought = await new Thought({ message }).save();
-		res.status(201).json({ response: newThought, success: true });
-	} catch (error) {
-		res.status(400).json({ response: error, success: false });
-	}
-});
-
-app.post('/signup', async (req, res) => {
-	const { username, password } = req.body;
+ // To register 
+  app.post('/signup', async (req, res) => {
+	const { username, password, email, location, colour, gender } = req.body;
 
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -123,17 +118,24 @@ app.post('/signup', async (req, res) => {
 		if (password.length < 5) {
 			throw { message: 'Password must be at least 5 characters long' };
 		}
-
-		const newUser = await new User({
-			username,
+// creates the instance of a new member
+		const newMember = await new Member({
+			username, // this is the same as username:username
 			password: bcrypt.hashSync(password, salt),
+			email,
+			location,
+			colour,
+			gender,
 		}).save();
-
+// res status 201 means something has been created
 		res.status(201).json({
 			response: {
-				userId: newUser._id,
-				username: newUser.username,
-				accessToken: newUser.accessToken,
+				userId: newMember._id,
+				username: newMember.username,
+				accessToken: newMember.accessToken,
+				email: newMember.email,
+				location: newMember.location,
+				colour: newMember.colour,
 			},
 			success: true,
 		});
@@ -142,18 +144,19 @@ app.post('/signup', async (req, res) => {
 	}
 });
 
+//endpoint to sign-in 
 app.post('/signin', async (req, res) => {
 	const { username, password } = req.body;
 
 	try {
-		const user = await User.findOne({ username });
+		const member = await Member.findOne({ username });
 
-		if (user && bcrypt.compareSync(password, user.password)) {
+		if (member && bcrypt.compareSync(password, member.password)) {
 			res.status(200).json({
 				response: {
-					userId: user._id,
-					username: user.username,
-					accessToken: user.accessToken,
+					userId: member._id,
+					username: member.username,
+					accessToken: member.accessToken,
 				},
 				success: true,
 			});
@@ -167,6 +170,44 @@ app.post('/signin', async (req, res) => {
 		res.status(400).json({ response: error, success: false });
 	}
 });
+
+//create end-point to view all members
+app.get('/members', authenticateMember)
+app.get('/members', async (req, res) => {
+	const members = await Member.find({})
+	res.json(members)
+   })
+   
+
+//this function will only be available to authorized members with an access token
+app.get('/bags', authenticateMember);
+app.get('/bags', async (req, res) => {
+	//res.send('here are your bags')
+	const bags = await Bag.find({});
+	res.status(201).json({ response: bags, success: true });
+});
+//endpoint to add a bag to the database, again to authorized members
+app.post('/bags', authenticateMember);
+app.post('/bags', async (req, res) => {
+	const {colour, location} = req.body;
+
+	try {
+		const newBag = await new Bag({ 
+			colour,
+			location,
+		 }).save();
+		res.status(201).json({ 
+			response:{
+				bagId: newBag._id,
+				location: newBag.location,
+				colour: newBag.colour,
+			},
+			success: true });
+	} catch (error) {
+		res.status(400).json({ response: error, success: false });
+	}
+});
+
 
 // Start the server
 app.listen(port, () => {
