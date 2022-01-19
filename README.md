@@ -21,4 +21,3 @@ Every project should be deployed somewhere. Be sure to include the link to the d
 
 https://kh-final-thekfriends.herokuapp.com/
 
-https://kh-final-thekfriends.netlify.app/
