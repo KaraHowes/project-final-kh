@@ -8,8 +8,7 @@
 
 body {
   min-height: 100vh;
-  background: rgb(230, 142, 142);
-  background: linear-gradient(135deg, rgba(230, 142, 142, 1) 0%, rgba(234, 182, 85, 1) 100%);
+  
   font-size:12px;
   font-family: 'Open Sans', sans-serif;
 }
