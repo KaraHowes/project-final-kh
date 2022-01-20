@@ -7,8 +7,8 @@ import listEndpoints from "express-list-endpoints";
 
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/finalKH';
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true });
+//mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
 mongoose.Promise = Promise;
 
 const MemberSchema = new mongoose.Schema({
