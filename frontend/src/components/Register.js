@@ -62,6 +62,7 @@ const Register = () => {
 
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
   
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
@@ -71,7 +72,7 @@ const Register = () => {
   
   useEffect(() => {
     if (accessToken) {
-      navigate("/");
+      navigate("/welcome");
     }
   }, [accessToken, navigate]);
 
@@ -83,7 +84,7 @@ const Register = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ membername, password}),
+      body: JSON.stringify({ membername, password, email}),
     };
 
     fetch(API_URL("signup"), options)
@@ -94,6 +95,7 @@ const Register = () => {
         batch(() => {
           dispatch(member.actions.setMemberId(data.response.memberId));
           dispatch(member.actions.setMembername(data.response.membername));
+          dispatch(member.actions.setEmailAddress(data.response.membername));
           dispatch(member.actions.setAccessToken(data.response.accessToken));
           dispatch(member.actions.setError(null));    
         });
@@ -103,6 +105,7 @@ const Register = () => {
           dispatch(member.actions.setMemberId(null));
             dispatch(member.actions.setMembername(null));
             dispatch(member.actions.setAccessToken(null));
+            dispatch(member.actions.setEmailAddress(null));
             dispatch(member.actions.setError(data.response));
             
         })
@@ -132,6 +135,14 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
+        />
+        <Input
+          id="emailInput"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="Email"
         />
         <ButtonContainer>
           <Button type="submit"disable >Register</Button>

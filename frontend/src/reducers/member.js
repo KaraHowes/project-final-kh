@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, findNonSerializableValue } from '@reduxjs/toolkit';
 
 const member = createSlice({
 	name: 'member',
@@ -6,6 +6,7 @@ const member = createSlice({
 		memberId: null,
 		membername: null,
 		accessToken: null,
+		email: null,
 		error: null,
 	},
 	reducers: {
@@ -17,6 +18,9 @@ const member = createSlice({
 		},
 		setAccessToken: (store, action) => {
 			store.accessToken = action.payload;
+		},
+		setEmailAddress: (store, action) => {
+			store.email = action.payload;
 		},
 		setError: (store, action) => {
 			store.error = action.payload;

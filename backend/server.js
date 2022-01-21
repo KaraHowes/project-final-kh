@@ -29,7 +29,7 @@ const MemberSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
-		//required: true,
+		required: true,
 		trim: true,
 	},
 	location: {
