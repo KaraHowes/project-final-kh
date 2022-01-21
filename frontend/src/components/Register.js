@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate,  } from "react-router-dom";
 import styled from "styled-components";
 
 import { API_URL } from "../utils/urls";
@@ -71,7 +71,7 @@ const Register = () => {
   
   useEffect(() => {
     if (accessToken) {
-      navigate('/');
+      navigate('/welcome');
     }
   }, [accessToken, navigate]);
 
@@ -89,22 +89,21 @@ const Register = () => {
     fetch(API_URL("signup"), options)
     .then((res) => res.json())
     .then((data) => {
-      //console.log(data);
-      if (data.success) {
+      console.log(data);
+      {if (data.success) {
         batch(() => {
           dispatch(member.actions.setMemberId(data.response.memberId));
-          dispatch(member.actions.setMembername(data.response.membername));
-          dispatch(member.actions.setAccessToken(data.response.accessToken));
+          dispatch(member.actions.setMembername(data.membername));
+          dispatch(member.actions.setAccessToken(data.accessToken));
           dispatch(member.actions.setError(null));
         });
       } else {
-        batch(() => {
-          dispatch(member.actions.setMemberId(null));
-          dispatch(member.actions.setMembername(null));
-          dispatch(member.actions.setAccessToken(null));
-          dispatch(member.actions.setError(data.response));
-        });
-      }
+        //dispatch(member.actions.setErrors(data));
+        dispatch(member.actions.setMemberId(null));
+            dispatch(member.actions.setMembername(null));
+            dispatch(member.actions.setAccessToken(null));
+            dispatch(member.actions.setError(data.response));
+      }}
     });
   };
 
@@ -130,12 +129,10 @@ const Register = () => {
           placeholder="Password"
         />
         <ButtonContainer>
-          
-          <Button>
-            <Link to="/">Register</Link>
-          </Button>
+          <Button type="submit">Register</Button>
+       
         </ButtonContainer>
-		{errors && <p className="warning-login">Your Username or password do not match our records</p>}
+		{errors && <p className="warning-login">Whoops, looks like there has been an error</p>}
 
       </Form>
     </RegisterWrapper>

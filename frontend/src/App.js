@@ -8,6 +8,7 @@ import Main from './components/Main';
 import Login from './components/Login';
 import Register from './components/Register';
 import NotFound from './components/NotFound';
+import Welcome from './components/Welcome'
 
 
 import member from './reducers/member';
@@ -26,6 +27,7 @@ export const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Main />} />
+					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/signin" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="*" element={<NotFound />} />
