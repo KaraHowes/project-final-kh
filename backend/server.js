@@ -36,6 +36,10 @@ const MemberSchema = new mongoose.Schema({
 		type: String,
 		
 	},
+	status: {
+		type: String,
+		reuired: true,
+	}
 	
 });
 
@@ -103,7 +107,7 @@ app.get("/", (req, res) => {
 
  // To register 
   app.post('/signup', async (req, res) => {
-	const { membername, password, email, location, colour, gender } = req.body;
+	const { membername, password, email, location, status } = req.body;
 
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -117,8 +121,7 @@ app.get("/", (req, res) => {
 			password: bcrypt.hashSync(password, salt),
 			email,
 			location,
-			colour,
-			gender,
+			status,
 		}).save();
 // res status 201 means something has been created
 		res.status(201).json({
@@ -128,7 +131,7 @@ app.get("/", (req, res) => {
 				accessToken: newMember.accessToken,
 				email: newMember.email,
 				location: newMember.location,
-				colour: newMember.colour,
+				status: newMember.status,
 			},
 			success: true,
 		});

@@ -14,7 +14,6 @@ const RegisterWrapper = styled.div`
   border: 1px solid black;
   margin: 0 auto;
   padding: 100px 0;
-  
 `;
 const Form = styled.form`
   display: flex;
@@ -36,8 +35,8 @@ const Input = styled.input`
   border: none;
   &::-webkit-input-placeholder {
     color: black;
-  };
-  font-family: 'Josefin Sans', sans-serif;
+  }
+  font-family: "Josefin Sans", sans-serif;
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -54,22 +53,21 @@ const Button = styled.button`
   font-size: 24px;
   padding: 15px 0 15px 0;
   border-radius: 20px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 `;
 
-
 const Register = () => {
-
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("")
-  
+  const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+  const [status, setStatus] = useState("");
+
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  
+
   useEffect(() => {
     if (accessToken) {
       navigate("/welcome");
@@ -80,41 +78,40 @@ const Register = () => {
     event.preventDefault();
 
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ membername, password, email}),
+      body: JSON.stringify({ membername, password, email, location, status }),
     };
 
     fetch(API_URL("signup"), options)
-    .then((res) => res.json())
-    .then((data) => {
-      
-      if (data.success) {
-        batch(() => {
-          dispatch(member.actions.setMemberId(data.response.memberId));
-          dispatch(member.actions.setMembername(data.response.membername));
-          dispatch(member.actions.setEmailAddress(data.response.membername));
-          dispatch(member.actions.setAccessToken(data.response.accessToken));
-          dispatch(member.actions.setError(null));    
-        });
-       
-      } else {
-        batch(() => {
-          dispatch(member.actions.setMemberId(null));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          batch(() => {
+            dispatch(member.actions.setMemberId(data.response.memberId));
+            dispatch(member.actions.setMembername(data.response.membername));
+            dispatch(member.actions.setEmailAddress(data.response.email));
+            dispatch(member.actions.setLocation(data.response.location));
+            dispatch(member.actions.setStatus(data.response.status));
+            dispatch(member.actions.setAccessToken(data.response.accessToken));
+            dispatch(member.actions.setError(null));
+          });
+        } else {
+          batch(() => {
+            dispatch(member.actions.setMemberId(null));
             dispatch(member.actions.setMembername(null));
             dispatch(member.actions.setAccessToken(null));
             dispatch(member.actions.setEmailAddress(null));
+            dispatch(member.actions.setLocation(null));
+            dispatch(member.actions.setStatus(null));
             dispatch(member.actions.setError(data.response));
-            
-        })
-        //dispatch(member.actions.setErrors(data));
-      }
-    })
-    };
-  
-
+          });
+          //dispatch(member.actions.setErrors(data));
+        }
+      });
+  };
 
   return (
     <RegisterWrapper>
@@ -129,14 +126,6 @@ const Register = () => {
           placeholder="User name"
         />
         <Input
-          id="passwordInput"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          placeholder="Password"
-        />
-        <Input
           id="emailInput"
           type="text"
           value={email}
@@ -144,11 +133,70 @@ const Register = () => {
           required
           placeholder="Email"
         />
-        <ButtonContainer>
-          <Button type="submit"disable >Register</Button>
-        </ButtonContainer>
-		{errors && <p className="warning-login">Whoops, looks like there has been an error</p>}
+        <Input
+          id="passwordInput"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          placeholder="Password"
+        />
 
+        <select
+          id="locationInput"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        >
+          <option disabled value="">
+            Select nearest city:
+          </option>
+          <option value="Zurich" selected>
+            Zurich
+          </option>
+          <option value="Basel" selected>
+            Basel
+          </option>
+          <option value="Geneva" selected>
+            Geneva
+          </option>
+          <option value="Bern" selected>
+            Bern
+          </option>
+          <option value="Luzern" selected>
+            Luzern
+          </option>
+          <option value="Lugano" selected>
+            Lugano
+          </option>
+        </select>
+
+        <select
+          id="statusInput"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option disabled value="">
+            Select your Thek-friends status:
+          </option>
+          <option value="Donor" selected>
+            Donor
+          </option>
+          <option value="Recipient" selected>
+            Recipient
+          </option>
+        </select>
+        {status === "Donor" && <p>hello wonderful donor</p>}
+
+        <ButtonContainer>
+          <Button type="submit" disabled={membername.length < 5}>
+            Register
+          </Button>
+        </ButtonContainer>
+        {errors && (
+          <p className="warning-login">
+            Whoops, looks like there has been an error
+          </p>
+        )}
       </Form>
     </RegisterWrapper>
   );
