@@ -63,11 +63,10 @@ const Login = () => {
   //const [mode, setMode] = useState('signup');
 
   const accessToken = useSelector((store) => store.member.accessToken);
-
+  const errors = useSelector((store) => store.member.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const errors = useSelector((store) => store.member.error);
-
+  
   useEffect(() => {
     if (accessToken) {
       navigate("/");
