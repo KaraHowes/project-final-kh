@@ -69,7 +69,7 @@ const Login = () => {
   
   useEffect(() => {
     if (accessToken) {
-      navigate("/welcome");
+      navigate("/");
     }
   }, [accessToken, navigate]);
 
