@@ -155,8 +155,7 @@ app.post('/signin', async (req, res) => {
 					accessToken: member.accessToken,
 					email: member.email,
 					location: member.location,
-					status: member.status
-					
+					status: member.status,	
 				},
 				success: true,
 			});
@@ -179,8 +178,8 @@ app.get('/members', async (req, res) => {
    })
  // endpoint to find one member
  
- app.get('/member/:memberId', authenticateMember)
- app.get('/member/:memberId', async (req,res) => {
+ app.get('/:memberId', authenticateMember)
+ app.get('/:memberId', async (req,res) => {
 	 const { memberId } = req.params;
 	const member = await Member.findById(memberId) 
 res.status(200).json({response: member, success: true})
