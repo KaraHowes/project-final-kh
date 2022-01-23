@@ -126,8 +126,8 @@ app.get("/", (req, res) => {
 // res status 201 means something has been created
 		res.status(201).json({
 			response: {
-				userId: newMember._id,
-				username: newMember.membername,
+				memberId: newMember._id,
+				membername: newMember.membername,
 				accessToken: newMember.accessToken,
 				email: newMember.email,
 				location: newMember.location,
@@ -150,9 +150,13 @@ app.post('/signin', async (req, res) => {
 		if (member && bcrypt.compareSync(password, member.password)) {
 			res.status(200).json({
 				response: {
-					userId: member._id,
-					username: member.membername,
+					memberId: member._id,
+					membername: member.membername,
 					accessToken: member.accessToken,
+					email: member.email,
+					location: member.location,
+					status: member.status
+					
 				},
 				success: true,
 			});
@@ -173,7 +177,14 @@ app.get('/members', async (req, res) => {
 	const members = await Member.find({})
 	res.json(members)
    })
-   
+ // endpoint to find one member
+ 
+ app.get('/member/:memberId', authenticateMember)
+ app.get('/member/:memberId', async (req,res) => {
+	 const { memberId } = req.params;
+	const member = await Member.findById(memberId) 
+res.status(200).json({response: member, success: true})
+})
 
 //this function will only be available to authorized members with an access token
 app.get('/bags', authenticateMember);

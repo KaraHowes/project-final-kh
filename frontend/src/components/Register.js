@@ -65,6 +65,7 @@ const Register = () => {
 
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -92,10 +93,10 @@ const Register = () => {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response.memberId));
             dispatch(member.actions.setMembername(data.response.membername));
+            dispatch(member.actions.setAccessToken(data.response.accessToken));
             dispatch(member.actions.setEmailAddress(data.response.email));
             dispatch(member.actions.setLocation(data.response.location));
             dispatch(member.actions.setStatus(data.response.status));
-            dispatch(member.actions.setAccessToken(data.response.accessToken));
             dispatch(member.actions.setError(null));
           });
         } else {
@@ -108,7 +109,6 @@ const Register = () => {
             dispatch(member.actions.setStatus(null));
             dispatch(member.actions.setError(data.response));
           });
-          //dispatch(member.actions.setErrors(data));
         }
       });
   };
@@ -184,8 +184,12 @@ const Register = () => {
           <option value="Recipient" selected>
             Recipient
           </option>
-        </select>
+       </select>
         {status === "Donor" && <p>hello wonderful donor</p>}
+        <p>{status}</p>
+        <p>{location}</p>
+        <p>{membername}</p>
+       
 
         <ButtonContainer>
           <Button type="submit" disabled={membername.length < 5}>

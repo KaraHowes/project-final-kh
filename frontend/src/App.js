@@ -7,9 +7,9 @@ import './app.css';
 import Main from './components/Main';
 import Login from './components/Login';
 import Register from './components/Register';
-import NotFound from './components/NotFound';
+import { NotFound } from './components/NotFound';
 import Welcome from './components/Welcome'
-
+import Profile from './components/Profile'
 
 import member from './reducers/member';
 import thoughts from './reducers/thoughts';
@@ -30,6 +30,7 @@ export const App = () => {
 					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/signin" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/profile" element={<Profile />} />
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>

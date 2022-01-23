@@ -28,7 +28,7 @@ const member = createSlice({
 			store.location = action.payload;
 		},
 		setStatus: (store, action) => {
-			store.location = action.payload;
+			store.status = action.payload;
 		},
 		setError: (store, action) => {
 			store.error = action.payload;
