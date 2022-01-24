@@ -1,28 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
-//import { useNavigate, Link } from "react-router-dom";
-////import styled from "styled-components";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-//import { PERSONAL_URL } from "../utils/urls";
-//import member from "../reducers/member";
-
+import { fetchMember } from "../reducers/member";
 
 const Profile = () => {
-  
-    
-  //const accessToken = useSelector((store) => store.member.accessToken);
-  //const errors = useSelector((store) => store.member.error);
-  const profileName = useSelector((store) => store.member.membername);
-  //const profileStatus = useSelector((store) => store.member.status);
-  const memberId = useSelector((store) => store.member.memberId)
+  const dispatch = useDispatch();
+  const { memberId } = useParams();
+
+  const member = useSelector((store) => store.member);
+  const accessToken = useSelector((store) => store.member.accessToken);
+
+  useEffect(() => {
+    dispatch(fetchMember(memberId, accessToken));
+  }, []);
+  console.log(member);
 
   return (
     <div>
-      <h1> hi there user, here is your profile page, {profileName}</h1>
-      <p>  {memberId}</p>
-    
+      <h1>{member.membername}</h1>
+      <p>{member.status}</p>
+      <p>{member.email}</p>
+      <p>{member.location}</p>
     </div>
   );
 };
-
 export default Profile;

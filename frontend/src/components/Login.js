@@ -65,15 +65,16 @@ const Login = () => {
 
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
+  const memberId = useSelector((store) => store.member.memberId)
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
   useEffect(() => {
     if (accessToken) {
-      navigate("/profile");
+      navigate("/member/member:id");
     }
-  }, [accessToken, navigate]);
+  }, [accessToken, navigate, memberId]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();

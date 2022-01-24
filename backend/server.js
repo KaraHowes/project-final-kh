@@ -142,7 +142,7 @@ app.get("/", (req, res) => {
 
 //endpoint to sign-in 
 app.post('/signin', async (req, res) => {
-	const { membername, password } = req.body;
+	const { membername, password, email} = req.body;
 
 	try {
 		const member = await Member.findOne({ membername });
@@ -178,8 +178,8 @@ app.get('/members', async (req, res) => {
    })
  // endpoint to find one member
  
- app.get('/:memberId', authenticateMember)
- app.get('/:memberId', async (req,res) => {
+//app.get('/member/:memberId', authenticateMember)
+ app.get('/member/:memberId', async (req,res) => {
 	 const { memberId } = req.params;
 	const member = await Member.findById(memberId) 
 res.status(200).json({response: member, success: true})
