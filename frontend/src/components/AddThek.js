@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
+import Logout from "./Logout"
 
 const SigninWrapper = styled.div`
   display: flex;
@@ -161,7 +162,7 @@ const AddThek = () => {
           onChange={(e) => setAge(e.target.value)}
         >
           <option disabled value="">
-            Select your Thek-friends status:
+            Select the age-range of the bag:
           </option>
           <option value="1stGrade" selected>
             1st Grade, 6-9 years
@@ -172,13 +173,12 @@ const AddThek = () => {
        </select>
         <ButtonContainer>
           <Button type="submit">Sign-in</Button>
-          <Button>
-            <Link to="/register">Register</Link>
-          </Button>
+          
         </ButtonContainer>
 		{errors && <p className="warning-login">Your Username or password do not match our records</p>}
 
       </Form>
+      <Logout/>
     </SigninWrapper>
   );
 };

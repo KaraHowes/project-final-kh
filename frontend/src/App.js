@@ -10,6 +10,7 @@ import Register from './components/Register';
 import { NotFound } from './components/NotFound';
 import Welcome from './components/Welcome'
 import Profile from './components/Profile'
+import AddThek from './components/AddThek'
 
 import member from './reducers/member';
 import theks from './reducers/theks';
@@ -30,7 +31,7 @@ export const App = () => {
 					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/signin" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					
+					<Route path="/AddThek" element={<AddThek />} />
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>

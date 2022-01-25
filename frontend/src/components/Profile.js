@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-//import styled from "styled-components";
+import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
 
 import AddThek from "./AddThek";
 import FindThek from "./FindThek";
@@ -8,11 +9,33 @@ import { API_URL } from "utils/urls";
 import Logout from "./Logout";
 import member from "../reducers/member";
 
+
+const ProfileContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 50%;
+background-color: white;
+border: 1px solid black;
+margin: 0 auto;
+padding: 100px 0;
+`
+const Button = styled.button`
+  width: 45%;
+  height: 50px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+`
+
 const Profile = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
-
+  const profile = useSelector((store) => store.member)
   useEffect(() => {
     const options = {
       method: "GET",
@@ -47,23 +70,19 @@ const Profile = () => {
       });
   }, [dispatch, accessToken, memberId]);
   return (
-    <>
-      {member.status === "Recipient" ? (
-        <FindThek />
-      ) : (
-        <div>
-          <AddThek />
-        </div>
-      )}
-      <div>
-        <h1>{member.membername}</h1>
-        <p>{member.status}</p>
-        <p>{member.email}</p>
-        <p>{member.location}</p>
-      </div>
-
+  
+     <> 
+      <ProfileContainer style={{backgroundColor: profile.status==="Donor" ? "#EAF5FA" :"#FFFFCC",} }>
+        <h1> Hi there {profile.membername}!</h1>
+        <h2> Thank you so much for becomming  a Thek Friend and for registering as a {profile.status}</h2>
+        <h2> Here are some of your details, if you would like to update them, please click Here</h2>
+        <p>{profile.status}</p>
+        <p>{profile.email}</p>
+        <p>{profile.location}</p>
+      </ProfileContainer>
+    
       <Logout />
-    </>
+</>
   );
 };
 export default Profile;
