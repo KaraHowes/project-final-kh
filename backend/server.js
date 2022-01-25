@@ -60,6 +60,10 @@ const BagSchema = new mongoose.Schema({
 		// can also be written as () => Date.now(), as an anonymous call-back function
 		required: true,
 	  },
+	  age: {
+		  type: String,
+
+	  }
 });
 
 const Bag = mongoose.model('Bag', BagSchema);
@@ -178,7 +182,7 @@ app.get('/members', async (req, res) => {
    })
  // endpoint to find one member
  
-//app.get('/member/:memberId', authenticateMember)
+app.get('/member/:memberId', authenticateMember)
  app.get('/member/:memberId', async (req,res) => {
 	 const { memberId } = req.params;
 	const member = await Member.findById(memberId) 
@@ -195,18 +199,20 @@ app.get('/bags', async (req, res) => {
 //endpoint to add a bag to the database, again to authorized members
 app.post('/bags', authenticateMember);
 app.post('/bags', async (req, res) => {
-	const {colour, location} = req.body;
+	const {colour, location, age} = req.body;
 
 	try {
 		const newBag = await new Bag({ 
 			colour,
 			location,
+			age
 		 }).save();
 		res.status(201).json({ 
 			response:{
 				bagId: newBag._id,
 				location: newBag.location,
 				colour: newBag.colour,
+				age: newBag.age,
 			},
 			success: true });
 	} catch (error) {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, batch } from 'react-redux';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import member from "../reducers/member";
 
 const Button = styled.button`
