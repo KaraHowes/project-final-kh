@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import AddThek from "./AddThek";
-import FindThek from "./FindThek";
+
 import { API_URL } from "utils/urls";
 import Logout from "./Logout";
 import member from "../reducers/member";
@@ -80,7 +79,15 @@ const Profile = () => {
         <p>{profile.email}</p>
         <p>{profile.location}</p>
       </ProfileContainer>
-    
+      <div>
+        <Button>
+      {profile.status==="Donor"? <Link to="/AddThek">Add a bag?</Link>:<Link to="/FindThek">Find a bag</Link>}
+        </Button>
+        
+        <Button>
+          <Link to="/AllBags"> see all bags in our system</Link>
+        </Button>
+      </div>
       <Logout />
 </>
   );

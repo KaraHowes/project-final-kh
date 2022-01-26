@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 import Logout from "./Logout"
 
-const SigninWrapper = styled.div`
+const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -72,19 +72,20 @@ const AddThek = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  useEffect(() => {
+  {/*useEffect(() => {
     if (accessToken) {
-      navigate("/member/member:id");
+      navigate("/BagAdded");
     }
-  }, [accessToken, navigate, memberId]);
+  }, [accessToken, navigate, memberId]);*/}
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-
+    navigate("/BagAdded")
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: accessToken,
       },
 
       body: JSON.stringify({ colour, location, age }),
@@ -101,7 +102,7 @@ const AddThek = () => {
             dispatch(theks.actions.setLocation(data.response.location))
             dispatch(theks.actions.setColour(data.response.colour))
             dispatch(theks.actions.setAge(data.response.age))
-			dispatch(theks.actions.setError(null));
+			      dispatch(theks.actions.setError(null));
           });
         } else {
           batch(() => {
@@ -117,7 +118,7 @@ const AddThek = () => {
   };
 
   return (
-    <SigninWrapper>
+    <AddWrapper>
       <Form onSubmit={onFormSubmit}>
         <Input
           id="colourInput"
@@ -172,14 +173,14 @@ const AddThek = () => {
           </option>
        </select>
         <ButtonContainer>
-          <Button type="submit">Sign-in</Button>
+          <Button type="submit">Add bag</Button>
           
         </ButtonContainer>
 		{errors && <p className="warning-login">Your Username or password do not match our records</p>}
 
       </Form>
       <Logout/>
-    </SigninWrapper>
+    </AddWrapper>
   );
 };
 

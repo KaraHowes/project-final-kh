@@ -11,6 +11,9 @@ import { NotFound } from './components/NotFound';
 import Welcome from './components/Welcome'
 import Profile from './components/Profile'
 import AddThek from './components/AddThek'
+import AllBags from './components/AllBags'
+import FindThek from './components/FindThek'
+import BagAdded from './components/BagAdded'
 
 import member from './reducers/member';
 import theks from './reducers/theks';
@@ -32,6 +35,9 @@ export const App = () => {
 					<Route path="/signin" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/AddThek" element={<AddThek />} />
+					<Route path="/FindThek" element={<FindThek />} />
+					<Route path="/AllBags" element={<AllBags />} />
+					<Route path="/BagAdded" element={<BagAdded />} />
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>
