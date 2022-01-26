@@ -5,15 +5,15 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import './app.css';
 
-import Login from './components/Login';
-import Register from './components/Register';
-import { NotFound } from './components/NotFound';
-import Welcome from './components/Welcome'
-import Profile from './components/Profile'
-import AddThek from './components/AddThek'
-import AllBags from './components/AllBags'
-import FindThek from './components/FindThek'
-import BagAdded from './components/BagAdded'
+import Login from './pages/Login';
+import Register from './pages/Register';
+import { NotFound } from './pages/NotFound';
+import Welcome from './pages/Welcome'
+import Profile from './pages/Profile'
+import AddThek from './pages/AddThek'
+import AllBags from './pages/AllBags'
+import FindThek from './pages/FindThek'
+import BagAdded from './pages/BagAdded'
 
 import member from './reducers/member';
 import theks from './reducers/theks';

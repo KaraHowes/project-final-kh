@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
-import Logout from './Logout'
+import Logout from '../components/Logout'
 
 const WelcomeContainer = styled.div`
 display: flex;

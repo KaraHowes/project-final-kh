@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
-import Logout from "./Logout"
+import Logout from "../components/Logout"
 
 const AddWrapper = styled.div`
   display: flex;
@@ -72,14 +72,16 @@ const AddThek = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  {/*useEffect(() => {
-    if (accessToken) {
-      navigate("/BagAdded");
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/signin');
     }
-  }, [accessToken, navigate, memberId]);*/}
-
+  }, [accessToken, navigate]);
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
+  
+
     navigate("/BagAdded")
     const options = {
       method: "POST",
@@ -176,7 +178,7 @@ const AddThek = () => {
           <Button type="submit">Add bag</Button>
           
         </ButtonContainer>
-		{errors && <p className="warning-login">Your Username or password do not match our records</p>}
+		{errors && <p className="warning-login">The Thek has not been added to the database</p>}
 
       </Form>
       <Logout/>

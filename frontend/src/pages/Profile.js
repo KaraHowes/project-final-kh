@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 
 import { API_URL } from "utils/urls";
-import Logout from "./Logout";
+import Logout from "../components/Logout";
 import member from "../reducers/member";
 
 
