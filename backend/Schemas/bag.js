@@ -17,6 +17,9 @@ export const BagSchema = new mongoose.Schema({
     },
     age: {
         type: String,
-
-    }
+    },
+    imageUrl: {
+        type: String,
+        required: true,
+      },
 });

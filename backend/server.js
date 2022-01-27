@@ -16,7 +16,6 @@ import { BagSchema } from './Schemas/bag'
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/finalKH';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true });
-//mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
 mongoose.Promise = Promise;
 
 // Defines the port the app will run on. Defaults to 8080
@@ -172,22 +171,25 @@ app.get('/bags', async (req, res) => {
 	res.status(201).json({ response: bags, success: true });
 });
 //endpoint to add a bag to the database, again to authorized members
-app.post('/bags', authenticateMember);
-app.post('/bags', async (req, res) => {
+//app.post('/bags', authenticateMember);
+app.post('/bags', parser.single('image'), async (req, res) => {
 	const {colour, location, age} = req.body;
 
 	try {
 		const newBag = await new Bag({ 
 			colour,
 			location,
-			age
+			age,
+			imageUrl: req.file.path,
 		 }).save();
+
 		res.status(201).json({ 
 			response:{
 				bagId: newBag._id,
 				location: newBag.location,
 				colour: newBag.colour,
 				age: newBag.age,
+				//imageUrl: newBag.imageUrl
 			},
 			success: true });
 	} catch (error) {
@@ -197,10 +199,11 @@ app.post('/bags', async (req, res) => {
 
 // trying for image uploads
 
-app.post('/theks', parser.single('image'), async (req, res) => {
-	res.json({ imageUrl: req.file.path, imageId: req.file.filename})
-})
-// Start the server
+//app.post('/theks', parser.single('image'), async (req, res) => {
+	//res.json({ imageUrl: req.file.path, imageId: req.file.filename})})
+
+
+	// Start the server
 app.listen(port, () => {
 	// eslint-disable-next-line
 	console.log(`Server running on http://localhost:${port}`);
