@@ -11,80 +11,47 @@ import cloudinaryFramework from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
-
+import { MemberSchema } from './Schemas/member'
+import { BagSchema } from './Schemas/bag'
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/finalKH';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true });
 //mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
 mongoose.Promise = Promise;
 
-const MemberSchema = new mongoose.Schema({
-	membername: {
-		type: String,
-		unique: true,
-		required: true,
-		trim: true,
-	},
-	password: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	accessToken: {
-		type: String,
-		default: () => crypto.randomBytes(128).toString('hex'),
-	},
-	email: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	location: {
-		type: String,
-		
-	},
-	status: {
-		type: String,
-		reuired: true,
-	}
-	
-});
-
-const Member = mongoose.model('Member', MemberSchema);
-
-const BagSchema = new mongoose.Schema({
-	  colour: {
-		  type: String, 
-		  required: true,  
-	  },
-	  location: {
-		  type: String,
-		  required: true,
-	  }, 
-	  createdAt: {
-		type: Date,
-		default: Date.now,
-		// can also be written as () => Date.now(), as an anonymous call-back function
-		required: true,
-	  },
-	  age: {
-		  type: String,
-
-	  }
-});
-
-const Bag = mongoose.model('Bag', BagSchema);
-
 // Defines the port the app will run on. Defaults to 8080
 const port = process.env.PORT || 8080;
 const app = express();
-
 
 //------------ Middlewares ---------------------------
 
 app.use(cors());
 app.use(express.json());
 dotenv.config()
+
+//------------ Image set-up----------------------------
+
+const cloudinary = cloudinaryFramework.v2; 
+cloudinary.config({
+  cloud_name: 'khf1nal',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'theks',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+})
+
+const parser = multer({ storage })
+
+
+const Member = mongoose.model('Member', MemberSchema);
+const Bag = mongoose.model('Bag', BagSchema);
 
 // authenticates member
 const authenticateMember = async (req, res, next) => {
@@ -106,25 +73,6 @@ const authenticateMember = async (req, res, next) => {
 		res.status(400).json({ response: error, success: false });
 	}
 };
-//------------ Image set-up----------------------------
-
-const cloudinary = cloudinaryFramework.v2; 
-cloudinary.config({
-  cloud_name: 'khf1nal', // this needs to be whatever you get from cloudinary
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
-
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'theks',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 500, height: 500, crop: 'limit' }],
-  },
-})
-const parser = multer({ storage })
-
 
 //------------ ROUTES------------------------------------
 
