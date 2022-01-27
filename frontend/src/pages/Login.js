@@ -6,6 +6,26 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
+const Triangle = styled.div `
+width: 0;
+height: 0;
+border-top: 900px solid #20C6BA;
+border-right: 1500px solid transparent;
+position: absolute;
+left:0;
+right:0;
+top:0;
+z-index:-1;
+opacity: 0.9;`
+
+const Box = styled.div `
+width: 80%;
+padding: 100px;
+background: white;
+margin: 0 auto;
+border: 5px solid black;
+box-shadow: 5px 5px 10px;
+`
 const SigninWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -117,6 +137,9 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Triangle></Triangle>
+    <Box>
     <SigninWrapper>
       <Form onSubmit={onFormSubmit}>
         <Input
@@ -154,6 +177,9 @@ const Login = () => {
 
       </Form>
     </SigninWrapper>
+    </Box>
+    
+    </>
   );
 };
 

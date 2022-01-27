@@ -8,9 +8,7 @@ body {
   box-sizing: border-box;
   background-image: url("/assets/background-memphis-01 copy.png");
   background-size: cover;
-  
-
-  
+   
 }
 
 code {
@@ -40,3 +38,4 @@ a:visited:active {
   margin: 0 10px;
   
 }
+
