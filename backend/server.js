@@ -6,6 +6,13 @@ import bcrypt from 'bcrypt';
 import listEndpoints from "express-list-endpoints";
 
 
+import dotenv from 'dotenv'
+import cloudinaryFramework from 'cloudinary'
+import multer from 'multer'
+import { CloudinaryStorage } from 'multer-storage-cloudinary'
+
+
+
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/finalKH';
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true });
 //mongoose.set('useCreateIndex', true); //added due to deprecation error 26868
@@ -72,8 +79,12 @@ const Bag = mongoose.model('Bag', BagSchema);
 const port = process.env.PORT || 8080;
 const app = express();
 
+
+//------------ Middlewares ---------------------------
+
 app.use(cors());
 app.use(express.json());
+dotenv.config()
 
 // authenticates member
 const authenticateMember = async (req, res, next) => {
@@ -95,11 +106,27 @@ const authenticateMember = async (req, res, next) => {
 		res.status(400).json({ response: error, success: false });
 	}
 };
+//------------ Image set-up----------------------------
 
-// Authentication - 401 (Unauthorized) But should be unauthenticated
-// Authorization - 403 (Forbidden) But should be unauthorized
+const cloudinary = cloudinaryFramework.v2; 
+cloudinary.config({
+  cloud_name: 'khf1nal', // this needs to be whatever you get from cloudinary
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
 
-// Start defining your routes here
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'theks',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+})
+const parser = multer({ storage })
+
+
+//------------ ROUTES------------------------------------
 
 app.get("/", (req, res) => {
 	res.send(
@@ -220,7 +247,11 @@ app.post('/bags', async (req, res) => {
 	}
 });
 
+// trying for image uploads
 
+app.post('/theks', parser.single('image'), async (req, res) => {
+	res.json({ imageUrl: req.file.path, imageId: req.file.filename})
+})
 // Start the server
 app.listen(port, () => {
 	// eslint-disable-next-line

@@ -31,10 +31,12 @@ const Button = styled.button`
 `
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member)
+  
   useEffect(() => {
     const options = {
       method: "GET",
