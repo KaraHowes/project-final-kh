@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import crypto from 'crypto';
 
 export const MemberSchema = new mongoose.Schema({
 	membername: {
@@ -28,6 +29,10 @@ export const MemberSchema = new mongoose.Schema({
 	status: {
 		type: String,
 		reuired: true,
+	}, 
+	bag: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Bag'
 	}
 	
 });

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import member from "../reducers/member";
 
 const Button = styled.button`
-width: 45%;
+width: 80%;
 height: 50px;
 background-color: #d5f5f2;
 border: none;

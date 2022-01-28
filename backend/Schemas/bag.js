@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 export const BagSchema = new mongoose.Schema({
     colour: {
         type: String, 
@@ -20,6 +21,6 @@ export const BagSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-        required: true,
+        //required: true,
       },
 });

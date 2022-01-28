@@ -20,7 +20,7 @@ opacity: 0.9;`
 
 const Box = styled.div `
 width: 80%;
-padding: 100px;
+padding: 125px;
 background: white;
 margin: 0 auto;
 border: 5px solid black;
@@ -29,11 +29,11 @@ box-shadow: 5px 5px 10px;
 const SigninWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   background-color: white;
   border: 1px solid black;
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 50px 30px;
   
 `;
 const Form = styled.form`

@@ -48,7 +48,7 @@ const storage = new CloudinaryStorage({
 
 const parser = multer({ storage })
 
-
+// creates models
 const Member = mongoose.model('Member', MemberSchema);
 const Bag = mongoose.model('Bag', BagSchema);
 
@@ -85,7 +85,7 @@ app.get("/", (req, res) => {
 
  // To register 
   app.post('/signup', async (req, res) => {
-	const { membername, password, email, location, status } = req.body;
+	const { membername, password, email, location, status, bag } = req.body;
 
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -94,23 +94,28 @@ app.get("/", (req, res) => {
 			throw { message: 'Password must be at least 5 characters long' };
 		}
 // creates the instance of a new member
+		const queriedBag = await Bag.findById(bag)
+
+
 		const newMember = await new Member({
 			membername, // this is the same as username:username
 			password: bcrypt.hashSync(password, salt),
 			email,
 			location,
 			status,
+			bag:queriedBag
 		}).save();
 // res status 201 means something has been created
 		res.status(201).json({
-			response: {
-				memberId: newMember._id,
-				membername: newMember.membername,
-				accessToken: newMember.accessToken,
-				email: newMember.email,
-				location: newMember.location,
-				status: newMember.status,
-			},
+			response: 
+				//memberId: newMember._id,
+				//membername: newMember.membername,
+				//accessToken: newMember.accessToken,
+				//email: newMember.email,
+				//location: newMember.location,
+				//status: newMember.status,
+				newMember
+			,
 			success: true,
 		});
 	} catch (error) {
@@ -149,22 +154,22 @@ app.post('/signin', async (req, res) => {
 });
 
 //create end-point to view all members
-app.get('/members', authenticateMember)
+//app.get('/members', authenticateMember)
 app.get('/members', async (req, res) => {
 	const members = await Member.find({})
 	res.json(members)
    })
  // endpoint to find one member
  
-app.get('/member/:memberId', authenticateMember)
+//app.get('/member/:memberId', authenticateMember)
  app.get('/member/:memberId', async (req,res) => {
 	 const { memberId } = req.params;
-	const member = await Member.findById(memberId) 
+	const member = await Member.findById(memberId).populate('bag') 
 res.status(200).json({response: member, success: true})
 })
 
 //this function will only be available to authorized members with an access token
-app.get('/bags', authenticateMember);
+//app.get('/bags', authenticateMember);
 app.get('/bags', async (req, res) => {
 	//res.send('here are your bags')
 	const bags = await Bag.find({});
