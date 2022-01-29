@@ -23,4 +23,7 @@ export const BagSchema = new mongoose.Schema({
         type: String,
         //required: true,
       },
+    member: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Member'}
 });

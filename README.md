@@ -4,9 +4,17 @@ Replace this readme with your own information about your project.
 
 Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
 
+MODELS:
 
-endpoints:
-/signup - POST request to allow a user to register
+- Member
+- Bag
+- Inspiration
+
+
+ENDPOINTS:
+
+
+signup - POST request to allow a user to register
 /signin - POST request allows a member to sign in, with an access token as Header
 / members - GET request allows access to all members. Authentication required.
 /bags - GET and POST request, allows members to receive and send data. Authentication required.

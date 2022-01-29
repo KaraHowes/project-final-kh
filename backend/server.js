@@ -85,7 +85,7 @@ app.get("/", (req, res) => {
 
  // To register 
   app.post('/signup', async (req, res) => {
-	const { membername, password, email, location, status, bag } = req.body;
+	const { membername, password, email, location, status } = req.body;
 
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -94,8 +94,7 @@ app.get("/", (req, res) => {
 			throw { message: 'Password must be at least 5 characters long' };
 		}
 // creates the instance of a new member
-		const queriedBag = await Bag.findById(bag)
-
+		//const queriedBag = await Bag.findById(bag)
 
 		const newMember = await new Member({
 			membername, // this is the same as username:username
@@ -103,19 +102,19 @@ app.get("/", (req, res) => {
 			email,
 			location,
 			status,
-			bag:queriedBag
+			//bag:queriedBag
 		}).save();
 // res status 201 means something has been created
 		res.status(201).json({
-			response: 
-				//memberId: newMember._id,
-				//membername: newMember.membername,
-				//accessToken: newMember.accessToken,
-				//email: newMember.email,
-				//location: newMember.location,
-				//status: newMember.status,
-				newMember
-			,
+			response: {
+				memberId: newMember._id,
+				membername: newMember.membername,
+				accessToken: newMember.accessToken,
+				email: newMember.email,
+				location: newMember.location,
+				status: newMember.status,
+				//newMember
+			},
 			success: true,
 		});
 	} catch (error) {
@@ -154,58 +153,78 @@ app.post('/signin', async (req, res) => {
 });
 
 //create end-point to view all members
-//app.get('/members', authenticateMember)
+app.get('/members', authenticateMember)
 app.get('/members', async (req, res) => {
 	const members = await Member.find({})
 	res.json(members)
    })
  // endpoint to find one member
  
-//app.get('/member/:memberId', authenticateMember)
- app.get('/member/:memberId', async (req,res) => {
+app.get('/member/:memberId', authenticateMember)
+app.get('/member/:memberId', async (req,res) => {
 	 const { memberId } = req.params;
-	const member = await Member.findById(memberId).populate('bag') 
+	const member = await Member.findById(memberId)//.populate('bag') 
 res.status(200).json({response: member, success: true})
 })
 
 //this function will only be available to authorized members with an access token
-//app.get('/bags', authenticateMember);
+app.get('/bags', authenticateMember);
 app.get('/bags', async (req, res) => {
 	//res.send('here are your bags')
 	const bags = await Bag.find({});
 	res.status(201).json({ response: bags, success: true });
 });
+
+app.get('/bag/:bagId', authenticateMember)
+app.get('/bag/:bagId', async (req,res) => {
+	 const { bagId } = req.params;
+	const bag = await Bag.findById(bagId).populate('member') 
+res.status(200).json({response: bag, success: true})
+})
+
+
+app.get('/searchbags', async (req, res)=> {
+	//const {colour, location, age} = req.body;
+	
+	try {
+		const foundBags = await Bag.find(req.query)
+
+		res.status(201).json({response: foundBags, success: true})
+	} catch (error) {
+		res.status(400).json({ response: error, success: false });
+	}
+	
+})
+//, parser.single('image')
 //endpoint to add a bag to the database, again to authorized members
-//app.post('/bags', authenticateMember);
-app.post('/bags', parser.single('image'), async (req, res) => {
-	const {colour, location, age} = req.body;
+app.post('/bags', authenticateMember);
+app.post('/bags', async (req, res) => {
+	const {colour, location, age, member } = req.body;
 
 	try {
+		//const queriedMember = await Member.findById(memberId).populate('member')
 		const newBag = await new Bag({ 
 			colour,
 			location,
 			age,
-			imageUrl: req.file.path,
+			//imageUrl: req.file.path,
+			member
 		 }).save();
 
 		res.status(201).json({ 
 			response:{
-				bagId: newBag._id,
-				location: newBag.location,
-				colour: newBag.colour,
-				age: newBag.age,
-				//imageUrl: newBag.imageUrl
+				//bagId: newBag._id,
+				//location: newBag.location,
+				//colour: newBag.colour,
+				//age: newBag.age,
+				//member: queriedMember
+				newBag
 			},
 			success: true });
 	} catch (error) {
 		res.status(400).json({ response: error, success: false });
 	}
 });
-
-// trying for image uploads
-
-//app.post('/theks', parser.single('image'), async (req, res) => {
-	//res.json({ imageUrl: req.file.path, imageId: req.file.filename})})
 
 
 	// Start the server

@@ -30,9 +30,6 @@ export const MemberSchema = new mongoose.Schema({
 		type: String,
 		reuired: true,
 	}, 
-	bag: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Bag'
-	}
+	//bag: {type: mongoose.Schema.Types.ObjectId,ref: 'Bag'}
 	
 });
