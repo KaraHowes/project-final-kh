@@ -21,9 +21,9 @@ a:visited {
   text-decoration: none;
   width: 45%;
   height: 50px;
-  background-color: #d5f5f2;
+  
   border: none;
-  margin: 0 10px;
+ 
 
 }
 
@@ -33,9 +33,9 @@ a:visited:active {
   color: black;
   width: 45%;
   height: 50px;
-  background-color: #d5f5f2;
+  
   border: none;
-  margin: 0 10px;
+  
   
 }
 

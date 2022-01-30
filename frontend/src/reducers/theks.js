@@ -8,6 +8,7 @@ const theks = createSlice({
 		location: null,
 		colour: null,
 		age: null,
+		member: null,
 		error: null,
 	},
 	reducers: {
@@ -25,6 +26,9 @@ const theks = createSlice({
 		},
 		setAge: (store, action) => {
 			store.age = action.payload;
+		},
+		setMember: (store, action) => {
+			store.member = action.payload;
 		},
 		setError: (store, action) => {
 			store.error = action.payload;

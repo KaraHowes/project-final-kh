@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import './app.css';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,6 +13,7 @@ import AddThek from './pages/AddThek'
 import AllBags from './pages/AllBags'
 import FindThek from './pages/FindThek'
 import BagAdded from './pages/BagAdded'
+
 
 import member from './reducers/member';
 import theks from './reducers/theks';
@@ -38,6 +38,7 @@ export const App = () => {
 					<Route path="/FindThek" element={<FindThek />} />
 					<Route path="/AllBags" element={<AllBags />} />
 					<Route path="/BagAdded" element={<BagAdded />} />
+		
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>

@@ -18,7 +18,7 @@ top:0;
 z-index:-1;
 opacity: 0.9;`
 
-const Box = styled.div `
+const Box = styled.section `
 width: 80%;
 padding: 125px;
 background: white;
@@ -159,14 +159,7 @@ const Login = () => {
           required
           placeholder="Password"
         />
-         <Input
-          id="emailInput"
-          type="text"
-          value={email}
-          onChange={(e) => setEmailAddress(e.target.value)}
-          required
-          placeholder="email"
-        />
+        
         <ButtonContainer>
           <Button type="submit">Sign-in</Button>
           <Button>

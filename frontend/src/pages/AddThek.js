@@ -7,6 +7,15 @@ import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 import Logout from "../components/Logout"
 
+
+const Box = styled.section `
+width: 70%;
+padding: 50px;
+background: white;
+margin: 50px auto 0 auto;
+border: 5px solid black;
+box-shadow: 5px 5px 10px;
+`
 const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,29 +34,9 @@ const Form = styled.form`
   justify-content: center;
   margin: 0 auto;
 `;
-const Input = styled.input`
-  background-color: #d5f5f2;
-  display: flex;
-  flex-direction: column;
-  height: 50px;
-  margin: 10px 0;
-  padding: 30px 0;
-  text-align: center;
-  font-size: 24px;
-  border: none;
-  &::-webkit-input-placeholder {
-    color: black;
-  };
-  font-family: 'Josefin Sans', sans-serif;
-`;
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px 0;
-`;
+
 const Button = styled.button`
-  width: 45%;
+  width: 100%;
   height: 50px;
   background-color: #d5f5f2;
   border: none;
@@ -56,8 +45,22 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888
 `;
-
+const Select = styled.select`
+   border:none;
+    padding: 10px 15px;
+    margin: 0 0 20px;
+    height: 40px;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #FFFFCC;
+    font-weight: 800;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    ;
+`
 const AddThek = () => {
 
   const[colour, setColour] = useState("")
@@ -65,7 +68,7 @@ const AddThek = () => {
   const[age, setAge] = useState("")  
   
 
-  const memberId = useSelector((store) => store.member.memberId)
+  //const memberId = useSelector((store) => store.member.memberId)
   const accessToken = useSelector((store) => store.member.accessToken)
   const errors = useSelector((store) => store.member.error);
 
@@ -104,6 +107,7 @@ const AddThek = () => {
             dispatch(theks.actions.setLocation(data.response.location))
             dispatch(theks.actions.setColour(data.response.colour))
             dispatch(theks.actions.setAge(data.response.age))
+            dispatch(theks.actions.setMember(data.response.member))
 			      dispatch(theks.actions.setError(null));
           });
         } else {
@@ -113,6 +117,7 @@ const AddThek = () => {
             dispatch(theks.actions.setLocation(null))
             dispatch(theks.actions.setColour(null))
             dispatch(theks.actions.setAge(null))
+            dispatch(theks.actions.setMember(null))
             dispatch(theks.actions.setError(data.response));
           });
         }
@@ -120,18 +125,40 @@ const AddThek = () => {
   };
 
   return (
-    <AddWrapper>
+    <Box>
+      <AddWrapper>
       <Form onSubmit={onFormSubmit}>
-        <Input
+
+          <Select
           id="colourInput"
-          type="text"
           value={colour}
           onChange={(e) => setColour(e.target.value)}
-          minLength="5"
           required
-          placeholder="Main Colour"
-        />
-        <select
+        >
+          <option disabled value="">
+            Select Main colour:
+          </option>
+          <option value="Blue" selected>
+            Blue
+          </option>
+          <option value="Green" selected>
+            Green
+          </option>
+          <option value="Pink" selected>
+            Pink
+          </option>
+          <option value="Purple" selected>
+            Purple
+          </option>
+          <option value="Orange" selected>
+            Orange
+          </option>
+          <option value="Multi" selected>
+            Multi-coloured
+          </option>
+        </Select>
+
+        <Select
           id="locationInput"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
@@ -157,9 +184,9 @@ const AddThek = () => {
           <option value="Lugano" selected>
             Lugano
           </option>
-        </select>
+        </Select>
 
-        <select
+        <Select
           id="ageInput"
           value={age}
           onChange={(e) => setAge(e.target.value)}
@@ -173,16 +200,17 @@ const AddThek = () => {
           <option value="4thGrade" selected>
             4th Grade, 9-12 years
           </option>
-       </select>
-        <ButtonContainer>
+       </Select>
+        
           <Button type="submit">Add bag</Button>
           
-        </ButtonContainer>
+          <Logout/>
 		{errors && <p className="warning-login">The Thek has not been added to the database</p>}
 
       </Form>
-      <Logout/>
+   
     </AddWrapper>
+    </Box>
   );
 };
 

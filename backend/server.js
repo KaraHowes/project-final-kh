@@ -124,7 +124,7 @@ app.get("/", (req, res) => {
 
 //endpoint to sign-in 
 app.post('/signin', async (req, res) => {
-	const { membername, password, email} = req.body;
+	const { membername, password } = req.body;
 
 	try {
 		const member = await Member.findOne({ membername });
@@ -181,15 +181,29 @@ app.get('/bag/:bagId', async (req,res) => {
 	const bag = await Bag.findById(bagId).populate('member') 
 res.status(200).json({response: bag, success: true})
 })
-
-
+//------------Trying to allow user to search database--------------PROBLEM!
+app.get('/searchbags', authenticateMember)
 app.get('/searchbags', async (req, res)=> {
-	//const {colour, location, age} = req.body;
+	const {colour, location, age} = req.query;
 	
 	try {
-		const foundBags = await Bag.find(req.query)
+		const foundBags = await Bag.find({})
 
-		res.status(201).json({response: foundBags, success: true})
+		if (foundBags.length===0){
+			res.status(404).json({
+			response: "no bags found",
+			success: false,
+		});
+		} else {
+			res.status(201).json({
+				response: {
+					location:foundBags.location,
+					colour:foundBags.colour,
+					age:foundBags.age
+				}, 
+				success: true})
+		}
+		
 	} catch (error) {
 		res.status(400).json({ response: error, success: false });
 	}
@@ -202,13 +216,13 @@ app.post('/bags', async (req, res) => {
 	const {colour, location, age, member } = req.body;
 
 	try {
-		//const queriedMember = await Member.findById(memberId).populate('member')
+		const queriedMember = await Member.findById(member)//.populate('member')
 		const newBag = await new Bag({ 
 			colour,
 			location,
 			age,
 			//imageUrl: req.file.path,
-			member
+			member: queriedMember
 		 }).save();
 
 		res.status(201).json({ 

@@ -35,6 +35,7 @@ const AllBags =()=> {
                 dispatch(theks.actions.setLocation(data.response.location))
                 dispatch(theks.actions.setColour(data.response.colour))
                 dispatch(theks.actions.setAge(data.response.age))
+                dispatch(theks.actions.setMember(data.response.member))
                 dispatch(theks.actions.setError(null))
             } else {
                 dispatch(theks.actions.setItems([]))
@@ -42,6 +43,7 @@ const AllBags =()=> {
                 dispatch(theks.actions.setLocation(null))
                 dispatch(theks.actions.setColour(null))
                 dispatch(theks.actions.setAge(null))
+                dispatch(theks.actions.seMember(null))
                 dispatch(theks.actions.setError(data.response))
             }
         })
