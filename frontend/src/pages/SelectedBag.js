@@ -49,9 +49,11 @@ const CardText = styled.p`
   padding: 5px 0;
 `;
 
-const AllBags = () => {
-  const theksItems = useSelector((store) => store.theks.items);
+const SelectedBag = () => {
+  const chosenBag = useSelector((store) => store.theks);
   const accessToken = useSelector((store) => store.member.accessToken);
+  const BagId = useSelector((store) => store.theks.BagId)
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,7 +71,7 @@ const AllBags = () => {
         Authorization: accessToken,
       },
     };
-    fetch(API_URL("bags"), options)
+    fetch(API_URL(`bag/$_id`), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -86,30 +88,23 @@ const AllBags = () => {
           dispatch(theks.actions.setLocation(null));
           dispatch(theks.actions.setColour(null));
           dispatch(theks.actions.setAge(null));
-          dispatch(theks.actions.seMember(null));
+          dispatch(theks.actions.setMember(null));
           dispatch(theks.actions.setError(data.response));
         }
       });
-  }, [accessToken]);
+  }, [dispatch, accessToken, BagId]);
 
   return (
     <Box>
       <BagContainer>
-        {theksItems.map((item) => (
-          <Card key={item._id}>
-            <TextWrapper>
-              <CardText>{item.colour}</CardText>
-              <Link to={`/bag/${item._id}`}>
-                <CardText>{item.location}</CardText>
-              </Link>
-              <CardText>{item.age}</CardText>
-            </TextWrapper>
-          </Card>
-        ))}
+  <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
+  <p>The bag is based in {chosenBag.location}</p>
+
       </BagContainer>
       <Logout/>
     </Box>
   );
 };
 
-export default AllBags;
+
+export default SelectedBag

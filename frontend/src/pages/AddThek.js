@@ -23,7 +23,7 @@ const AddWrapper = styled.div`
   background-color: white;
   border: 1px solid black;
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 30px;
   
 `;
 const Form = styled.form`
@@ -61,6 +61,7 @@ const Select = styled.select`
     text-align: center;
     ;
 `
+
 const AddThek = () => {
 
   const[colour, setColour] = useState("")

@@ -34,8 +34,6 @@ const Form = styled.form`
   justify-content: center;
   margin: 0 auto;
 `;
-
-
 const Button = styled.button`
   width: 100%;
   height: 40px;
@@ -194,7 +192,7 @@ return (
           <Button type="submit">Find my Thek!</Button>
           
        
-		{errors && <p className="warning-login">The Thek has not been added to the database</p>}
+		{errors && <p className="warning-login">Something went wrong!!!</p>}
         <Logout style={{backgroundColor: '#FFF000'}}/>
       </Form>
      

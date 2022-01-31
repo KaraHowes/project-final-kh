@@ -25,6 +25,7 @@ background: white;
 margin: 0 auto;
 border: 5px solid black;
 box-shadow: 5px 5px 10px;
+max-width: 800px;
 `
 const SigninWrapper = styled.div`
   display: flex;
@@ -80,7 +81,7 @@ const Button = styled.button`
 const Login = () => {
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmailAddress] = useState("")
+  //const [email, setEmailAddress] = useState("")
   //const [mode, setMode] = useState('signup');
 
   const accessToken = useSelector((store) => store.member.accessToken);
@@ -105,7 +106,7 @@ const Login = () => {
         "Content-Type": "application/json",
       },
 
-      body: JSON.stringify({ membername, password, email }),
+      body: JSON.stringify({ membername, password}),
     };
 
     fetch(API_URL("signin"), options)
@@ -117,7 +118,7 @@ const Login = () => {
             dispatch(member.actions.setMemberId(data.response.memberId));
             dispatch(member.actions.setMembername(data.response.membername));
             dispatch(member.actions.setAccessToken(data.response.accessToken));
-            dispatch(member.actions.setEmailAddress(data.response.email));
+            //dispatch(member.actions.setEmailAddress(data.response.email));
             dispatch(member.actions.setLocation(data.response.location));
             dispatch(member.actions.setStatus(data.response.status));
             dispatch(member.actions.setError(null));
@@ -127,7 +128,7 @@ const Login = () => {
             dispatch(member.actions.setMemberId(null));
             dispatch(member.actions.setMembername(null));
             dispatch(member.actions.setAccessToken(null));
-            dispatch(member.actions.setEmailAddress(null));
+            //dispatch(member.actions.setEmailAddress(null));
             dispatch(member.actions.setLocation(null));
             dispatch(member.actions.setStatus(null));
             dispatch(member.actions.setError(data.response));

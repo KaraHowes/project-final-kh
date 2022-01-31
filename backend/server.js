@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import crypto from 'crypto';
+//import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import listEndpoints from "express-list-endpoints";
 
@@ -94,15 +94,13 @@ app.get("/", (req, res) => {
 			throw { message: 'Password must be at least 5 characters long' };
 		}
 // creates the instance of a new member
-		//const queriedBag = await Bag.findById(bag)
-
+	
 		const newMember = await new Member({
 			membername, // this is the same as username:username
 			password: bcrypt.hashSync(password, salt),
 			email,
 			location,
 			status,
-			//bag:queriedBag
 		}).save();
 // res status 201 means something has been created
 		res.status(201).json({
@@ -113,7 +111,7 @@ app.get("/", (req, res) => {
 				email: newMember.email,
 				location: newMember.location,
 				status: newMember.status,
-				//newMember
+//	bagId: newBag._id,
 			},
 			success: true,
 		});
@@ -184,10 +182,10 @@ res.status(200).json({response: bag, success: true})
 //------------Trying to allow user to search database--------------PROBLEM!
 app.get('/searchbags', authenticateMember)
 app.get('/searchbags', async (req, res)=> {
-	const {colour, location, age} = req.query;
+	//const {colour, location, age} = req.query;
 	
 	try {
-		const foundBags = await Bag.find({})
+		const foundBags = await Bag.find(req.query)
 
 		if (foundBags.length===0){
 			res.status(404).json({
@@ -196,11 +194,11 @@ app.get('/searchbags', async (req, res)=> {
 		});
 		} else {
 			res.status(201).json({
-				response: {
-					location:foundBags.location,
-					colour:foundBags.colour,
-					age:foundBags.age
-				}, 
+				response: 
+				//{location:foundBags.location,
+					//colour:foundBags.colour,
+					//age:foundBags.age}, 
+					foundBags,
 				success: true})
 		}
 		
@@ -227,12 +225,12 @@ app.post('/bags', async (req, res) => {
 
 		res.status(201).json({ 
 			response:{
-				//bagId: newBag._id,
-				//location: newBag.location,
-				//colour: newBag.colour,
-				//age: newBag.age,
-				//member: queriedMember
-				newBag
+				bagId: newBag._id,
+				location: newBag.location,
+				colour: newBag.colour,
+				age: newBag.age,
+				member: queriedMember
+				
 			},
 			success: true });
 	} catch (error) {

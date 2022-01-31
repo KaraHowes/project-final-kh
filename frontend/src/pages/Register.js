@@ -6,6 +6,14 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
+const Box = styled.section `
+width: 70%;
+padding: 50px;
+background: white;
+margin: 50px auto 0 auto;
+border: 5px solid black;
+box-shadow: 5px 5px 10px;
+`
 const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,7 +21,8 @@ const RegisterWrapper = styled.div`
   background-color: white;
   border: 1px solid black;
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 30px;
+  justify-content: center;
 `;
 const Form = styled.form`
   display: flex;
@@ -27,14 +36,15 @@ const Input = styled.input`
   background-color: #d5f5f2;
   display: flex;
   flex-direction: column;
-  height: 50px;
-  margin: 10px 0;
-  padding: 30px 0;
+  height: 30px;
+  margin: 0 0 20px;
+  padding: 10px 15px;
   text-align: center;
-  font-size: 24px;
+  font-size: 18px;
   border: none;
   &::-webkit-input-placeholder {
     color: black;
+    ::hover: pink;
   }
   font-family: "Josefin Sans", sans-serif;
 `;
@@ -45,8 +55,8 @@ const ButtonContainer = styled.div`
   margin: 10px 0;
 `;
 const Button = styled.button`
-  width: 45%;
-  height: 50px;
+  width: 100%;
+  height: 40px;
   background-color: #d5f5f2;
   border: none;
   cursor: pointer;
@@ -54,12 +64,27 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
+  box-shadow: 3px 3px 6px #888888;
 `;
+const Select = styled.select`
+   border:none;
+    padding: 10px 15px;
+    margin: 0 0 20px;
+    height: 40px;
+    display: block;
+    border-radius: 5px;
+    font-size: 18px;
+    background-color:#d5f5f2;
+    font-weight: 800;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    ;
+`
 
 const Register = () => {
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
 
@@ -114,7 +139,8 @@ const Register = () => {
   };
 
   return (
-    <RegisterWrapper>
+   <Box>
+      <RegisterWrapper>
       <Form onSubmit={onFormSubmit}>
         <Input
           id="membernameInput"
@@ -129,7 +155,7 @@ const Register = () => {
           id="emailInput"
           type="text"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmailAddress(e.target.value)}
           required
           placeholder="Email"
         />
@@ -142,12 +168,12 @@ const Register = () => {
           placeholder="Password"
         />
 
-        <select
+        <Select
           id="locationInput"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         >
-          <option disabled value="">
+          <option option value="DEFAULT" disabled>
             Select nearest city:
           </option>
           <option value="Zurich" selected>
@@ -168,15 +194,15 @@ const Register = () => {
           <option value="Lugano" selected>
             Lugano
           </option>
-        </select>
+        </Select>
 
-        <select
+        <Select
           id="statusInput"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         >
           <option disabled value="">
-            Select your Thek-friends status:
+            Thek-friends status:
           </option>
           <option value="Donor" selected>
             Donor
@@ -184,11 +210,7 @@ const Register = () => {
           <option value="Recipient" selected>
             Recipient
           </option>
-       </select>
-        {status === "Donor" && <p>hello wonderful donor</p>}
-        <p>{status}</p>
-        <p>{location}</p>
-        <p>{membername}</p>
+       </Select>
        
 
         <ButtonContainer>
@@ -198,11 +220,12 @@ const Register = () => {
         </ButtonContainer>
         {errors && (
           <p className="warning-login">
-            Whoops, looks like there has been an error
+            Whoops, looks like that username has already been taken!
           </p>
         )}
       </Form>
     </RegisterWrapper>
+   </Box>
   );
 };
 
