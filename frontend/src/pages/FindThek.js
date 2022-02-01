@@ -126,22 +126,22 @@ return (
           <option disabled value="">
             Main colour:
           </option>
-          <option value="Blue" selected>
+          <option value="Blue">
             Blue
           </option>
-          <option value="Green" selected>
+          <option value="Green">
             Green
           </option>
-          <option value="Pink" selected>
+          <option value="Pink">
             Pink
           </option>
-          <option value="Purple" selected>
+          <option value="Purple">
             Purple
           </option>
-          <option value="Orange" selected>
+          <option value="Orange">
             Orange
           </option>
-          <option value="Multi" selected>
+          <option value="Multi">
             Multi-coloured
           </option>
         </Select>
@@ -153,22 +153,22 @@ return (
           <option disabled value="">
            Location:
           </option>
-          <option value="Zurich" selected>
+          <option value="Zurich">
             Zurich
           </option>
-          <option value="Basel" selected>
+          <option value="Basel">
             Basel
           </option>
-          <option value="Geneva" selected>
+          <option value="Geneva">
             Geneva
           </option>
-          <option value="Bern" selected>
+          <option value="Bern">
             Bern
           </option>
-          <option value="Luzern" selected>
+          <option value="Luzern">
             Luzern
           </option>
-          <option value="Lugano" selected>
+          <option value="Lugano">
             Lugano
           </option>
         </Select>
@@ -181,10 +181,10 @@ return (
           <option disabled value="">
             Age-range:
           </option>
-          <option value="1stGrade" selected>
+          <option value="1stGrade">
             1st Grade, 6-9 years
           </option>
-          <option value="4thGrade" selected>
+          <option value="4thGrade">
             4th Grade, 9-12 years
           </option>
        </Select>

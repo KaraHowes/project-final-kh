@@ -11,6 +11,7 @@ const member = createSlice({
 		error: null,
 		location: null,
 		status: null,
+	
 	},
 	reducers: {
 		setMemberId: (store, action) => {
@@ -31,6 +32,7 @@ const member = createSlice({
 		setStatus: (store, action) => {
 			store.status = action.payload;
 		},
+
 		setError: (store, action) => {
 			store.error = action.payload;
 		},

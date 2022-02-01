@@ -73,20 +73,20 @@ const AllBags = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          dispatch(theks.actions.setItems(data.response));
-          dispatch(theks.actions.setBagId(data.response.bagId));
-          dispatch(theks.actions.setLocation(data.response.location));
-          dispatch(theks.actions.setColour(data.response.colour));
-          dispatch(theks.actions.setAge(data.response.age));
-          dispatch(theks.actions.setMember(data.response.member));
+        dispatch(theks.actions.setItems(data.response));
+          //dispatch(theks.actions.setBagId(data.response.bagId));
+          //dispatch(theks.actions.setLocation(data.response.location));
+          //dispatch(theks.actions.setColour(data.response.colour));
+          //dispatch(theks.actions.setAge(data.response.age));
+          //dispatch(theks.actions.setMember(data.response.member));
           dispatch(theks.actions.setError(null));
         } else {
           dispatch(theks.actions.setItems([]));
-          dispatch(theks.actions.setBagId(null));
-          dispatch(theks.actions.setLocation(null));
-          dispatch(theks.actions.setColour(null));
-          dispatch(theks.actions.setAge(null));
-          dispatch(theks.actions.seMember(null));
+          //dispatch(theks.actions.setBagId(null));
+          //dispatch(theks.actions.setLocation(null));
+          //dispatch(theks.actions.setColour(null));
+          //dispatch(theks.actions.setAge(null));
+          //dispatch(theks.actions.seMember(null));
           dispatch(theks.actions.setError(data.response));
         }
       });

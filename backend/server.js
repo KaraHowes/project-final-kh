@@ -165,18 +165,49 @@ app.get('/member/:memberId', async (req,res) => {
 res.status(200).json({response: member, success: true})
 })
 
+//, parser.single('image')
+//endpoint to add a bag to the database, again to authorized members
+app.post('/bags', authenticateMember);
+app.post('/bags', async (req, res) => {
+	const {colour, location, age, member} = req.body;
+
+	try {
+		const queriedMember = await Member.findById(member).populate('member')
+		const newBag = await new Bag({ 
+			colour,
+			location,
+			age,
+			//imageUrl: req.file.path,
+			member: queriedMember
+		 }).save();
+
+		res.status(201).json({ 
+			response:{
+				bagId: newBag._id,
+				location: newBag.location,
+				colour: newBag.colour,
+				age: newBag.age,
+				member: queriedMember
+				
+			},
+			success: true });
+	} catch (error) {
+		res.status(400).json({ response: error, success: false });
+	}
+});
 //this function will only be available to authorized members with an access token
 app.get('/bags', authenticateMember);
 app.get('/bags', async (req, res) => {
 	//res.send('here are your bags')
 	const bags = await Bag.find({});
-	res.status(201).json({ response: bags, success: true });
+	res.status(201).json({ response: 
+	bags, success: true });
 });
 
-app.get('/bag/:bagId', authenticateMember)
-app.get('/bag/:bagId', async (req,res) => {
-	 const { bagId } = req.params;
-	const bag = await Bag.findById(bagId).populate('member') 
+app.get('/bag/:_id', authenticateMember)
+app.get('/bag/:_id', async (req,res) => {
+	 const { _id } = req.params;
+	const bag = await Bag.findById(_id).populate('member') 
 res.status(200).json({response: bag, success: true})
 })
 //------------Trying to allow user to search database--------------PROBLEM!
@@ -207,36 +238,6 @@ app.get('/searchbags', async (req, res)=> {
 	}
 	
 })
-//, parser.single('image')
-//endpoint to add a bag to the database, again to authorized members
-app.post('/bags', authenticateMember);
-app.post('/bags', async (req, res) => {
-	const {colour, location, age, member } = req.body;
-
-	try {
-		const queriedMember = await Member.findById(member)//.populate('member')
-		const newBag = await new Bag({ 
-			colour,
-			location,
-			age,
-			//imageUrl: req.file.path,
-			member: queriedMember
-		 }).save();
-
-		res.status(201).json({ 
-			response:{
-				bagId: newBag._id,
-				location: newBag.location,
-				colour: newBag.colour,
-				age: newBag.age,
-				member: queriedMember
-				
-			},
-			success: true });
-	} catch (error) {
-		res.status(400).json({ response: error, success: false });
-	}
-});
 
 
 	// Start the server

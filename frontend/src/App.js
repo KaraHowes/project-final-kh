@@ -18,10 +18,12 @@ import SelectedBag from './pages/SelectedBag'
 
 import member from './reducers/member';
 import theks from './reducers/theks';
+import oneThek from './reducers/oneThek'
 
 const reducer = combineReducers({
 	member: member.reducer,
 	theks: theks.reducer,
+	oneThek: oneThek.reducer,
 });
 
 const store = configureStore({ reducer });

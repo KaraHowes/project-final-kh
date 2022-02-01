@@ -68,11 +68,10 @@ const AddThek = () => {
   const[location, setLocation] = useState("")    
   const[age, setAge] = useState("")  
   
-
-  //const memberId = useSelector((store) => store.member.memberId)
+  
   const accessToken = useSelector((store) => store.member.accessToken)
   const errors = useSelector((store) => store.member.error);
-
+  const member = useSelector((store)=>store.member.memberId)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -85,8 +84,8 @@ const AddThek = () => {
   const onFormSubmit = (event) => {
     event.preventDefault();
   
-
     navigate("/BagAdded")
+  
     const options = {
       method: "POST",
       headers: {
@@ -94,7 +93,7 @@ const AddThek = () => {
         Authorization: accessToken,
       },
 
-      body: JSON.stringify({ colour, location, age }),
+      body: JSON.stringify({ colour, location, age, member }),
     };
 
     fetch(API_URL("bags"), options)
@@ -103,22 +102,22 @@ const AddThek = () => {
         //console.log(data);
         if (data.success) {
           batch(() => {
-            //dispatch(theks.actions.setItems(data.response));
-            dispatch(theks.actions.setBagId(data.response.bagId))
-            dispatch(theks.actions.setLocation(data.response.location))
-            dispatch(theks.actions.setColour(data.response.colour))
-            dispatch(theks.actions.setAge(data.response.age))
-            dispatch(theks.actions.setMember(data.response.member))
+            dispatch(theks.actions.setItems(data.response));
+            //dispatch(theks.actions.setBagId(data.response.bagId))
+            //dispatch(theks.actions.setLocation(data.response.location))
+            //dispatch(theks.actions.setColour(data.response.colour))
+            //dispatch(theks.actions.setAge(data.response.age))
+            //dispatch(theks.actions.setMember(data.response.member))
 			      dispatch(theks.actions.setError(null));
           });
         } else {
           batch(() => {
-            //dispatch(theks.actions.setItems([]));
-            dispatch(theks.actions.setBagId(null))
-            dispatch(theks.actions.setLocation(null))
-            dispatch(theks.actions.setColour(null))
-            dispatch(theks.actions.setAge(null))
-            dispatch(theks.actions.setMember(null))
+            dispatch(theks.actions.setItems([]));
+            //dispatch(theks.actions.setBagId(null))
+            //dispatch(theks.actions.setLocation(null))
+            //dispatch(theks.actions.setColour(null))
+            //dispatch(theks.actions.setAge(null))
+            //dispatch(theks.actions.setMember(null))
             dispatch(theks.actions.setError(data.response));
           });
         }
@@ -139,22 +138,22 @@ const AddThek = () => {
           <option disabled value="">
             Select Main colour:
           </option>
-          <option value="Blue" selected>
+          <option value="Blue">
             Blue
           </option>
-          <option value="Green" selected>
+          <option value="Green">
             Green
           </option>
-          <option value="Pink" selected>
+          <option value="Pink">
             Pink
           </option>
-          <option value="Purple" selected>
+          <option value="Purple">
             Purple
           </option>
-          <option value="Orange" selected>
+          <option value="Orange">
             Orange
           </option>
-          <option value="Multi" selected>
+          <option value="Multi">
             Multi-coloured
           </option>
         </Select>
@@ -167,22 +166,22 @@ const AddThek = () => {
           <option disabled value="">
             Select nearest city:
           </option>
-          <option value="Zurich" selected>
+          <option value="Zurich" >
             Zurich
           </option>
-          <option value="Basel" selected>
+          <option value="Basel" >
             Basel
           </option>
-          <option value="Geneva" selected>
+          <option value="Geneva" >
             Geneva
           </option>
-          <option value="Bern" selected>
+          <option value="Bern" >
             Bern
           </option>
-          <option value="Luzern" selected>
+          <option value="Luzern" >
             Luzern
           </option>
-          <option value="Lugano" selected>
+          <option value="Lugano" >
             Lugano
           </option>
         </Select>
@@ -195,10 +194,10 @@ const AddThek = () => {
           <option disabled value="">
             Select the age-range of the bag:
           </option>
-          <option value="1stGrade" selected>
+          <option value="1stGrade" >
             1st Grade, 6-9 years
           </option>
-          <option value="4thGrade" selected>
+          <option value="4thGrade" >
             4th Grade, 9-12 years
           </option>
        </Select>

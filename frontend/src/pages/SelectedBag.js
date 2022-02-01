@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch, batch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import theks from "../reducers/theks";
+import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 
@@ -50,10 +50,13 @@ const CardText = styled.p`
 `;
 
 const SelectedBag = () => {
-  const chosenBag = useSelector((store) => store.theks);
   const accessToken = useSelector((store) => store.member.accessToken);
-  const BagId = useSelector((store) => store.theks.BagId)
-
+  const chosenBag = useSelector((store) => store.oneThek);
+  //const chosenColour = useSelector((store) => store.oneThek.colour);
+  const { _id }= useParams() 
+  console.log(_id)
+  
+  //const BagColour = useSelector((store) => store.theks.colour)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,46 +68,48 @@ const SelectedBag = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
+    console.log(accessToken)
     const options = {
       method: "GET",
       headers: {
         Authorization: accessToken,
       },
     };
-    fetch(API_URL(`bag/$_id`), options)
+    fetch(API_URL(`bag/${_id}`), options)
       .then((res) => res.json())
       .then((data) => {
+        //console.log(data);
         if (data.success) {
-          dispatch(theks.actions.setItems(data.response));
-          dispatch(theks.actions.setBagId(data.response.bagId));
-          dispatch(theks.actions.setLocation(data.response.location));
-          dispatch(theks.actions.setColour(data.response.colour));
-          dispatch(theks.actions.setAge(data.response.age));
-          dispatch(theks.actions.setMember(data.response.member));
-          dispatch(theks.actions.setError(null));
+          batch(() => {
+            dispatch(oneThek.actions.set_Id(data.response._id));
+            dispatch(oneThek.actions.setLocation(data.response.location));
+            dispatch(oneThek.actions.setColour(data.response.colour));
+            dispatch(oneThek.actions.setAge(data.response.age));
+            dispatch(oneThek.actions.setMember(data.response.member));
+            dispatch(oneThek.actions.setError(null));
+          });
         } else {
-          dispatch(theks.actions.setItems([]));
-          dispatch(theks.actions.setBagId(null));
-          dispatch(theks.actions.setLocation(null));
-          dispatch(theks.actions.setColour(null));
-          dispatch(theks.actions.setAge(null));
-          dispatch(theks.actions.setMember(null));
-          dispatch(theks.actions.setError(data.response));
+          batch(() => {
+            dispatch(oneThek.actions.set_Id(null));
+            dispatch(oneThek.actions.setLocation(null));
+            dispatch(oneThek.actions.setColour(null));
+            dispatch(oneThek.actions.setAge(null));
+            dispatch(oneThek.actions.setMember(null));
+            dispatch(oneThek.actions.setError(data.response));
+          });
         }
       });
-  }, [dispatch, accessToken, BagId]);
+  }, [accessToken, dispatch, _id]);
 
   return (
     <Box>
       <BagContainer>
-  <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
-  <p>The bag is based in {chosenBag.location}</p>
-
+        <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
+        <p>The bag is based in {chosenBag.location}</p>
       </BagContainer>
-      <Logout/>
+      <Logout />
     </Box>
   );
 };
 
-
-export default SelectedBag
+export default SelectedBag;

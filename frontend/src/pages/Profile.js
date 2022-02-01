@@ -82,7 +82,7 @@ const Profile = () => {
         Authorization: accessToken,
       },
     };
-    fetch(API_URL(`member/$memberId`), options)
+    fetch(API_URL(`member/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
