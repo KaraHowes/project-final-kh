@@ -48,15 +48,23 @@ const CardText = styled.p`
   background-color: #d5f5f2;
   padding: 5px 0;
 `;
-
+const Button = styled.button`
+  width: 80%;
+  min-width: 200px;
+  height: 50px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  margin: 10px 0;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+`
 const SelectedBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const chosenBag = useSelector((store) => store.oneThek);
-  //const chosenColour = useSelector((store) => store.oneThek.colour);
-  const { _id }= useParams() 
-  console.log(_id)
-  
-  //const BagColour = useSelector((store) => store.theks.colour)
+  const { _id }= useParams() //This is vital so that the id can be taken from the url browser
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -78,7 +86,7 @@ const SelectedBag = () => {
     fetch(API_URL(`bag/${_id}`), options)
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
+        
         if (data.success) {
           batch(() => {
             dispatch(oneThek.actions.set_Id(data.response._id));
@@ -107,6 +115,8 @@ const SelectedBag = () => {
         <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
         <p>The bag is based in {chosenBag.location}</p>
       </BagContainer>
+      <Button > Reserve this bag?</Button>
+      <Button > Go back to overview</Button>
       <Logout />
     </Box>
   );

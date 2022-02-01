@@ -89,11 +89,12 @@ const FindThek = () => {
             },
             //body: JSON.stringify({ colour, location, age }),
         }
-        fetch(API_URL("searchbags"), options)
+        fetch(`${API_URL("searchbags")}?colour=${colour}`, options)
         .then((res) => res.json())
         .then((data) => {
+          console.log(data.response)
             if (data.success){
-                dispatch(theks.actions.setItems(data.response))
+            dispatch(theks.actions.setItems(data.response))
                 dispatch(theks.actions.setbagId(data.response.bagId))
                 dispatch(theks.actions.setLocation(data.response.location))
                 dispatch(theks.actions.setColour(data.response.colour))

@@ -1,3 +1,5 @@
+//This handles information for one particular bag
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const oneThek = createSlice({
