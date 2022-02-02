@@ -111,7 +111,7 @@ app.get("/", (req, res) => {
 				email: newMember.email,
 				location: newMember.location,
 				status: newMember.status,
-//	bagId: newBag._id,
+
 			},
 			success: true,
 		});

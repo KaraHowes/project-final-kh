@@ -1,9 +1,86 @@
-import React from 'react'
+import React from "react";
 
-const Intro = ()=> {
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-    return(
-        <div></div>
-    )
-}
-export default Intro
+const Box = styled.section`
+  width: 90%;
+  padding: 10px;
+  background: white;
+  margin: 50px auto 0 auto;
+  border: 5px solid black;
+  box-shadow: 10px 10px #878DF7;
+  font-family: "Josefin Sans", sans-serif;
+`;
+const ImageWords = styled.img`
+  width: 100%;
+`;
+
+const ImageWritingContainer = styled.section`
+  width: 95%;
+`;
+const ImageThek = styled.img`
+  width: 100%;
+  max-width: 150px;
+`;
+const TextContainer = styled.div`
+`;
+const TitleText = styled.h1`
+`;
+const MainText = styled.p`
+text-align: justify;
+line-height: 24px;`;
+const Startbutton = styled.button`
+width: 100%;
+height: 50px;
+color: white;
+background-color: #878DF7;
+border: none;
+cursor: pointer;
+font-size: 24px;
+padding: 15px 0 15px 0;
+border-radius: 20px;
+font-family: 'Josefin Sans', sans-serif;
+box-shadow: 3px 3px 6px #888888;
+
+  
+`;
+const Buttoncontainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100px;
+  margin-bottom: 50px;
+`;
+const Intro = () => {
+  return (
+    <Box>
+      <ImageWords
+        src="./assets/thek-friends-01.png"
+        alt="Thek-friends-written-logo"
+      ></ImageWords>
+      <ImageWritingContainer>
+        <ImageThek
+          src="./assets/thek-icon-1.png"
+          alt="Thek-friends-bag-logo"
+        ></ImageThek>
+        <TextContainer>
+          <TitleText>Welcome to Thek-Friends</TitleText>
+          <MainText> Every year. thousands of Children start the Swiss School system. As we all know, The Thek is an integral
+              part of the process. Choosing the right bag is no easy task and this is where Thek-friends can help.
+              We would like to reduce the waste of unused and unloved Theks and give them a new home. Please join us:  
+              Become a Thek-friend and benefit from the Community.
+          </MainText>
+        </TextContainer>
+      </ImageWritingContainer>
+
+      <Buttoncontainer>
+        <Link to="/signin">
+          <Startbutton>Register</Startbutton>
+        </Link>
+      </Buttoncontainer>
+    </Box>
+  );
+};
+
+export default Intro;
