@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 import Logout from "../components/Logout"
+//import member from "../reducers/member"
 
 
 const Box = styled.section `
@@ -71,7 +72,7 @@ const AddThek = () => {
   
   const accessToken = useSelector((store) => store.member.accessToken)
   const errors = useSelector((store) => store.member.error);
-  const member = useSelector((store)=>store.member.memberId)
+ const memberId = useSelector((store)=>store.member.memberId)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -93,31 +94,31 @@ const AddThek = () => {
         Authorization: accessToken,
       },
 
-      body: JSON.stringify({ colour, location, age, member }),
+      body: JSON.stringify({ colour, location, age, memberId}),
     };
 
     fetch(API_URL("bags"), options)
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
+        //console.log("addbag", data);
         if (data.success) {
           batch(() => {
             dispatch(theks.actions.setItems(data.response));
-            //dispatch(theks.actions.setBagId(data.response.bagId))
-            //dispatch(theks.actions.setLocation(data.response.location))
-            //dispatch(theks.actions.setColour(data.response.colour))
-            //dispatch(theks.actions.setAge(data.response.age))
-            //dispatch(theks.actions.setMember(data.response.member))
+            dispatch(theks.actions.setBagId(data.response.bagId))
+            dispatch(theks.actions.setLocation(data.response.location))
+            dispatch(theks.actions.setColour(data.response.colour))
+            dispatch(theks.actions.setAge(data.response.age))
+            dispatch(theks.actions.setMember(data.response.member))
 			      dispatch(theks.actions.setError(null));
           });
         } else {
           batch(() => {
             dispatch(theks.actions.setItems([]));
-            //dispatch(theks.actions.setBagId(null))
-            //dispatch(theks.actions.setLocation(null))
-            //dispatch(theks.actions.setColour(null))
-            //dispatch(theks.actions.setAge(null))
-            //dispatch(theks.actions.setMember(null))
+            dispatch(theks.actions.setBagId(null))
+            dispatch(theks.actions.setLocation(null))
+            dispatch(theks.actions.setColour(null))
+            dispatch(theks.actions.setAge(null))
+            dispatch(theks.actions.setMember(null))
             dispatch(theks.actions.setError(data.response));
           });
         }
@@ -138,7 +139,7 @@ const AddThek = () => {
           <option disabled value="">
             Select Main colour:
           </option>
-          <option value="Blue">
+          <option value="Blue" >
             Blue
           </option>
           <option value="Green">

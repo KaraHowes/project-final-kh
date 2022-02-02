@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, batch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import styled from "styled-components";
 
-import theks from '../reducers/theks'
+import searched from '../reducers/searched'
 import { API_URL } from '../utils/urls'
 import Logout from "../components/Logout"
 //import BagFound from "../components/BagFound"
@@ -94,21 +94,25 @@ const FindThek = () => {
         .then((data) => {
           console.log(data.response)
             if (data.success){
-            dispatch(theks.actions.setItems(data.response))
-                dispatch(theks.actions.setbagId(data.response.bagId))
-                dispatch(theks.actions.setLocation(data.response.location))
-                dispatch(theks.actions.setColour(data.response.colour))
-                dispatch(theks.actions.setAge(data.response.age))
-                dispatch(theks.actions.setMember(data.response.member))
-                dispatch(theks.actions.setError(null))
+                batch(()=> {
+                  dispatch(searched.actions.setItems(data.response))
+                dispatch(searched.actions.setBagId(data.response.bagId))
+                dispatch(searched.actions.setLocation(data.response.location))
+                dispatch(searched.actions.setColour(data.response.colour))
+                dispatch(searched.actions.setAge(data.response.age))
+                dispatch(searched.actions.setMember(data.response.member))
+                dispatch(searched.actions.setError(null))
+                })
             } else {
-                dispatch(theks.actions.setItems([]))
-                dispatch(theks.actions.setbagId(null))
-                dispatch(theks.actions.setLocation(null))
-                dispatch(theks.actions.setColour(null))
-                dispatch(theks.actions.setAge(null))
-                dispatch(theks.actions.seMember(null))
-                dispatch(theks.actions.setError(data.response))
+                batch(()=> {
+                  dispatch(searched.actions.setItems([]))
+                dispatch(searched.actions.setbagId(null))
+                dispatch(searched.actions.setLocation(null))
+                dispatch(searched.actions.setColour(null))
+                dispatch(searched.actions.setAge(null))
+                dispatch(searched.actions.seMember(null))
+                dispatch(searched.actions.setError(data.response))
+                })
             }
         })
       

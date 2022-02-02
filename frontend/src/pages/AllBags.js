@@ -90,7 +90,7 @@ const AllBags = () => {
           dispatch(theks.actions.setError(data.response));
         }
       });
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   return (
     <Box>

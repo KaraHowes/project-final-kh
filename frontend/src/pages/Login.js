@@ -81,8 +81,7 @@ const Button = styled.button`
 const Login = () => {
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
-  //const [email, setEmailAddress] = useState("")
-  //const [mode, setMode] = useState('signup');
+
 
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
@@ -112,13 +111,12 @@ const Login = () => {
     fetch(API_URL("signin"), options)
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
+        //console.log("signin", data);
         if (data.success) {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response.memberId));
             dispatch(member.actions.setMembername(data.response.membername));
             dispatch(member.actions.setAccessToken(data.response.accessToken));
-            //dispatch(member.actions.setEmailAddress(data.response.email));
             dispatch(member.actions.setLocation(data.response.location));
             dispatch(member.actions.setStatus(data.response.status));
             dispatch(member.actions.setError(null));
@@ -128,7 +126,6 @@ const Login = () => {
             dispatch(member.actions.setMemberId(null));
             dispatch(member.actions.setMembername(null));
             dispatch(member.actions.setAccessToken(null));
-            //dispatch(member.actions.setEmailAddress(null));
             dispatch(member.actions.setLocation(null));
             dispatch(member.actions.setStatus(null));
             dispatch(member.actions.setError(data.response));

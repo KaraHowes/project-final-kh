@@ -169,10 +169,10 @@ res.status(200).json({response: member, success: true})
 //endpoint to add a bag to the database, again to authorized members
 app.post('/bags', authenticateMember);
 app.post('/bags', async (req, res) => {
-	const {colour, location, age, member} = req.body;
+	const {colour, location, age, memberId} = req.body;
 
 	try {
-		const queriedMember = await Member.findById(member).populate('member')
+		const queriedMember = await Member.findById(memberId).populate('member')
 		const newBag = await new Bag({ 
 			colour,
 			location,

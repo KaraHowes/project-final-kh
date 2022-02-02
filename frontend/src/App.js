@@ -14,16 +14,19 @@ import AllBags from './pages/AllBags'
 import FindThek from './pages/FindThek'
 import BagAdded from './pages/BagAdded'
 import SelectedBag from './pages/SelectedBag'
-
+import Starter from './pages/Starter'
+import Intro from './pages/Intro'
 
 import member from './reducers/member';
 import theks from './reducers/theks';
 import oneThek from './reducers/oneThek'
+import searched from './reducers/searched'
 
 const reducer = combineReducers({
 	member: member.reducer,
 	theks: theks.reducer,
 	oneThek: oneThek.reducer,
+	searched: searched.reducer,
 });
 
 const store = configureStore({ reducer });
@@ -33,6 +36,7 @@ export const App = () => {
 		<Provider store={store}>
 			<BrowserRouter>
 				<Routes>
+					<Route path="/starter" element={<Starter />}/>
 					<Route path="/member/:memberId" element={<Profile />} />
 					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/signin" element={<Login />} />
@@ -42,7 +46,7 @@ export const App = () => {
 					<Route path="/AllBags" element={<AllBags />} />
 					<Route path="/BagAdded" element={<BagAdded />} />
 					<Route path="/bag/:_id" element={<SelectedBag />} />
-		
+					<Route path="/intro" element={<Intro />} />
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>

@@ -75,6 +75,8 @@ const Profile = () => {
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member)
   
+  
+
   useEffect(() => {
     const options = {
       method: "GET",
@@ -85,6 +87,7 @@ const Profile = () => {
     fetch(API_URL(`member/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         if (data.success) {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response.memberId));
@@ -121,6 +124,8 @@ const Profile = () => {
         <p>{profile.status}</p>
         <p>{profile.email}</p>
         <p>{profile.location}</p>
+        <p>{profile.memberId}</p>
+    
       </ProfileContainer>
       
       <ButtonContainer>
