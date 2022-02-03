@@ -259,7 +259,7 @@ if (process.env.RESET_DB === "true") {
 app.get("/inspiration", async(req,res)=> {
   const Quotes = quotesData
   const getRandomAffirmation = () => Quotes[Math.floor(Math.random() * Quotes.length)];
-res.json({quote:getRandomAffirmation()})
+res.status(200).json({response:getRandomAffirmation(), success: true})
 })
 
 
