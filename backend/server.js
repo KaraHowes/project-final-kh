@@ -258,8 +258,11 @@ if (process.env.RESET_DB === "true") {
 }
 app.get("/inspiration", async(req,res)=> {
   const Quotes = quotesData
-res.json(Quotes)
+  const getRandomAffirmation = () => Quotes[Math.floor(Math.random() * Quotes.length)];
+res.json({quote:getRandomAffirmation()})
 })
+
+
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line
