@@ -1,22 +1,33 @@
-import React from 'react'
-import { useSelector} from "react-redux";
-
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
+import NoBagFound from '../components/NoBagFound'
 
-const BagsFound= ()=>{
+const BagsFound = () => {
 
-    const foundBags = useSelector((store)=> store.searched.items)
+  const foundBags = useSelector((store) => store.searched.items);
+  //const accessToken = useSelector((store) => store.member.memberId) 
 
-return(
-    <div>Found bags
+  if (foundBags.length === 0) {
+    return (
+      <>
+       <NoBagFound />
+      </>
+    );
+  }
 
-    {foundBags.map((item)=>(
-        <div key={item.bagId}>{item.colour}{item.location}</div>
+  return (
+    <div>
+      Found bags
+      {foundBags.map((item) => (
+        <div key={item.bagId}>
+          {item.colour}
+          {item.location}
+        </div>
       ))}
-      </div>
-  
-)
-}
+    </div>
+  );
+};
 
-export default BagsFound
+export default BagsFound;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from "styled-components";
 
 import searched from '../reducers/searched'
@@ -89,7 +89,7 @@ const FindThek = () => {
             },
            
         }
-        fetch(`${API_URL("searchbags")}?colour=${colour}`, options)
+        fetch(`${API_URL("searchbags")}?colour=${colour}&location=${location}`, options)
         .then((res) => res.json())
         .then((data) => {
           console.log(data.response)
@@ -106,11 +106,11 @@ const FindThek = () => {
             } else {
                 batch(()=> {
                   dispatch(searched.actions.setItems([]))
-                dispatch(searched.actions.setbagId(null))
+                dispatch(searched.actions.setBagId(null))
                 dispatch(searched.actions.setLocation(null))
                 dispatch(searched.actions.setColour(null))
                 dispatch(searched.actions.setAge(null))
-                dispatch(searched.actions.seMember(null))
+                dispatch(searched.actions.setMember(null))
                 dispatch(searched.actions.setError(data.response))
                 })
             }
