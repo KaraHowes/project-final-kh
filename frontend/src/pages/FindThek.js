@@ -65,10 +65,9 @@ const Select = styled.select`
 const FindThek = () => {
     const[colour, setColour] = useState("")
     const[location, setLocation] = useState("")    
-    const[age, setAge] = useState("")  
+    
 
     const errors = useSelector((store) => store.member.error);
-
     const accessToken = useSelector((store)=> store.member.accessToken)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -81,13 +80,14 @@ const FindThek = () => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+       navigate("/bagsFound")
        
         const options = { 
             method: 'GET',
             headers: {
                 Authorization: accessToken,
             },
-            //body: JSON.stringify({ colour, location, age }),
+           
         }
         fetch(`${API_URL("searchbags")}?colour=${colour}`, options)
         .then((res) => res.json())
@@ -178,22 +178,6 @@ return (
           </option>
         </Select>
 
-        <Select
-          id="ageInput"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        >
-          <option disabled value="">
-            Age-range:
-          </option>
-          <option value="1stGrade">
-            1st Grade, 6-9 years
-          </option>
-          <option value="4thGrade">
-            4th Grade, 9-12 years
-          </option>
-       </Select>
-   
           <Button type="submit">Find my Thek!</Button>
           
        
@@ -204,6 +188,7 @@ return (
 
       
     </AddWrapper>
+
    </Box>
 )
 }

@@ -16,6 +16,7 @@ import BagAdded from './pages/BagAdded'
 import SelectedBag from './pages/SelectedBag'
 import Starter from './pages/Starter'
 import Intro from './pages/Intro'
+import BagsFound from './pages/BagsFound'
 
 import member from './reducers/member';
 import theks from './reducers/theks';
@@ -47,6 +48,8 @@ export const App = () => {
 					<Route path="/BagAdded" element={<BagAdded />} />
 					<Route path="/bag/:_id" element={<SelectedBag />} />
 					<Route path="/intro" element={<Intro />} />
+
+					<Route path="/bagsFound" element={<BagsFound />} />
 					<Route path="*" element={<NotFound />} />
 
 				</Routes>
