@@ -114,7 +114,7 @@ const Login = () => {
         //console.log("signin", data);
         if (data.success) {
           batch(() => {
-            dispatch(member.actions.setMemberId(data.response.memberId));
+            dispatch(member.actions.setMemberId(data.response._id));
             dispatch(member.actions.setMembername(data.response.membername));
             dispatch(member.actions.setAccessToken(data.response.accessToken));
             dispatch(member.actions.setLocation(data.response.location));

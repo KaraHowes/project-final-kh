@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -74,8 +74,8 @@ const Profile = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member)
-  
-  
+  //const { memberId } = useParams()
+  console.log(memberId)
 
   useEffect(() => {
     const options = {
@@ -90,7 +90,7 @@ const Profile = () => {
         console.log(data)
         if (data.success) {
           batch(() => {
-            dispatch(member.actions.setMemberId(data.response.memberId));
+            dispatch(member.actions.setMemberId(data.response._id));
             dispatch(member.actions.setMembername(data.response.membername));
             dispatch(member.actions.setAccessToken(data.response.accessToken));
             dispatch(member.actions.setEmailAddress(data.response.email));

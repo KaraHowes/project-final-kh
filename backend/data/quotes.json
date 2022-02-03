@@ -1,5 +1,9 @@
 [
-   {
+    {
+        "quote": "This is a wonderful day. I have never see this one before",
+        "source": "Maya Angelou"
+    },
+    {
         "quote": "Nothing can be changed until it is faced.",
         "source": "James Baldwin"
     },
@@ -14,6 +18,61 @@
     {
         "quote": "Everything has beauty, but not everyone sees it.",
         "source": "Confucius"
+    },
+    {
+        "quote": "Believe you can and you are halfway there",
+        "source": "Theodore Roosevelt"
+    },
+    {
+        "quote": "No act of kindness, no matter how small, is ever wasted",
+        "source": "Aesop"
+    },
+    {
+        "quote": "Do the best you can until you know better. Then when you know better, do better.",
+        "source": "Maya Angelou"
+    },
+    {
+        "quote": "I have chosen to be happy because it is good for my health.",
+        "source": "Voltaire"
+    },
+    {
+        "quote": "A winner is a dreamer who never gives up",
+        "source": "Nelson Mandela"
+    },
+    {
+        "quote": "The Future depends on what you do Today",
+        "source": "Mahatma Gandhi"
+    },
+    {
+        "quote": "The most courageous act is still to think for yourself. Aloud",
+        "source": "Coco Chanel"
+    },
+    {
+        "quote": "I have not failed. I've just found 10,000 ways that won't work",
+        "source": "Thomas Edison"
+    },
+    {
+        "quote": "I never lose. I either win or I learn",
+        "source": "Nelson Mandela"
+    },
+    {
+        "quote": "your life does not get better by chance, it gets better by change",
+        "source": "Jim Rohn"
+    },
+    {
+        "quote": "You only live once, but if you do it right, once is enough",
+        "source": "Mae West"
+    },
+    {
+        "quote": "The Future belongs to those who believe in their dreams",
+        "source": "Eleanor Roosevelt"
+    },
+    {
+        "quote": "However difficult life may seem, there is always something you can do and succeed at. It matters that you don't give up",
+        "source": "Stephen Hawking"
+    },
+    {
+        "quote": "What we know matters, but who we are matters more",
+        "source": "Brené Brown"
     }
-
 ]
