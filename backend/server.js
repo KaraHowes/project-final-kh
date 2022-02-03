@@ -226,11 +226,7 @@ app.get("/searchbags", async (req, res) => {
       });
     } else {
       res.status(201).json({
-        response:
-          //{location:foundBags.location,
-          //colour:foundBags.colour,
-          //age:foundBags.age},
-          foundBags,
+        response:foundBags,
         success: true,
       });
     }
@@ -239,6 +235,31 @@ app.get("/searchbags", async (req, res) => {
   }
 });
 
+import quotesData from './data/quotes.json'
+
+const Quote = mongoose.model("Quote", {
+    quote: String,
+    source: String,
+})
+
+//Fills database with data from my API
+if (process.env.RESET_DB === "true") {
+  // need to use an async function so that the users are deleted before
+  const seedDatabase = async () => {
+    await Quote.deleteMany({});
+
+
+    quotesData.forEach((item) => {
+      const newQuote = new Quote(item);
+      newQuote.save();
+    });
+  };
+  seedDatabase();
+}
+app.get("/inspiration", async(req,res)=> {
+  const Quotes = quotesData
+res.json(Quotes)
+})
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line

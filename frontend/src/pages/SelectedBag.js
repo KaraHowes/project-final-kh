@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import oneThek from "../reducers/oneThek";
@@ -116,7 +116,9 @@ const SelectedBag = () => {
         <p>The bag is based in {chosenBag.location}</p>
       </BagContainer>
       <Button > Reserve this bag?</Button>
-      <Button > Go back to overview</Button>
+      <Button > 
+        <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
+        </Button>
       <Logout />
     </Box>
   );

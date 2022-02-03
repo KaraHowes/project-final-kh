@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import NoBagFound from '../components/NoBagFound'
+import Logout from '../components/Logout'
 
 const BagsFound = () => {
 
@@ -26,6 +27,7 @@ const BagsFound = () => {
           {item.location}
         </div>
       ))}
+      <Logout/>
     </div>
   );
 };
