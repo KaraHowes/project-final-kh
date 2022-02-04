@@ -170,7 +170,7 @@ app.get("/member/:memberId", async (req, res) => {
 //, parser.single('image')
 //endpoint to add a bag to the database, again to authorized members
 app.post("/bags", authenticateMember);
-app.post("/bags", async (req, res) => {
+app.post("/bags", parser.single('image'), async (req, res) => {
   const { colour, location, age, memberId } = req.body;
 
   try {
@@ -179,7 +179,7 @@ app.post("/bags", async (req, res) => {
       colour,
       location,
       age,
-      //imageUrl: req.file.path,
+      imageUrl: req.file.path,
       member: queriedMember,
     }).save();
 
