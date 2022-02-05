@@ -5,6 +5,12 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import listEndpoints from "express-list-endpoints";
 
+import quotesData from "./data/quotes.json";
+
+import authenticateMember from "./authorization/authenticateMember.js"
+import { register, signIn, profile } from "./endpoints/memberEndpoints.js"
+import { addBag, allBags} from "./endpoints/bagEndpoints.js"
+
 import dotenv from "dotenv";
 import cloudinaryFramework from "cloudinary";
 import multer from "multer";
@@ -44,7 +50,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "theks",
-    allowedFormats: ["jpg", "png"],
+    allowedFormats: ["jpg", "png", "jpeg"],
     transformation: [{ width: 500, height: 500, crop: "limit" }],
   },
 });
@@ -56,7 +62,7 @@ const Member = mongoose.model("Member", MemberSchema);
 const Bag = mongoose.model("Bag", BagSchema);
 
 // authenticates member
-const authenticateMember = async (req, res, next) => {
+{/*const authenticateMember = async (req, res, next) => {
   const accessToken = req.header("Authorization"); // to send in header is kind of unique for accessToken
 
   try {
@@ -72,9 +78,9 @@ const authenticateMember = async (req, res, next) => {
       });
     }
   } catch (error) {
-    res.status(400).json({ response: error, success: false });
+    res.status(400).json({ message: "Invalid request", response: error, success: false });
   }
-};
+};*/}
 
 //------------ ROUTES------------------------------------
 
@@ -87,7 +93,7 @@ app.get("/", (req, res) => {
 app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));
 
 // To register
-app.post("/signup", async (req, res) => {
+app.post("/signup", async (req, res) => {/*{
   const { membername, password, email, location, status } = req.body;
 
   try {
@@ -120,10 +126,10 @@ app.post("/signup", async (req, res) => {
   } catch (error) {
     res.status(400).json({ response: error, success: false });
   }
-});
+}*/});
 
 //endpoint to sign-in
-app.post("/signin", async (req, res) => {
+app.post("/signin", async (req, res) => {/*{
   const { membername, password } = req.body;
 
   try {
@@ -131,14 +137,15 @@ app.post("/signin", async (req, res) => {
 
     if (member && bcrypt.compareSync(password, member.password)) {
       res.status(200).json({
-        response: 
-        { _id: member._id,
+        response: {
+          _id: member._id,
           membername: member.membername,
           accessToken: member.accessToken,
           email: member.email,
           location: member.location,
-          status: member.status},
-        
+          status: member.status,
+        },
+
         success: true,
       });
     } else {
@@ -157,20 +164,20 @@ app.get("/members", authenticateMember);
 app.get("/members", async (req, res) => {
   const members = await Member.find({});
   res.json(members);
-});
+}*/});
 // endpoint to find one member
 
 app.get("/member/:memberId", authenticateMember);
-app.get("/member/:memberId", async (req, res) => {
+app.get("/member/:memberId", async (req, res) => {/*{
   const { memberId } = req.params;
   const member = await Member.findById(memberId); //.populate('bag')
   res.status(200).json({ response: member, success: true });
-});
+}*/});
 
 //, parser.single('image')
 //endpoint to add a bag to the database, again to authorized members
 app.post("/bags", authenticateMember);
-app.post("/bags", parser.single('image'), async (req, res) => {
+app.post("/bags", async (req, res) => {/*{
   const { colour, location, age, memberId } = req.body;
 
   try {
@@ -179,7 +186,7 @@ app.post("/bags", parser.single('image'), async (req, res) => {
       colour,
       location,
       age,
-      imageUrl: req.file.path,
+      //imageUrl: req.file.path,
       member: queriedMember,
     }).save();
 
@@ -196,14 +203,13 @@ app.post("/bags", parser.single('image'), async (req, res) => {
   } catch (error) {
     res.status(400).json({ response: error, success: false });
   }
-});
+}*/});
 //this function will only be available to authorized members with an access token
 app.get("/bags", authenticateMember);
-app.get("/bags", async (req, res) => {
-  //res.send('here are your bags')
+app.get("/bags", async (req, res) => {/*{
   const bags = await Bag.find({});
   res.status(201).json({ response: bags, success: true });
-});
+}*/});
 
 app.get("/bag/:_id", authenticateMember);
 app.get("/bag/:_id", async (req, res) => {
@@ -226,7 +232,7 @@ app.get("/searchbags", async (req, res) => {
       });
     } else {
       res.status(201).json({
-        response:foundBags,
+        response: foundBags,
         success: true,
       });
     }
@@ -235,19 +241,19 @@ app.get("/searchbags", async (req, res) => {
   }
 });
 
-import quotesData from './data/quotes.json'
+//--------- for inspiration api--------
+const QuoteSchema = new mongoose.Schema({
+  quote: { type: String },
+  source: { type: String },
+});
 
-const Quote = mongoose.model("Quote", {
-    quote: String,
-    source: String,
-})
+const Quote = mongoose.model("Quote", QuoteSchema);
 
 //Fills database with data from my API
-if (process.env.RESET_DB === "true") {
+if (process.env.RESET_DB) {
   // need to use an async function so that the users are deleted before
   const seedDatabase = async () => {
     await Quote.deleteMany({});
-
 
     quotesData.forEach((item) => {
       const newQuote = new Quote(item);
@@ -256,12 +262,15 @@ if (process.env.RESET_DB === "true") {
   };
   seedDatabase();
 }
-app.get("/inspiration", async(req,res)=> {
-  const Quotes = quotesData
-  const getRandomAffirmation = () => Quotes[Math.floor(Math.random() * Quotes.length)];
-res.status(200).json({response:getRandomAffirmation(), success: true})
-})
 
+app.get("/inspiration", async (req, res) => {
+  const Quotes = await Quote.find({});
+  const getRandomAffirmation = () =>
+    Quotes[Math.floor(Math.random() * Quotes.length)];
+    const random = getRandomAffirmation()
+  res.status(200).json({ 
+   response: random, success: true });
+});
 
 // Start the server
 app.listen(port, () => {

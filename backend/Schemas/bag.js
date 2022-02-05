@@ -19,11 +19,14 @@ export const BagSchema = new mongoose.Schema({
     age: {
         type: String,
     },
-    imageUrl: {
-        type: String,
+    //imageUrl: {
+      //  type: String,
         //required: true,
-      },
+     // },
     member: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Member'}
 });
+
+const Bag = mongoose.model("Bag", BagSchema);
+module.exports = Bag

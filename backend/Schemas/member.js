@@ -30,6 +30,9 @@ export const MemberSchema = new mongoose.Schema({
 		type: String,
 		reuired: true,
 	}, 
-	//bag: {type: mongoose.Schema.Types.ObjectId,ref: 'Bag'}
+	
 	
 });
+
+const Member = mongoose.model("Member", MemberSchema);
+module.exports = Member

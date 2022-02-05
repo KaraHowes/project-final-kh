@@ -1,4 +1,4 @@
-//This handles information for one particular bag
+//This handles information for the Affirmations fetch
 
 import { createSlice } from '@reduxjs/toolkit';
 

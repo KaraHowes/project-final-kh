@@ -176,22 +176,22 @@ const Register = () => {
           <option option value="DEFAULT" disabled>
             Select nearest city:
           </option>
-          <option value="Zurich" selected>
+          <option value="Zurich">
             Zurich
           </option>
-          <option value="Basel" selected>
+          <option value="Basel">
             Basel
           </option>
-          <option value="Geneva" selected>
+          <option value="Geneva">
             Geneva
           </option>
-          <option value="Bern" selected>
+          <option value="Bern" >
             Bern
           </option>
-          <option value="Luzern" selected>
+          <option value="Luzern">
             Luzern
           </option>
-          <option value="Lugano" selected>
+          <option value="Lugano">
             Lugano
           </option>
         </Select>
@@ -204,10 +204,10 @@ const Register = () => {
           <option disabled value="">
             Thek-friends status:
           </option>
-          <option value="Donor" selected>
+          <option value="Donor">
             Donor
           </option>
-          <option value="Recipient" selected>
+          <option value="Recipient">
             Recipient
           </option>
        </Select>
