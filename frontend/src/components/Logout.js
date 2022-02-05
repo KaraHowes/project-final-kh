@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, batch } from 'react-redux';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import swal from 'sweetalert'
 import member from "../reducers/member";
 
 const Button = styled.button`
@@ -23,6 +23,18 @@ const Logout = () => {
     const dispatch = useDispatch()    
 
     const logout = () => {
+        swal({
+            title: "Are you going now?",
+            buttons:{
+                confirm:{text: 'yes', result: true, closeModal: true, value: true, visible: true},
+                cancel:{text: 'cancel', result: false, closeModal: true, value: null, visible: true},
+
+            }
+        }).then((result) => {
+            if (result){
+                swal('Bye bye')
+            }
+        })
         batch(() => {
           dispatch(member.actions.setMembername(null));
           dispatch(member.actions.setAccessToken(null));

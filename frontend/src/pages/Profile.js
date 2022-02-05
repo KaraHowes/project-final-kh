@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-
+import swal from "sweetalert"
 
 import { API_URL } from "utils/urls";
 import Logout from "../components/Logout";
@@ -74,8 +74,7 @@ const Profile = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member)
-  //const { memberId } = useParams()
-  console.log(memberId)
+ 
 
   useEffect(() => {
     const options = {
@@ -98,6 +97,10 @@ const Profile = () => {
             dispatch(member.actions.setStatus(data.response.status));
             dispatch(member.actions.setError(null));
           });
+          {profile.status==="Donor"?
+            swal('Hi there donor', {icon:'success', button: 'ok'}):
+          swal('hi there recipient', {icon:'success', button: 'ok'}) }
+
         } else {
           batch(() => {
             dispatch(member.actions.setMemberId(null));
