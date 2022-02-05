@@ -3,17 +3,9 @@ import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { Box } from "../components/styling/containers"
 import animationData from "../animations/star.json";
 
-const Box = styled.section`
-  width: 90%;
-  padding: 10px;
-  background: white;
-  margin: 50px auto 0 auto;
-  border: 5px solid black;
-  box-shadow: 10px 10px #878df7;
-  font-family: "Josefin Sans", sans-serif;
-`;
 const ImageWords = styled.img`
   width: 100%;
 `;
@@ -83,11 +75,9 @@ const Intro = () => {
           <MainText>
             {" "}
             Every year. thousands of Children start the Swiss School system. As
-            we all know, The Thek is an integral part of the process. Choosing
-            the right bag is no easy task and this is where Thek-friends can
-            help. We would like to reduce the waste of unused and unloved Theks
-            and give them a new home. Please join us: Become a Thek-friend and
-            benefit from the Community.
+            we all know, The Thek is an integral part of the process. Become a Thek-Friend
+            and helps us to reduce the waste of unused and unloved Theks
+            and give them a new home.
           </MainText>
         </TextContainer>
       </ImageWritingContainer>

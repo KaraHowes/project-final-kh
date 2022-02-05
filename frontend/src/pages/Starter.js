@@ -6,7 +6,7 @@ const Image =styled.img`
 width: 80%;`
 const Box = styled.section`
   width: 70%;
-  padding: 50px;
+  padding: 150px 50px;
   background: white;
   margin: 50px auto 0 auto;
   border: 5px solid black;

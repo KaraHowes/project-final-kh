@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import swal from "sweetalert"
 
@@ -8,26 +8,8 @@ import { API_URL } from "utils/urls";
 import Logout from "../components/Logout";
 import member from "../reducers/member";
 
-const Triangle = styled.div`
-width: 0;
-height: 0;
-border-left: 500px solid transparent;
-border-right: 500px solid transparent;
-border-bottom: 500px solid #FFFF00;
-position: absolute;
-right:400px;
-bottom:-150px;
-z-index:-1;
-opacity: 0.9;
-`
-const Box = styled.div `
-width: 60%;
-padding: 125px;
-background: white;
-margin: 0 auto;
-border: 5px solid black;
-box-shadow: 5px 5px 10px;
-`
+import { Box } from "../components/styling/containers"
+
 
 const ProfileButtonContainer =styled.div`
 display: flex;
@@ -116,8 +98,6 @@ const Profile = () => {
   }, [dispatch, accessToken, memberId]);
   return (
   
-     <> 
-     <Triangle ></Triangle>
      <Box>
       <ProfileButtonContainer>
       <ProfileContainer>
@@ -127,7 +107,6 @@ const Profile = () => {
         <p>{profile.status}</p>
         <p>{profile.email}</p>
         <p>{profile.location}</p>
-        <p>{profile.memberId}</p>
     
       </ProfileContainer>
       
@@ -147,7 +126,6 @@ const Profile = () => {
   
      </Box>
       
-</>
   );
 };
 export default Profile;

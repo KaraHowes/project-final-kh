@@ -6,17 +6,11 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 import Logout from "../components/Logout"
-//import member from "../reducers/member"
+
+import { Box } from "../components/styling/containers"
+import { Form, Select } from "../components/styling/formStyle"
 
 
-const Box = styled.section `
-width: 70%;
-padding: 50px;
-background: white;
-margin: 50px auto 0 auto;
-border: 5px solid black;
-box-shadow: 5px 5px 10px;
-`
 const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,14 +20,6 @@ const AddWrapper = styled.div`
   margin: 0 auto;
   padding: 30px;
   
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 80%;
-  justify-content: center;
-  margin: 0 auto;
 `;
 
 const Button = styled.button`
@@ -48,20 +34,6 @@ const Button = styled.button`
   font-family: 'Josefin Sans', sans-serif;
   box-shadow: 3px 3px 6px #888888
 `;
-const Select = styled.select`
-   border:none;
-    padding: 10px 15px;
-    margin: 0 0 20px;
-    height: 40px;
-    display: block;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #FFFFCC;
-    font-weight: 800;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
-    ;
-`
 
 const AddThek = () => {
 

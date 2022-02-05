@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 import NoBagFound from '../components/NoBagFound'
 import Logout from '../components/Logout'
+import { Box } from "../components/styling/containers"
 
 const BagsFound = () => {
 
   const foundBags = useSelector((store) => store.searched.items);
-  //const accessToken = useSelector((store) => store.member.memberId) 
+  
 
   if (foundBags.length === 0) {
     return (
@@ -19,7 +20,7 @@ const BagsFound = () => {
   }
 
   return (
-    <div>
+    <Box>
       Found bags
       {foundBags.map((item) => (
         <div key={item.bagId}>
@@ -28,7 +29,7 @@ const BagsFound = () => {
         </div>
       ))}
       <Logout/>
-    </div>
+    </Box>
   );
 };
 

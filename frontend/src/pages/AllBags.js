@@ -6,16 +6,8 @@ import styled from "styled-components";
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
+import { Box } from "../components/styling/containers"
 
-const Box = styled.section`
-  width: 70%;
-  padding: 125px;
-  background: white;
-  margin: 0 auto;
-  border: 5px solid black;
-  box-shadow: 5px 5px 10px;
-  max-width: 800px;
-`;
 const BagContainer = styled.section`
   display: flex;
   flex-direction: row;
@@ -36,6 +28,10 @@ max-width: 200px;
 box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
 background: white;
 
+`;
+const ImageThek = styled.img`
+  width: 100%;
+  max-width: 150px;
 `;
 const TextWrapper = styled.div`
   width: 80%;
@@ -97,6 +93,10 @@ const AllBags = () => {
       <BagContainer>
         {theksItems.map((item) => (
           <Card key={item._id}>
+              <ImageThek
+            src="./assets/thek-icon-1.png"
+            alt="Thek-friends-bag-logo"
+          ></ImageThek>
             <TextWrapper>
               <CardText>{item.colour}</CardText>
               <Link to={`/bag/${item._id}`}>

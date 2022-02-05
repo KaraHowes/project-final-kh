@@ -26,13 +26,13 @@ const Logout = () => {
         swal({
             title: "Are you going now?",
             buttons:{
-                confirm:{text: 'yes', result: true, closeModal: true, value: true, visible: true},
-                cancel:{text: 'cancel', result: false, closeModal: true, value: null, visible: true},
+                confirm:{text: 'yep', result: true, closeModal: true, value: true, visible: true},
+                cancel:{text: 'no-way, José', result: false, closeModal: true, value: null, visible: true},
 
             }
         }).then((result) => {
             if (result){
-                swal('Bye bye')
+                swal('Ok, it was great seeing you. Bye bye')
             }
         })
         batch(() => {

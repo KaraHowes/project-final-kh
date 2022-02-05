@@ -6,15 +6,10 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
-const Box = styled.section `
-width: 70%;
-padding: 50px;
-background: white;
-margin: 50px auto 0 auto;
-border: 5px solid black;
-box-shadow: 5px 5px 10px;
-`
-const RegisterWrapper = styled.div`
+import { Box } from "../components/styling/containers"
+import { Select, Input, Form } from "../components/styling/formStyle"
+
+{/*const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -23,31 +18,9 @@ const RegisterWrapper = styled.div`
   margin: 0 auto;
   padding: 30px;
   justify-content: center;
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 80%;
-  justify-content: center;
-  margin: 0 auto;
-`;
-const Input = styled.input`
-  background-color: #d5f5f2;
-  display: flex;
-  flex-direction: column;
-  height: 30px;
-  margin: 0 0 20px;
-  padding: 10px 15px;
-  text-align: center;
-  font-size: 18px;
-  border: none;
-  &::-webkit-input-placeholder {
-    color: black;
-    ::hover: pink;
-  }
-  font-family: "Josefin Sans", sans-serif;
-`;
+`;*/}
+
+
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -66,20 +39,6 @@ const Button = styled.button`
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 3px 3px 6px #888888;
 `;
-const Select = styled.select`
-   border:none;
-    padding: 10px 15px;
-    margin: 0 0 20px;
-    height: 40px;
-    display: block;
-    border-radius: 5px;
-    font-size: 18px;
-    background-color:#d5f5f2;
-    font-weight: 800;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
-    ;
-`
 
 const Register = () => {
   const [membername, setMembername] = useState("");
@@ -140,7 +99,7 @@ const Register = () => {
 
   return (
    <Box>
-      <RegisterWrapper>
+    
       <Form onSubmit={onFormSubmit}>
         <Input
           id="membernameInput"
@@ -173,7 +132,7 @@ const Register = () => {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         >
-          <option option value="DEFAULT" disabled>
+          <option disabled value="">
             Select nearest city:
           </option>
           <option value="Zurich">
@@ -224,7 +183,7 @@ const Register = () => {
           </p>
         )}
       </Form>
-    </RegisterWrapper>
+    
    </Box>
   );
 };

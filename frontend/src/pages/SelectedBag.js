@@ -7,15 +7,8 @@ import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 
-const Box = styled.section`
-  width: 70%;
-  padding: 125px;
-  background: white;
-  margin: 0 auto;
-  border: 5px solid black;
-  box-shadow: 5px 5px 10px;
-  max-width: 800px;
-`;
+import { Box } from "../components/styling/containers"
+
 const BagContainer = styled.section`
   display: flex;
   flex-direction: row;

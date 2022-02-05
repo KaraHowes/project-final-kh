@@ -6,27 +6,11 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
-const Triangle = styled.div `
-width: 0;
-height: 0;
-border-top: 900px solid #20C6BA;
-border-right: 1500px solid transparent;
-position: absolute;
-left:0;
-right:0;
-top:0;
-z-index:-1;
-opacity: 0.9;`
+import { Box } from "../components/styling/containers"
+import { Form, Input } from "../components/styling/formStyle"
 
-const Box = styled.section `
-width: 80%;
-padding: 125px;
-background: white;
-margin: 0 auto;
-border: 5px solid black;
-box-shadow: 5px 5px 10px;
-max-width: 800px;
-`
+
+
 const SigninWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,29 +21,7 @@ const SigninWrapper = styled.div`
   padding: 50px 30px;
   
 `;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 80%;
-  justify-content: center;
-  margin: 0 auto;
-`;
-const Input = styled.input`
-  background-color: #d5f5f2;
-  display: flex;
-  flex-direction: column;
-  height: 50px;
-  margin: 10px 0;
-  padding: 30px 0;
-  text-align: center;
-  font-size: 24px;
-  border: none;
-  &::-webkit-input-placeholder {
-    color: black;
-  };
-  font-family: 'Josefin Sans', sans-serif;
-`;
+
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -111,7 +73,7 @@ const Login = () => {
     fetch(API_URL("signin"), options)
       .then((res) => res.json())
       .then((data) => {
-        //console.log("signin", data);
+      
         if (data.success) {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response._id));
@@ -135,8 +97,8 @@ const Login = () => {
   };
 
   return (
-    <>
-    <Triangle></Triangle>
+    
+
     <Box>
     <SigninWrapper>
       <Form onSubmit={onFormSubmit}>
@@ -170,7 +132,7 @@ const Login = () => {
     </SigninWrapper>
     </Box>
     
-    </>
+    
   );
 };
 
