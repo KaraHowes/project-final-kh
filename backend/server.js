@@ -2,22 +2,22 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 //import crypto from 'crypto';
-import bcrypt from "bcrypt";
+//import bcrypt from "bcrypt";
 import listEndpoints from "express-list-endpoints";
 
 import quotesData from "./data/quotes.json";
 
 import authenticateMember from "./authorization/authenticateMember.js"
-import { register, signIn, profile } from "./endpoints/memberEndpoints.js"
-import { addBag, allBags} from "./endpoints/bagEndpoints.js"
+import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
+import { addBag, allBags, bagById, searchBags} from "./endpoints/bagEndpoints.js"
 
 import dotenv from "dotenv";
 import cloudinaryFramework from "cloudinary";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 
-import { MemberSchema } from "./Schemas/member";
-import { BagSchema } from "./Schemas/bag";
+//import { MemberSchema } from "./Schemas/member";
+//import { BagSchema } from "./Schemas/bag";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
@@ -58,8 +58,8 @@ const storage = new CloudinaryStorage({
 const parser = multer({ storage });
 
 // creates models
-const Member = mongoose.model("Member", MemberSchema);
-const Bag = mongoose.model("Bag", BagSchema);
+//const Member = mongoose.model("Member", MemberSchema);
+//const Bag = mongoose.model("Bag", BagSchema);
 
 // authenticates member
 {/*const authenticateMember = async (req, res, next) => {
@@ -82,7 +82,7 @@ const Bag = mongoose.model("Bag", BagSchema);
   }
 };*/}
 
-//------------ ROUTES------------------------------------
+
 
 app.get("/", (req, res) => {
   res.send(
@@ -92,156 +92,34 @@ app.get("/", (req, res) => {
 // to view all endpoints
 app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));
 
-// To register
-app.post("/signup", async (req, res) => {/*{
-  const { membername, password, email, location, status } = req.body;
+// -------member endpoints----------
 
-  try {
-    const salt = bcrypt.genSaltSync();
-
-    if (password.length < 5) {
-      throw { message: "Password must be at least 5 characters long" };
-    }
-    // creates the instance of a new member
-
-    const newMember = await new Member({
-      membername, // this is the same as username:username
-      password: bcrypt.hashSync(password, salt),
-      email,
-      location,
-      status,
-    }).save();
-    // res status 201 means something has been created
-    res.status(201).json({
-      response: {
-        memberId: newMember._id,
-        membername: newMember.membername,
-        accessToken: newMember.accessToken,
-        email: newMember.email,
-        location: newMember.location,
-        status: newMember.status,
-      },
-      success: true,
-    });
-  } catch (error) {
-    res.status(400).json({ response: error, success: false });
-  }
-}*/});
+app.post("/signup", register)
 
 //endpoint to sign-in
-app.post("/signin", async (req, res) => {/*{
-  const { membername, password } = req.body;
-
-  try {
-    const member = await Member.findOne({ membername });
-
-    if (member && bcrypt.compareSync(password, member.password)) {
-      res.status(200).json({
-        response: {
-          _id: member._id,
-          membername: member.membername,
-          accessToken: member.accessToken,
-          email: member.email,
-          location: member.location,
-          status: member.status,
-        },
-
-        success: true,
-      });
-    } else {
-      res.status(404).json({
-        response: "Username or password doesn't match",
-        success: false,
-      });
-    }
-  } catch (error) {
-    res.status(400).json({ response: error, success: false });
-  }
-});
+app.post("/signin", signIn)
 
 //create end-point to view all members
-app.get("/members", authenticateMember);
-app.get("/members", async (req, res) => {
-  const members = await Member.find({});
-  res.json(members);
-}*/});
+app.get("/members", authenticateMember, allMembers);
+
 // endpoint to find one member
 
-app.get("/member/:memberId", authenticateMember);
-app.get("/member/:memberId", async (req, res) => {/*{
-  const { memberId } = req.params;
-  const member = await Member.findById(memberId); //.populate('bag')
-  res.status(200).json({ response: member, success: true });
-}*/});
+app.get("/member/:memberId", authenticateMember, profile);
+
+//-------Bag Endpoints----------
 
 //, parser.single('image')
 //endpoint to add a bag to the database, again to authorized members
-app.post("/bags", authenticateMember);
-app.post("/bags", async (req, res) => {/*{
-  const { colour, location, age, memberId } = req.body;
+app.post("/bags", authenticateMember, addBag);
 
-  try {
-    const queriedMember = await Member.findById(memberId).populate("member");
-    const newBag = await new Bag({
-      colour,
-      location,
-      age,
-      //imageUrl: req.file.path,
-      member: queriedMember,
-    }).save();
+app.get("/bags", authenticateMember, allBags);
 
-    res.status(201).json({
-      response: {
-        bagId: newBag._id,
-        location: newBag.location,
-        colour: newBag.colour,
-        age: newBag.age,
-        member: queriedMember,
-      },
-      success: true,
-    });
-  } catch (error) {
-    res.status(400).json({ response: error, success: false });
-  }
-}*/});
-//this function will only be available to authorized members with an access token
-app.get("/bags", authenticateMember);
-app.get("/bags", async (req, res) => {/*{
-  const bags = await Bag.find({});
-  res.status(201).json({ response: bags, success: true });
-}*/});
+app.get("/bag/:_id", authenticateMember, bagById);
 
-app.get("/bag/:_id", authenticateMember);
-app.get("/bag/:_id", async (req, res) => {
-  const { _id } = req.params;
-  const bag = await Bag.findById(_id).populate("member");
-  res.status(200).json({ response: bag, success: true });
-});
-//------------Trying to allow user to search database--------------PROBLEM!
-app.get("/searchbags", authenticateMember);
-app.get("/searchbags", async (req, res) => {
-  //const {colour, location, age} = req.query;
-
-  try {
-    const foundBags = await Bag.find(req.query);
-
-    if (foundBags.length === 0) {
-      res.status(404).json({
-        response: "no bags found",
-        success: false,
-      });
-    } else {
-      res.status(201).json({
-        response: foundBags,
-        success: true,
-      });
-    }
-  } catch (error) {
-    res.status(400).json({ response: error, success: false });
-  }
-});
+app.get("/searchbags", authenticateMember, searchBags);
 
 //--------- for inspiration api--------
+// stays in server.js due to functions performed
 const QuoteSchema = new mongoose.Schema({
   quote: { type: String },
   source: { type: String },

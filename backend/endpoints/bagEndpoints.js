@@ -1,4 +1,6 @@
 const Member = require('../Schemas/member.js')
+const Bag = require('../Schemas/bag.js')
+
 
 //Endpoint to add a bag
 export const addBag = async (req,res) => {
