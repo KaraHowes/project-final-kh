@@ -15,7 +15,7 @@ text-align: center;
 `
 const NavLink = styled(Link)`
 height:10px;
-padding: 20px;
+padding: 10px;
 color: black;
 text-decoration: none;
 &:hover{
