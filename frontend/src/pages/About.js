@@ -1,9 +1,12 @@
 import React from "react";
 import Footer from '../components/Footer'
+import Menu from '../components/Menu'
+
 const About = () => {
   return (
 <>
-    <TextContainer>
+<Menu/>
+    {/*<TextContainer>
           <TitleText>Welcome to Thek-Friends</TitleText>
           <MainText> Every year. thousands of Children start the Swiss School system. As we all know, The Thek is an integral
               part of the process. Choosing the right bag is no easy task and this is where Thek-friends can help.
@@ -12,7 +15,7 @@ const About = () => {
           </MainText>
         </TextContainer>
 
-        <Footer />
+    <Footer />*/}
         </>
   )
 };

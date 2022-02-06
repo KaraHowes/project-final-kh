@@ -6,6 +6,7 @@ import quote from "../reducers/quote";
 import { API_URL } from "../utils/urls";
 import Loader from '../components/Loader'
 import Footer from '../components/Footer'
+import Menu from '../components/Menu'
 
 const Div = styled.div`
   background-color: white;
@@ -87,6 +88,7 @@ const Inspirations = () => {
   return (
     <>
     <Box>
+      <Menu/>
        {loading && <Loader/>}
       <Div>
         <Quote>{affirmation.quote}</Quote>

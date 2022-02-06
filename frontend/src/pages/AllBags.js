@@ -9,6 +9,7 @@ import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers"
 import Loader from '../components/Loader'
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 const BagContainer = styled.section`
   display: flex;
@@ -95,6 +96,7 @@ const AllBags = () => {
   return (
     <>
     <Box>
+      <Menu/>
        {loading && <Loader/>}
       <BagContainer>
         {theksItems.map((item) => (

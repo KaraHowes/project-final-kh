@@ -17,6 +17,7 @@ import Starter from "./pages/Starter";
 import Intro from "./pages/Intro";
 import BagsFound from "./pages/BagsFound";
 import Inspirations from "./pages/Inspirations";
+import About from "./pages/About"
 
 import member from "./reducers/member";
 import theks from "./reducers/theks";
@@ -51,6 +52,7 @@ export const App = () => {
           <Route path="/bag/:_id" element={<SelectedBag />} />
           <Route path="/intro" element={<Intro />} />
           <Route path="/inspiration" element={<Inspirations />} />
+          <Route path="/about" element={<About />} />
 
           <Route path="/bagsFound" element={<BagsFound />} />
           <Route path="*" element={<NotFound />} />

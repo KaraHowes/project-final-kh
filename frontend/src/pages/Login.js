@@ -9,6 +9,7 @@ import member from "../reducers/member";
 import { Box } from "../components/styling/containers"
 import { Form, Input } from "../components/styling/formStyle"
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 
 const SigninWrapper = styled.div`
@@ -99,6 +100,7 @@ const Login = () => {
   return(
  <>
  <Box>
+   <Menu/>
  <SigninWrapper>
       <Form onSubmit={onFormSubmit}>
         <Input

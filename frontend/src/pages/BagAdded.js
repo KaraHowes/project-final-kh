@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import Logout from '../components/Logout'
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 const Button = styled.button`
   width: 45%;
@@ -24,6 +25,7 @@ const BagAdded = () => {
 
 return (
     <>
+    <Menu/>
     <div>Thank you for adding a bag {profile.membername}, you are absolutely awesome!</div>
 
     <Button> 

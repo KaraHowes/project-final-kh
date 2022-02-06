@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
 import animationData from "../animations/star.json";
+import Menu from '../components/Footer'
 
 const ImageWords = styled.img`
   width: 100%;
@@ -58,6 +59,7 @@ const Intro = () => {
   return (
     <>
     <Box>
+      <Menu/>
       <ImageWords
         src="./assets/thek-friends-01.png"
         alt="Thek-friends-written-logo"

@@ -10,6 +10,7 @@ import Loader from '../components/Loader'
 
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 const BagContainer = styled.section`
   display: flex;
@@ -109,6 +110,7 @@ const SelectedBag = () => {
   return (
     <>
     <Box>
+      <Menu/>
       {loading && <Loader/>}
       <BagContainer>
         <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>

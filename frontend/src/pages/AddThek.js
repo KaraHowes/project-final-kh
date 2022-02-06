@@ -11,6 +11,7 @@ import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Form, Select } from "../components/styling/formStyle"
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 
 const AddWrapper = styled.div`
@@ -101,6 +102,7 @@ const AddThek = () => {
   return (
     <>
     <Box>
+      <Menu/>
       {loading && <Loader/>}
       <AddWrapper>
       <Form onSubmit={onFormSubmit}>

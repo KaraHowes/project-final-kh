@@ -6,6 +6,7 @@ import NoBagFound from '../components/NoBagFound'
 import Logout from '../components/Logout'
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 const BagsFound = () => {
 
@@ -23,6 +24,7 @@ const BagsFound = () => {
   return (
     <>
     <Box>
+      <Menu/>
       Found bags
       {foundBags.map((item) => (
         <div key={item.bagId}>

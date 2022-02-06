@@ -11,6 +11,7 @@ import member from "../reducers/member";
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
+import Menu from '../components/Footer'
 
 
 const ProfileButtonContainer =styled.div`
@@ -102,6 +103,7 @@ const Profile = () => {
   return (
     <>
      <Box>
+       <Menu/>
        {loading && <Loader/>}
       <ProfileButtonContainer>
       <ProfileContainer>
