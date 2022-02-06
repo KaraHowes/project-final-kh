@@ -5,6 +5,7 @@ import styled from "styled-components";
 import NoBagFound from '../components/NoBagFound'
 import Logout from '../components/Logout'
 import { Box } from "../components/styling/containers"
+import Footer from '../components/Footer'
 
 const BagsFound = () => {
 
@@ -20,6 +21,7 @@ const BagsFound = () => {
   }
 
   return (
+    <>
     <Box>
       Found bags
       {foundBags.map((item) => (
@@ -30,6 +32,8 @@ const BagsFound = () => {
       ))}
       <Logout/>
     </Box>
+    <Footer/>
+    </>
   );
 };
 

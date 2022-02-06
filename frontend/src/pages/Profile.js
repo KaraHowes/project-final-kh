@@ -10,6 +10,7 @@ import member from "../reducers/member";
 
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
+import Footer from '../components/Footer'
 
 
 const ProfileButtonContainer =styled.div`
@@ -99,14 +100,14 @@ const Profile = () => {
   }, [dispatch, accessToken, memberId]);
   
   return (
-    
+    <>
      <Box>
        {loading && <Loader/>}
       <ProfileButtonContainer>
       <ProfileContainer>
         <h1> Hi there {profile.membername}!</h1>
         <h2> Thank you so much for becomming  a Thek Friend and for registering as a {profile.status}</h2>
-        <h2> Here are some of your details, if you would like to update them, please click Here</h2>
+        <h2> Here are some of your details</h2>
         <p>{profile.status}</p>
         <p>{profile.email}</p>
         <p>{profile.location}</p>
@@ -128,7 +129,8 @@ const Profile = () => {
       </ProfileButtonContainer>
   
      </Box>
-      
+     <Footer/>
+     </> 
   );
 };
 export default Profile;

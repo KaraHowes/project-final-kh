@@ -8,7 +8,7 @@ import member from "../reducers/member";
 
 import { Box } from "../components/styling/containers"
 import { Form, Input } from "../components/styling/formStyle"
-
+import Footer from '../components/Footer'
 
 
 const SigninWrapper = styled.div`
@@ -96,11 +96,10 @@ const Login = () => {
       });
   };
 
-  return (
-    
-
-    <Box>
-    <SigninWrapper>
+  return(
+ <>
+ <Box>
+ <SigninWrapper>
       <Form onSubmit={onFormSubmit}>
         <Input
           id="membernameInput"
@@ -130,10 +129,12 @@ const Login = () => {
 
       </Form>
     </SigninWrapper>
-    </Box>
-    
-    
-  );
+
+ </Box>
+ <Footer/>
+ </>
+  )
 };
 
 export default Login;
+

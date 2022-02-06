@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import Footer from '../components/Footer'
+
 const Image =styled.img`
 width: 80%;`
 const Box = styled.section`
@@ -31,6 +33,7 @@ const Buttoncontainer = styled.div`
 `;
 const Starter = () => {
   return (
+    <>
     <Box>
         <Image src="./assets/thek-friends-01.png" alt="Thek-friends-written-logo"></Image>
       <Buttoncontainer>
@@ -39,6 +42,8 @@ const Starter = () => {
         </Link>
       </Buttoncontainer>
     </Box>
+    <Footer/>
+    </>
   );
 };
 

@@ -9,6 +9,7 @@ import Logout from "../components/Logout";
 import Loader from '../components/Loader'
 
 import { Box } from "../components/styling/containers"
+import Footer from '../components/Footer'
 
 const BagContainer = styled.section`
   display: flex;
@@ -106,6 +107,7 @@ const SelectedBag = () => {
   }, [accessToken, dispatch, _id]);
 
   return (
+    <>
     <Box>
       {loading && <Loader/>}
       <BagContainer>
@@ -118,6 +120,8 @@ const SelectedBag = () => {
         </Button>
       <Logout />
     </Box>
+    <Footer/>
+    </>
   );
 };
 

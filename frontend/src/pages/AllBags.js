@@ -8,7 +8,7 @@ import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers"
 import Loader from '../components/Loader'
-
+import Footer from '../components/Footer'
 
 const BagContainer = styled.section`
   display: flex;
@@ -93,6 +93,7 @@ const AllBags = () => {
   }, [accessToken, dispatch]);
 
   return (
+    <>
     <Box>
        {loading && <Loader/>}
       <BagContainer>
@@ -114,6 +115,8 @@ const AllBags = () => {
       </BagContainer>
       <Logout/>
     </Box>
+    <Footer/>
+</>
   );
 };
 

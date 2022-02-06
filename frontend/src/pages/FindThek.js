@@ -9,6 +9,7 @@ import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import Loader from "../components/Loader";
+import Footer from '../components/Footer'
 
 const AddWrapper = styled.div`
   display: flex;
@@ -93,6 +94,7 @@ const FindThek = () => {
       .finally(() => setLoading(false));
   };
   return (
+    <>
     <Box>
       {loading && <Loader/>}
       <AddWrapper>
@@ -136,6 +138,8 @@ const FindThek = () => {
         </Form>
       </AddWrapper>
     </Box>
+    <Footer/>
+    </>
   );
 };
 export default FindThek;

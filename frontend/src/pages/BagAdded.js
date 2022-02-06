@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Logout from '../components/Logout'
+import Footer from '../components/Footer'
 
 const Button = styled.button`
   width: 45%;
@@ -29,6 +30,7 @@ return (
         <Link to="/member/:memberId">Return to my Profile page</Link> 
         </Button>
     <Logout/>
+    <Footer/>
     </>
 )
 }

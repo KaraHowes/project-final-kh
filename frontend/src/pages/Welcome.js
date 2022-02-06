@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 
 import Logout from '../components/Logout'
+import Footer from '../components/Footer'
 
 const WelcomeContainer = styled.div`
 display: flex;
@@ -19,6 +20,7 @@ const Welcome = () => {
 
    
     return (
+        <>
         <WelcomeContainer>
             
             <h1>Welcome Thek-Friend! Thank you for becomming a member.... you can</h1>
@@ -28,6 +30,8 @@ const Welcome = () => {
             <p>or</p>
             <Logout/>
         </WelcomeContainer>
+        <Footer/>
+        </>
     )
 }
 

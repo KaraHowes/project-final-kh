@@ -9,6 +9,7 @@ import member from "../reducers/member";
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Select, Input, Form } from "../components/styling/formStyle"
+import Footer from '../components/Footer'
 
 {/*const RegisterWrapper = styled.div`
   display: flex;
@@ -100,6 +101,7 @@ const Register = () => {
   };
 
   return (
+    <>
    <Box>
     {loading && <Loader/>}
       <Form onSubmit={onFormSubmit}>
@@ -187,6 +189,8 @@ const Register = () => {
       </Form>
     
    </Box>
+   <Footer/>
+   </>
   );
 };
 

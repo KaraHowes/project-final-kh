@@ -10,6 +10,7 @@ import Logout from "../components/Logout"
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Form, Select } from "../components/styling/formStyle"
+import Footer from '../components/Footer'
 
 
 const AddWrapper = styled.div`
@@ -98,6 +99,7 @@ const AddThek = () => {
   };
 
   return (
+    <>
     <Box>
       {loading && <Loader/>}
       <AddWrapper>
@@ -185,6 +187,8 @@ const AddThek = () => {
    
     </AddWrapper>
     </Box>
+    <Footer />
+    </>
   );
 };
 

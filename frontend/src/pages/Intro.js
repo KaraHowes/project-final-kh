@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Box } from "../components/styling/containers"
+import Footer from '../components/Footer'
 import animationData from "../animations/star.json";
 
 const ImageWords = styled.img`
@@ -55,6 +56,7 @@ const Intro = () => {
     },
   };
   return (
+    <>
     <Box>
       <ImageWords
         src="./assets/thek-friends-01.png"
@@ -88,6 +90,8 @@ const Intro = () => {
         </Link>
       </Buttoncontainer>
     </Box>
+    <Footer/>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import { useSelector, useDispatch, batch } from "react-redux";
 import quote from "../reducers/quote";
 import { API_URL } from "../utils/urls";
 import Loader from '../components/Loader'
+import Footer from '../components/Footer'
 
 const Div = styled.div`
   background-color: white;
@@ -14,9 +15,9 @@ const Div = styled.div`
 
 const Box = styled.div`
   width: 60%;
-  padding: 25px;
+  padding: 50px 25px;
   background: white;
-  margin: 0 auto;
+  margin: 20px auto;
   border: 5px solid black;
   box-shadow: 10px 10px #878df7;
   font-family: "Josefin Sans", sans-serif;
@@ -84,6 +85,7 @@ const Inspirations = () => {
   }, []);
 
   return (
+    <>
     <Box>
        {loading && <Loader/>}
       <Div>
@@ -92,6 +94,8 @@ const Inspirations = () => {
       </Div>
       <Button onClick={refreshPage}> I want more</Button>
     </Box>
+    <Footer/>
+    </>
   );
 };
 export default Inspirations;

@@ -1,8 +1,8 @@
 import React from "react";
-
+import Footer from '../components/Footer'
 const About = () => {
   return (
-
+<>
     <TextContainer>
           <TitleText>Welcome to Thek-Friends</TitleText>
           <MainText> Every year. thousands of Children start the Swiss School system. As we all know, The Thek is an integral
@@ -11,6 +11,9 @@ const About = () => {
               Become a Thek-friend and benefit from the Community.
           </MainText>
         </TextContainer>
+
+        <Footer />
+        </>
   )
 };
 
