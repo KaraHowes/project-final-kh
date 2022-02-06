@@ -10,7 +10,7 @@ import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import Loader from "../components/Loader";
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 const AddWrapper = styled.div`
   display: flex;

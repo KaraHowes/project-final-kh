@@ -8,7 +8,7 @@ bottom:0;
 position:fixed;
 width:100%;
 text-align:center;
-padding:15px;
+padding: 15px;
 font-family: "Josefin Sans", sans-serif;
 `
 

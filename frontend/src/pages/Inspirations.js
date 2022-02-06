@@ -34,7 +34,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   padding: 15px 0 15px 0;
-  margin: 10px auto;
+  margin: 30px auto 10px auto;
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 3px 3px 6px #888888;
@@ -53,6 +53,11 @@ font-weight: 500;
 font-family: 'Roboto Mono', monospace;
 color: #878df7; 
 `
+const TextButtonContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;`
+
 const Inspirations = () => {
   const affirmation = useSelector((store) => store.quote);
   const dispatch = useDispatch();
@@ -90,11 +95,14 @@ const Inspirations = () => {
     <Box>
       <Menu/>
        {loading && <Loader/>}
-      <Div>
+       <TextButtonContainer>
+       <Div>
         <Quote>{affirmation.quote}</Quote>
         <Source>{affirmation.source}</Source>
       </Div>
       <Button onClick={refreshPage}> I want more</Button>
+       </TextButtonContainer>
+      
     </Box>
     <Footer/>
     </>

@@ -10,18 +10,7 @@ import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Select, Input, Form } from "../components/styling/formStyle"
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
-
-{/*const RegisterWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: white;
-  border: 1px solid black;
-  margin: 0 auto;
-  padding: 30px;
-  justify-content: center;
-`;*/}
+import Menu from '../components/Menu'
 
 
 const ButtonContainer = styled.div`
@@ -37,7 +26,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-size: 24px;
-  padding: 15px 0 15px 0;
+  padding: 15px;
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 3px 3px 6px #888888;

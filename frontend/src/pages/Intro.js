@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
 import animationData from "../animations/star.json";
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 const ImageWords = styled.img`
   width: 100%;
@@ -35,7 +35,7 @@ const Startbutton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 24px;
-  padding: 15px 0 15px 0;
+  padding: 15px;
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 3px 3px 6px #888888;

@@ -2,26 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 
-const Image =styled.img`
-width: 80%;`
+const Image = styled.img`
+  width: 100%;
+  margin: 0 auto;
+  min-width: 300px;
+`;
 const Box = styled.section`
-  width: 70%;
+display: flex;
+  flex-direction: column;  
+width: 70%;
   padding: 150px 50px;
   background: white;
   margin: 50px auto 0 auto;
   border: 5px solid black;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 10px 10px #878df7;
+  align-items: center;
+  justify-content: center;
 `;
 const Startbutton = styled.button`
   padding: 20px;
   border-radius: 30px;
-  background-color: #878DF7;
+  border: none;
+  background-color: #878df7;
   color: white;
-  width: 100%;
+  width: 90%;
   font-size: 40px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  &:hover{
+    background-color: black;
+  }
 `;
 const Buttoncontainer = styled.div`
   display: flex;
@@ -34,15 +45,18 @@ const Buttoncontainer = styled.div`
 const Starter = () => {
   return (
     <>
-    <Box>
-        <Image src="./assets/thek-friends-01.png" alt="Thek-friends-written-logo"></Image>
-      <Buttoncontainer>
-        <Link to="/intro">
-          <Startbutton>Enter</Startbutton>
-        </Link>
-      </Buttoncontainer>
-    </Box>
-    <Footer/>
+      <Box>
+        <Image
+          src="./assets/thek-friends-01.png"
+          alt="Thek-friends-written-logo"
+        ></Image>
+        <Buttoncontainer>
+          <Link to="/intro">
+            <Startbutton>Enter</Startbutton>
+          </Link>
+        </Buttoncontainer>
+      </Box>
+      <Footer />
     </>
   );
 };

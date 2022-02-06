@@ -10,7 +10,7 @@ import Loader from '../components/Loader'
 
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 const BagContainer = styled.section`
   display: flex;

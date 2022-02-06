@@ -3,26 +3,28 @@ import { useDispatch, useSelector, batch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import swal from "sweetalert"
+import Lottie from "react-lottie";
 
+import animationData from "../animations/hello3.json";
 import { API_URL } from "utils/urls";
 import Logout from "../components/Logout";
 import member from "../reducers/member";
 
 import Loader from '../components/Loader'
-import { Box } from "../components/styling/containers"
+import { Box, Header, Details } from "../components/styling/containers"
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 
 const ProfileButtonContainer =styled.div`
 display: flex;
 flex-direction: column;
-width: 90%;
-background-color: white;
-border: 1px solid black;
-margin: 0 auto;
-padding: 50px 30px;
+margin: -50px auto 30px auto;
+padding: 10px;
 justify-content: center;
+@media (min-width: 768px){
+  margin: 30px auto;
+}
 `
 
 const ProfileContainer = styled.div`
@@ -42,7 +44,7 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   width: 80%;
   min-width: 200px;
-  height: 50px;
+  height: 40px;
   background-color: #d5f5f2;
   border: none;
   cursor: pointer;
@@ -52,9 +54,20 @@ const Button = styled.button`
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
 `
+const Press =styled(Link)`
+text-deoration: none;
+`
 
 const Profile = () => {
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  }
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
@@ -103,26 +116,26 @@ const Profile = () => {
   return (
     <>
      <Box>
-       <Menu/>
+     
        {loading && <Loader/>}
+       <Menu/>
       <ProfileButtonContainer>
+      <Lottie options={defaultOptions} height={150} width={150}/>
       <ProfileContainer>
-        <h1> Hi there {profile.membername}!</h1>
-        <h2> Thank you so much for becomming  a Thek Friend and for registering as a {profile.status}</h2>
-        <h2> Here are some of your details</h2>
-        <p>{profile.status}</p>
-        <p>{profile.email}</p>
-        <p>{profile.location}</p>
+        <Header> {profile.membername}!</Header>
+        <Details> Thek-Friend Status: {profile.status}</Details>
+        <Details>Email address: {profile.email}</Details>
+        <Details> Location: {profile.location}</Details>
     
       </ProfileContainer>
       
       <ButtonContainer>
         <Button>
-      {profile.status==="Donor"? <Link to="/AddThek">Add a bag?</Link>:<Link to="/FindThek">Find a bag</Link>}
+      {profile.status==="Donor"? <Press to="/AddThek">Add a bag?</Press>:<Press to="/FindThek">Find a bag</Press>}
         </Button>
         
         <Button>
-          <Link to="/AllBags"> see all bags</Link>
+          <Press to="/AllBags"> see all bags</Press>
         </Button>
         <Logout />
       </ButtonContainer>

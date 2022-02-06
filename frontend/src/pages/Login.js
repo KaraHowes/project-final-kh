@@ -9,18 +9,12 @@ import member from "../reducers/member";
 import { Box } from "../components/styling/containers"
 import { Form, Input } from "../components/styling/formStyle"
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 
 const SigninWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  background-color: white;
-  border: 1px solid black;
-  margin: 0 auto;
-  padding: 50px 30px;
-  
 `;
 
 const ButtonContainer = styled.div`
@@ -39,6 +33,7 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888;
 `;
 
 const Login = () => {

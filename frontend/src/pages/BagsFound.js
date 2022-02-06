@@ -6,7 +6,7 @@ import NoBagFound from '../components/NoBagFound'
 import Logout from '../components/Logout'
 import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 const BagsFound = () => {
 

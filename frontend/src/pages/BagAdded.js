@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Logout from '../components/Logout'
 import Footer from '../components/Footer'
-import Menu from '../components/Footer'
+import Menu from '../components/Menu'
 
 const Button = styled.button`
   width: 45%;
