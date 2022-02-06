@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch, batch } from "react-redux";
 
 import quote from "../reducers/quote";
 import { API_URL } from "../utils/urls";
+import Loader from '../components/Loader'
 
 const Div = styled.div`
   background-color: white;
@@ -53,12 +54,14 @@ color: #878df7;
 const Inspirations = () => {
   const affirmation = useSelector((store) => store.quote);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false)
 
   const refreshPage = () => {
     window.location.reload();
   };
 
   useEffect(() => {
+    setLoading(true)
     fetch(API_URL("inspiration"))
       .then((res) => res.json())
       .then((data) => {
@@ -77,11 +80,12 @@ const Inspirations = () => {
             dispatch(quote.actions.setError(data.response));
           });
         }
-      });
+      }).finally(() => setLoading(false));
   }, []);
 
   return (
     <Box>
+       {loading && <Loader/>}
       <Div>
         <Quote>{affirmation.quote}</Quote>
         <Source>{affirmation.source}</Source>

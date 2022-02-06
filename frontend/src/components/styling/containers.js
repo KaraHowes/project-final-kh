@@ -9,10 +9,4 @@ border: 5px solid black;
 box-shadow: 10px 10px #878df7;
 font-family: "Josefin Sans", sans-serif;
 
-@media (min-width:599px) {
-    
-}
-@media (min-width:768px) {
-   
-}
 `

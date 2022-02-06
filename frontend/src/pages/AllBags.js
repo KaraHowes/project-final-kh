@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +7,8 @@ import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers"
+import Loader from '../components/Loader'
+
 
 const BagContainer = styled.section`
   display: flex;
@@ -51,6 +53,7 @@ const AllBags = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (!accessToken) {
@@ -65,6 +68,7 @@ const AllBags = () => {
         Authorization: accessToken,
       },
     };
+    setLoading(true)
     fetch(API_URL("bags"), options)
       .then((res) => res.json())
       .then((data) => {
@@ -85,11 +89,12 @@ const AllBags = () => {
           //dispatch(theks.actions.seMember(null));
           dispatch(theks.actions.setError(data.response));
         }
-      });
+      }).finally(() => setLoading(false));
   }, [accessToken, dispatch]);
 
   return (
     <Box>
+       {loading && <Loader/>}
       <BagContainer>
         {theksItems.map((item) => (
           <Card key={item._id}>

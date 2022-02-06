@@ -2,7 +2,7 @@ import React from 'react';
 import Lottie from "react-lottie";
 import animationData from '../animations/rainbowloader.json'
 
-export const Loader = () => {
+const Loader = () => {
   
     const defaultOptions = {
       loop: true,
@@ -18,8 +18,8 @@ export const Loader = () => {
         <div>
         <Lottie 
             options={defaultOptions}
-            height={800}
-            width={800}
+            height={300}
+            width={300}
           />
         </div>
       
@@ -27,3 +27,4 @@ export const Loader = () => {
     );
   };
   
+export default Loader

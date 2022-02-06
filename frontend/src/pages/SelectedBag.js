@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import styled from "styled-components";
 import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
+import Loader from '../components/Loader'
 
 import { Box } from "../components/styling/containers"
 
@@ -61,6 +62,7 @@ const SelectedBag = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (!accessToken) {
@@ -76,6 +78,7 @@ const SelectedBag = () => {
         Authorization: accessToken,
       },
     };
+    setLoading(true)
     fetch(API_URL(`bag/${_id}`), options)
       .then((res) => res.json())
       .then((data) => {
@@ -99,11 +102,12 @@ const SelectedBag = () => {
             dispatch(oneThek.actions.setError(data.response));
           });
         }
-      });
+      }).finally(() => setLoading(false));
   }, [accessToken, dispatch, _id]);
 
   return (
     <Box>
+      {loading && <Loader/>}
       <BagContainer>
         <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
         <p>The bag is based in {chosenBag.location}</p>

@@ -7,6 +7,7 @@ import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 import Logout from "../components/Logout"
 
+import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Form, Select } from "../components/styling/formStyle"
 
@@ -40,7 +41,7 @@ const AddThek = () => {
   const[colour, setColour] = useState("")
   const[location, setLocation] = useState("")    
   const[age, setAge] = useState("")  
-  
+  const [loading, setLoading] = useState(false)
   
   const accessToken = useSelector((store) => store.member.accessToken)
   const errors = useSelector((store) => store.member.error);
@@ -68,11 +69,10 @@ const AddThek = () => {
 
       body: JSON.stringify({ colour, location, age, memberId}),
     };
-
+    setLoading(true)
     fetch(API_URL("bags"), options)
       .then((res) => res.json())
       .then((data) => {
-        //console.log("addbag", data);
         if (data.success) {
           batch(() => {
             dispatch(theks.actions.setItems(data.response));
@@ -94,11 +94,12 @@ const AddThek = () => {
             dispatch(theks.actions.setError(data.response));
           });
         }
-      });
+      }).finally(() => setLoading(false));
   };
 
   return (
     <Box>
+      {loading && <Loader/>}
       <AddWrapper>
       <Form onSubmit={onFormSubmit}>
 

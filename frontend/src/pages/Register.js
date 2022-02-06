@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
+import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Select, Input, Form } from "../components/styling/formStyle"
 
@@ -46,6 +47,7 @@ const Register = () => {
   const [email, setEmailAddress] = useState("");
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
@@ -69,7 +71,7 @@ const Register = () => {
       },
       body: JSON.stringify({ membername, password, email, location, status }),
     };
-
+    setLoading(true)  
     fetch(API_URL("signup"), options)
       .then((res) => res.json())
       .then((data) => {
@@ -94,12 +96,12 @@ const Register = () => {
             dispatch(member.actions.setError(data.response));
           });
         }
-      });
+      }).finally(() => setLoading(false));
   };
 
   return (
    <Box>
-    
+    {loading && <Loader/>}
       <Form onSubmit={onFormSubmit}>
         <Input
           id="membernameInput"

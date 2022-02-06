@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +8,7 @@ import { API_URL } from "utils/urls";
 import Logout from "../components/Logout";
 import member from "../reducers/member";
 
+import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 
 
@@ -56,7 +57,7 @@ const Profile = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member)
- 
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const options = {
@@ -65,10 +66,10 @@ const Profile = () => {
         Authorization: accessToken,
       },
     };
+    setLoading(true)
     fetch(API_URL(`member/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         if (data.success) {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response._id));
@@ -94,11 +95,13 @@ const Profile = () => {
             dispatch(member.actions.setError(data.response));
           });
         }
-      });
+      }).finally(() => setLoading(false));
   }, [dispatch, accessToken, memberId]);
-  return (
   
+  return (
+    
      <Box>
+       {loading && <Loader/>}
       <ProfileButtonContainer>
       <ProfileContainer>
         <h1> Hi there {profile.membername}!</h1>
