@@ -29,9 +29,7 @@ export const MemberSchema = new mongoose.Schema({
 	status: {
 		type: String,
 		reuired: true,
-	}, 
-	
-	
+	}, 	
 });
 
 const Member = mongoose.model("Member", MemberSchema);

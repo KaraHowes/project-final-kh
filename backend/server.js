@@ -1,23 +1,18 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-//import crypto from 'crypto';
-//import bcrypt from "bcrypt";
 import listEndpoints from "express-list-endpoints";
 
 import quotesData from "./data/quotes.json";
 
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
-import { addBag, allBags, bagById, searchBags} from "./endpoints/bagEndpoints.js"
+import { addBag, allBags, bagById, searchBags, updateBag, bagByMember} from "./endpoints/bagEndpoints.js"
 
 import dotenv from "dotenv";
 import cloudinaryFramework from "cloudinary";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-
-//import { MemberSchema } from "./Schemas/member";
-//import { BagSchema } from "./Schemas/bag";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
@@ -106,6 +101,7 @@ app.get("/members", authenticateMember, allMembers);
 
 app.get("/member/:memberId", authenticateMember, profile);
 
+
 //-------Bag Endpoints----------
 
 //, parser.single('image')
@@ -116,7 +112,12 @@ app.get("/bags", authenticateMember, allBags);
 
 app.get("/bag/:_id", authenticateMember, bagById);
 
+app.patch("/bag/:_id", authenticateMember, updateBag);
+
 app.get("/searchbags", authenticateMember, searchBags);
+
+// ------- PROBLEM with this endpoint
+app.get("/bags/:memberId", bagByMember)
 
 //--------- for inspiration api--------
 // stays in server.js due to functions performed

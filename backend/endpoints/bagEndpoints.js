@@ -66,3 +66,66 @@ export const addBag = async (req,res) => {
       res.status(400).json({ response: error, success: false });
     }
   }
+
+  // Endpoint to update bag
+
+  export const updateBag = async (req, res) => {
+    const { _id } = req.params;
+    const { bag } = req.body;
+    try {
+      
+      const updateBag = await Bag.findByIdAndUpdate(
+        _id, 
+        { $set: { bag: bag } },
+        { new: true }
+      ).exec();
+if (updateBag) {
+  res.status(200).json({
+    response: updateBag,
+    success: true,
+  });
+} else {
+  res.status(404).json({
+    message: 'Could not find bag',
+    sucess: false,
+  })
+}
+      
+    } catch (error) {
+      res.status(400).json({ response: error, success: false });
+    }
+  }
+
+  //Endpoint to get a bag from a member
+
+  {/*export const bagByMember = async (req,res) => {
+    const { memberId } = req.params
+   
+   
+    const memberBag = await Member.findOne({member:memberId}); 
+    res.status(200).json({ response: memberBag, success: true });
+  }*/}
+
+
+  //-------- PROBLEMS---------
+  export const bagByMember = async (req,res) => {
+    const { memberId } = req.params;
+  
+    try {
+      const queriedBagMember = await Bag.find({member:memberId})
+      if(queriedBagMember){
+        res.status(201).json({
+          response:queriedBagMember,success: true,
+        });
+      } else {
+        res.status(404).json({
+          message: "Could not find tasks",
+          success: false,
+        });
+      }
+
+     
+    } catch (error) {
+      res.status(400).json({ message: "Invalid request", response: error, success: false });
+    }
+  }

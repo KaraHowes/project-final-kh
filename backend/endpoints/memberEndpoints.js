@@ -81,12 +81,14 @@ import bcrypt from "bcrypt";
     res.json(members);
   }
   
-// enndpoint to see profile
+// endpoint to see profile
   export const profile = async (req, res) => {
     const { memberId } = req.params;
     const member = await Member.findById(memberId); 
     res.status(200).json({ response: member, success: true });
   }
+
+  //endpoint to update profile
 
 
   
