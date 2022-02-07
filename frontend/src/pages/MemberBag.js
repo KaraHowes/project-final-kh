@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch, batch } from "react-redux";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import moment from 'moment'
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
-import { Box } from "../components/styling/containers"
 import Loader from '../components/Loader'
+
+import { Box } from "../components/styling/containers"
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
 const BagContainer = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -23,9 +24,8 @@ const BagContainer = styled.section`
   }
 `;
 const Card = styled.div`
+margin: 10px;
 width: 100%;
-margin: 10px auto;
-padding: 10px 0;
 border: 2px solid black;
 display: flex;
 flex-direction: column;
@@ -36,14 +36,10 @@ max-width: 200px;
 box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
 background: white;
 @media (min-width: 768px){
-  width:45%;
-}
-`;
-const ImageThek = styled.img`
-  width: 100%;
-  max-width: 150px;
-  display: flex;
-  margin: 0 auto;
+    width:45%;
+  }
+  
+
 `;
 const TextWrapper = styled.div`
   width: 80%;
@@ -56,10 +52,30 @@ const CardText = styled.p`
   background-color: #d5f5f2;
   padding: 5px 0;
 `;
-
-const AllBags = () => {
-  const theksItems = useSelector((store) => store.theks.items);
+const Button = styled.button`
+  width: 80%;
+  min-width: 200px;
+  height: 50px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  margin: 10px 0;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  
+`
+const ImageThek = styled.img`
+  width: 100%;
+  max-width: 150px;
+  display: flex;
+  margin: 0 auto;
+`;
+const MemberBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
+  const addedBags = useSelector((store) => store.theks.items);
+  const { memberId }= useParams() //This is vital so that the id can be taken from the url browser
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,6 +88,7 @@ const AllBags = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
+    
     const options = {
       method: "GET",
       headers: {
@@ -79,47 +96,57 @@ const AllBags = () => {
       },
     };
     setLoading(true)
-    fetch(API_URL("bags"), options)
+    fetch(API_URL(`bags/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         if (data.success) {
-        dispatch(theks.actions.setItems(data.response));
-          dispatch(theks.actions.setError(null));
+          batch(() => {
+            dispatch(theks.actions.setItems(data.response));
+            dispatch(theks.actions.setError(null));
+          });
         } else {
-          dispatch(theks.actions.setItems([]));
-          dispatch(theks.actions.setError(data.response));
+          batch(() => {
+            dispatch(theks.actions.setItems([]));
+            dispatch(theks.actions.setError(data.response));
+          });
         }
       }).finally(() => setLoading(false));
-  }, [accessToken, dispatch]);
+  }, [accessToken, dispatch, memberId]);
 
   return (
     <>
     <Box>
       <Menu/>
-       {loading && <Loader/>}
+      {loading && <Loader/>}
       <BagContainer>
-        {theksItems.map((item) => (
-          <Card key={item._id}>
+          {addedBags.map((item)=>(
+              <Card key={item._id}>
               <ImageThek
-            src="./assets/thek-icon-1.png"
-            alt="Thek-friends-bag-logo"
-          ></ImageThek>
-            <TextWrapper>
-              <CardText>Colour:{item.colour}</CardText>
-              <Link to={`/bag/${item._id}`}>
-                <CardText>Location:{item.location}</CardText>
-              </Link>
+              src="./assets/thek-icon-1.png"
+              alt="Thek-friends-bag-logo">
+
+              </ImageThek>
+          <TextWrapper>
+              <CardText>You have donated a {item.colour}-coloured bag</CardText>
+              
+                <CardText>The bag is based in{item.location}</CardText>
+         
               <CardText>Age-range:{item.age}</CardText>
               <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
             </TextWrapper>
-          </Card>
-        ))}
+            </Card>
+          ))}
+       
       </BagContainer>
-      <Logout/>
+      <Button > 
+        <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
+        </Button>
+      <Logout />
     </Box>
     <Footer/>
-</>
+    </>
   );
 };
 
-export default AllBags;
+export default MemberBag;

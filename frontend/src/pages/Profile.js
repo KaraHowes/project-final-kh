@@ -126,6 +126,7 @@ const Profile = () => {
         <Details> Thek-Friend Status: {profile.status}</Details>
         <Details>Email address: {profile.email}</Details>
         <Details> Location: {profile.location}</Details>
+        {profile.status==="Donor"?<Details> Already added a bag? Click <Link to={`/bags/${memberId}`}>Here to see it</Link></Details>:<div></div>}
     
       </ProfileContainer>
       
@@ -133,7 +134,6 @@ const Profile = () => {
         <Button>
       {profile.status==="Donor"? <Press to="/AddThek">Add a bag?</Press>:<Press to="/FindThek">Find a bag</Press>}
         </Button>
-        
         <Button>
           <Press to="/AllBags"> see all bags</Press>
         </Button>
