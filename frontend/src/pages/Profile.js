@@ -5,7 +5,7 @@ import styled from "styled-components";
 import swal from "sweetalert"
 import Lottie from "react-lottie";
 
-import animationData from "../animations/hello3.json";
+import animationData from "../animations/hello.json";
 import { API_URL } from "utils/urls";
 import Logout from "../components/Logout";
 import member from "../reducers/member";

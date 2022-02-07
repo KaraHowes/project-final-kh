@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
+import moment from 'moment'
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
@@ -13,14 +14,18 @@ import Menu from '../components/Menu'
 
 const BagContainer = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   flex-wrap: wrap;
   margin: 0 auto;
+  @media (min-width: 768px){
+    flex-direction:row;
+  }
 `;
 const Card = styled.div`
-margin: 10px;
-width: 20%;
+width: 100%;
+margin: 10px auto;
+padding: 10px 0;
 border: 2px solid black;
 display: flex;
 flex-direction: column;
@@ -30,11 +35,15 @@ font-family: "Josefin Sans", sans-serif;
 max-width: 200px;
 box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
 background: white;
-
+@media (min-width: 768px){
+  width:45%;
+}
 `;
 const ImageThek = styled.img`
   width: 100%;
   max-width: 150px;
+  display: flex;
+  margin: 0 auto;
 `;
 const TextWrapper = styled.div`
   width: 80%;
@@ -111,6 +120,7 @@ const AllBags = () => {
                 <CardText>{item.location}</CardText>
               </Link>
               <CardText>{item.age}</CardText>
+              <CardText> {moment(item.createdAt).fromNow()}</CardText>
             </TextWrapper>
           </Card>
         ))}
