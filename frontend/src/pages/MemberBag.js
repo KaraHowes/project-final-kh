@@ -11,49 +11,12 @@ import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 
 import { Box } from "../components/styling/containers";
+import { BagContainer, Card, TextWrapper, CardText } from "../components/styling/mapping"
+
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import image from '../images/bag.png';
 
-const BagContainer = styled.section`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
-const Card = styled.div`
-margin: 10px auto;
-width: 100%;
-border: 2px solid black;
-display: flex;
-flex-direction: column;
-align-content: flex-end;
-text-align: center;
-font-family: "Josefin Sans", sans-serif;
-max-width: 200px;
-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
-background: white;
-@media (min-width: 768px){
-    width:45%;
-  }
-  
-
-`;
-const TextWrapper = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-const CardText = styled.p`
-  background-color: #d5f5f2;
-  padding: 5px 0;
-`;
 const Button = styled.button`
   width: 80%;
   min-width: 200px;

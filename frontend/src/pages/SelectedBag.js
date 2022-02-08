@@ -19,31 +19,7 @@ const BagContainer = styled.section`
   flex-wrap: wrap;
   margin: 0 auto;
 `;
-const Card = styled.div`
-margin: 10px;
-width: 20%;
-border: 2px solid black;
-display: flex;
-flex-direction: column;
-align-content: flex-end;
-text-align: center;
-font-family: "Josefin Sans", sans-serif;
-max-width: 200px;
-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
-background: white;
 
-`;
-const TextWrapper = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-const CardText = styled.p`
-  background-color: #d5f5f2;
-  padding: 5px 0;
-`;
 const Button = styled.button`
   width: 80%;
   min-width: 200px;

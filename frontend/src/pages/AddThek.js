@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import swal from 'sweetalert';
 
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
@@ -59,8 +60,8 @@ const AddThek = () => {
   
   const onFormSubmit = (event) => {
     event.preventDefault();
-  
-    navigate("/BagAdded")
+  swal('Thank you for adding a bag to our collection, you wonderful person!', {icon: 'success', button: 'ok'})
+  navigate(`/member/${memberId}`,{ state: {memberId} })
   
     const options = {
       method: "POST",
@@ -78,21 +79,13 @@ const AddThek = () => {
         if (data.success) {
           batch(() => {
             dispatch(theks.actions.setItems(data.response));
-            dispatch(theks.actions.setBagId(data.response.bagId))
-            dispatch(theks.actions.setLocation(data.response.location))
-            dispatch(theks.actions.setColour(data.response.colour))
-            dispatch(theks.actions.setAge(data.response.age))
-            dispatch(theks.actions.setMember(data.response.member))
+            
 			      dispatch(theks.actions.setError(null));
           });
         } else {
           batch(() => {
             dispatch(theks.actions.setItems([]));
-            dispatch(theks.actions.setBagId(null))
-            dispatch(theks.actions.setLocation(null))
-            dispatch(theks.actions.setColour(null))
-            dispatch(theks.actions.setAge(null))
-            dispatch(theks.actions.setMember(null))
+            
             dispatch(theks.actions.setError(data.response));
           });
         }
@@ -128,8 +121,8 @@ const AddThek = () => {
           <option value="Purple">
             Purple
           </option>
-          <option value="Orange">
-            Orange
+          <option value="Black">
+            Black
           </option>
           <option value="Multi">
             Multi-coloured

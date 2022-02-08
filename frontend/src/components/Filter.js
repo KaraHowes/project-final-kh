@@ -102,21 +102,13 @@ const Filter = () => {
         if (data.success) {
           batch(() => {
             dispatch(searched.actions.setItems(data.response));
-            dispatch(searched.actions.setBagId(data.response.bagId));
-            dispatch(searched.actions.setLocation(data.response.location));
-            dispatch(searched.actions.setColour(data.response.colour));
-            dispatch(searched.actions.setAge(data.response.age));
-            dispatch(searched.actions.setMember(data.response.member));
+            
             dispatch(searched.actions.setError(null));
           });
         } else {
           batch(() => {
             dispatch(searched.actions.setItems([]));
-            dispatch(searched.actions.setBagId(null));
-            dispatch(searched.actions.setLocation(null));
-            dispatch(searched.actions.setColour(null));
-            dispatch(searched.actions.setAge(null));
-            dispatch(searched.actions.setMember(null));
+            
             dispatch(searched.actions.setError(data.response));
           });
         }
@@ -159,6 +151,8 @@ const Filter = () => {
             <TextWrapper>
               <CardText>Colour:{item.colour}</CardText>
               <Link to={`/bag/${item._id}`}>
+              <CardText>Colour:{item.location}</CardText>
+              
               </Link>
               <CardText>Age-range:{item.age}</CardText>
               <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>

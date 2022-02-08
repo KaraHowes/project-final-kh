@@ -11,7 +11,6 @@ import Profile from "./pages/Profile";
 import AddThek from "./pages/AddThek";
 import AllBags from "./pages/AllBags";
 import FindThek from "./pages/FindThek";
-import BagAdded from "./pages/BagAdded";
 import SelectedBag from "./pages/SelectedBag";
 import Starter from "./pages/Starter";
 import Intro from "./pages/Intro";
@@ -50,7 +49,6 @@ export const App = () => {
           <Route path="/AddThek" element={<AddThek />} />
           <Route path="/FindThek" element={<FindThek />} />
           <Route path="/AllBags" element={<AllBags />} />
-          <Route path="/BagAdded" element={<BagAdded />} />
           <Route path="/bag/:_id" element={<SelectedBag />} />
           <Route path="/intro" element={<Intro />} />
           <Route path="/inspiration" element={<Inspirations />} />
