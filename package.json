@@ -5,6 +5,7 @@
     "postinstall": "npm install --prefix backend"
   },
   "dependencies": {
+    "moment": "^2.29.1",
     "react-lottie": "^1.2.3",
     "styled-components": "^5.3.3",
     "sweetalert": "^2.1.2"

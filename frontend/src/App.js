@@ -56,7 +56,7 @@ export const App = () => {
           <Route path="/inspiration" element={<Inspirations />} />
           <Route path="/about" element={<About />} />
           <Route path="/bags/:memberId" element={<MemberBag />} />
-          <Route path="/bagDelete/:_id" element={<BagDelete />} />
+          <Route path="/deleteBag/:_id" element={<BagDelete />} />
 
           <Route path="/bagsFound" element={<BagsFound />} />
           <Route path="*" element={<NotFound />} />

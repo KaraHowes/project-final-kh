@@ -11,6 +11,8 @@ import { Box } from "../components/styling/containers"
 import Loader from '../components/Loader'
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
+import Filter from '../components/Filter'
+
 
 const BagContainer = styled.section`
   display: flex;
@@ -94,9 +96,11 @@ const AllBags = () => {
 
   return (
     <>
+
     <Box>
       <Menu/>
        {loading && <Loader/>}
+   
       <BagContainer>
         {theksItems.map((item) => (
           <Card key={item._id}>
@@ -115,6 +119,8 @@ const AllBags = () => {
           </Card>
         ))}
       </BagContainer>
+      <Filter/>
+      
       <Logout/>
     </Box>
     <Footer/>

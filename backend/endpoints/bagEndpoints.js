@@ -37,7 +37,7 @@ export const addBag = async (req,res) => {
     res.status(201).json({ response: bags, success: true });
   }
 
-  //endpoint to
+  //endpoint to 
    export const bagById = async (req,res) => {
     const { _id } = req.params;
     const bag = await Bag.findById(_id).populate("member");
@@ -96,18 +96,7 @@ if (updateBag) {
     }
   }
 
-  //Endpoint to get a bag from a member
-
-  {/*export const bagByMember = async (req,res) => {
-    const { memberId } = req.params
-   
-   
-    const memberBag = await Member.findOne({member:memberId}); 
-    res.status(200).json({ response: memberBag, success: true });
-  }*/}
-
-
-  //-------- PROBLEMS---------
+// finding bag associated with member
   export const bagByMember = async (req,res) => {
     const { memberId } = req.params;
   
@@ -115,7 +104,7 @@ if (updateBag) {
       const queriedBagMember = await Bag.find({member:memberId})
       if(queriedBagMember){
         res.status(201).json({
-          response:queriedBagMember,success: true,
+          response: queriedBagMember,success: true,
         });
       } else {
         res.status(404).json({
@@ -129,3 +118,22 @@ if (updateBag) {
       res.status(400).json({ message: "Invalid request", response: error, success: false });
     }
   }
+
+export const deleteBag = async (req,res) => {
+  const{ _id } = req.params
+  try {
+    const deleteBag= await Bag.findOneAndDelete({ _id });;
+    if (deleteBag) {
+      res.status(200).json({ response: deleteBag, success: true });
+    } else {
+      res.status(404).json({ response: "Could not find bag", success: false });
+    }
+   
+  } catch (error) {
+    res.status(400).json({
+      response: error,
+      success: false,
+    });
+  }
+}
+

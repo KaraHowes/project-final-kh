@@ -7,7 +7,7 @@ import quotesData from "./data/quotes.json";
 
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
-import { addBag, allBags, bagById, searchBags, updateBag, bagByMember} from "./endpoints/bagEndpoints.js"
+import { addBag, allBags, bagById, searchBags, updateBag, bagByMember, deleteBag} from "./endpoints/bagEndpoints.js"
 
 import dotenv from "dotenv";
 import cloudinaryFramework from "cloudinary";
@@ -111,13 +111,14 @@ app.post("/bags", authenticateMember, addBag);
 app.get("/bags", authenticateMember, allBags);
 
 app.get("/bag/:_id", authenticateMember, bagById);
+app.delete("/deleteBag/:_id", authenticateMember, deleteBag);
 
 app.patch("/bag/:_id", authenticateMember, updateBag);
 
 app.get("/searchbags", authenticateMember, searchBags);
 
-// ------- PROBLEM with this endpoint
-app.get("/bags/:memberId", bagByMember)
+app.get("/bags/:memberId", authenticateMember, bagByMember)
+
 
 //--------- for inspiration api--------
 // stays in server.js due to functions performed

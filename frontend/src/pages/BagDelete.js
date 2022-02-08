@@ -70,7 +70,6 @@ const BagDelete = () => {
   const chosenBag = useSelector((store) => store.oneThek);
   const { _id }= useParams() //This is vital so that the id can be taken from the url browser
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
 
@@ -81,69 +80,36 @@ const BagDelete = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
-    console.log(accessToken)
-    const options = {
-      method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
-    };
-    setLoading(true)
-    fetch(API_URL(`bag/${_id}`), options)
-      .then((res) => res.json())
-      .then((data) => {
-        
-        if (data.success) {
-          batch(() => {
-            dispatch(oneThek.actions.set_Id(data.response._id));
-            dispatch(oneThek.actions.setLocation(data.response.location));
-            dispatch(oneThek.actions.setColour(data.response.colour));
-            dispatch(oneThek.actions.setAge(data.response.age));
-            dispatch(oneThek.actions.setMember(data.response.member));
-            dispatch(oneThek.actions.setError(null));
-          });
-        } else {
-          batch(() => {
-            dispatch(oneThek.actions.set_Id(null));
-            dispatch(oneThek.actions.setLocation(null));
-            dispatch(oneThek.actions.setColour(null));
-            dispatch(oneThek.actions.setAge(null));
-            dispatch(oneThek.actions.setMember(null));
-            dispatch(oneThek.actions.setError(data.response));
-          });
-        }
-      }).finally(() => setLoading(false));
-  }, [accessToken, dispatch, _id]);
-
-  const deleteBag = () => {
+    
     swal({
-      title: 'Are you sure?',
-      text: 'Do you really want to delete this bag from Thek-Friends?',
-      icon: 'warning',
-      buttons: {
-        confirm: { text: 'Yes', result: true, closeModal: true, value: true, visible: true },
-        cancel: { text: 'Cancel', result: false, closeModal: true, value: null, visible: true },
-      },
-    }).then((result) => {
-      if (result) {
-        swal(`You have deleted the Thek!`, { icon: 'success' });
-        console.log(`You've deleted this game from the database`);
-
-        const options = {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            accessToken: accessToken,
-          },
-        };
-        if (accessToken) {
-          fetch(API_URL(`deleteBag/${_id}`), options);
+        title: 'Are you sure?',
+        text: 'Do you really want to delete this bag from Thek-Friends?',
+        icon: 'warning',
+        buttons: {
+          confirm: { text: 'Yes', result: true, closeModal: true, value: true, visible: true },
+          cancel: { text: 'Cancel', result: false, closeModal: true, value: null, visible: true },
+        },
+      }).then((result) => {
+        if (result) {
+          swal(`You have deleted the Thek!`, { icon: 'success' });
+          console.log(`You've deleted this game from the database`);
+        
+          const options = {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: accessToken,
+            },
+          };
+          if (accessToken) {
+            fetch(API_URL(`deleteBag/${_id}`), options).then(navigate('/signin'));
+          }
+        } else {
+          console.log(`You've chosen not to delete this object`);
         }
-      } else {
-        console.log(`You've chosen not to delete this object`);
-      }
-    });
-  };
+      });
+  }, [accessToken, _id]);
+  ;
   return (
     <>
     <Box>
@@ -162,7 +128,6 @@ const BagDelete = () => {
       <Button > 
         <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
         </Button>
-        <Button onClick={deleteBag}>Delete the bag</Button>
       <Logout />
     </Box>
     <Footer/>

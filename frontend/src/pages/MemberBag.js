@@ -116,12 +116,16 @@ const MemberBag = () => {
       .finally(() => setLoading(false));
   }, [accessToken, dispatch, memberId]);
 
-  return (
+  
+  
+    return (
     <>
       <Box>
         <Menu />
         {loading && <Loader />}
-        <BagContainer>
+        {addedBags.length===0?<div>you haven't added any bags</div>:<div></div>}
+  
+          <BagContainer>
           {addedBags.map((item) => (
            
             <Card key={item._id}>
@@ -136,24 +140,25 @@ const MemberBag = () => {
                   Available since:{moment(item.createdAt).fromNow()}
                 </CardText>
               </TextWrapper>
-              <Link to={`/bagDelete/${item._id}`}>
+              <Link to={`/deleteBag/${item._id}`}>
                 <Button>Delete This Thek?</Button>
               </Link>
              
             </Card>
           ))}
         </BagContainer>
+        
+       
         <Button>
           <Link to="/AllBags" params={accessToken}>
             Go back to overview
           </Link>
         </Button>
         <Logout />
-        {accessToken}
       </Box>
       <Footer />
     </>
   );
-};
 
+}
 export default MemberBag;

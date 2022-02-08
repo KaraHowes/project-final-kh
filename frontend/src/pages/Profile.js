@@ -137,8 +137,7 @@ const Profile = () => {
         </Button>
         <Logout />
       </ButtonContainer>
-        {profile.accessToken}
-      
+    
       </ProfileButtonContainer>
   
      </Box>
