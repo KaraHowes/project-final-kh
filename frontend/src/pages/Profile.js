@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import swal from "sweetalert"
+
 import Lottie from "react-lottie";
 
 import animationData from "../animations/hello.json";
@@ -95,9 +95,7 @@ const Profile = () => {
             dispatch(member.actions.setStatus(data.response.status));
             dispatch(member.actions.setError(null));
           });
-          {profile.status==="Donor"?
-            swal('Hi there donor', {icon:'success', button: 'ok'}):
-          swal('hi there recipient', {icon:'success', button: 'ok'}) }
+     
 
         } else {
           batch(() => {
@@ -139,7 +137,7 @@ const Profile = () => {
         </Button>
         <Logout />
       </ButtonContainer>
-
+        {profile.accessToken}
       
       </ProfileButtonContainer>
   

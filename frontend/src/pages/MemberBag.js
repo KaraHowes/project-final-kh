@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import styled from "styled-components";
-import moment from 'moment'
+import moment from "moment";
+
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
-import Loader from '../components/Loader'
+import Loader from "../components/Loader";
 
-import { Box } from "../components/styling/containers"
-import Footer from '../components/Footer'
-import Menu from '../components/Menu'
+import { Box } from "../components/styling/containers";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+import image from '../images/bag.png';
 
 const BagContainer = styled.section`
   display: flex;
@@ -19,12 +21,12 @@ const BagContainer = styled.section`
   width: 100%;
   flex-wrap: wrap;
   margin: 0 auto;
-  @media (min-width: 768px){
-    flex-direction:row;
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 const Card = styled.div`
-margin: 10px;
+margin: 10px auto;
 width: 100%;
 border: 2px solid black;
 display: flex;
@@ -63,9 +65,8 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   margin: 10px 0;
   border-radius: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  
-`
+  font-family: "Josefin Sans", sans-serif;
+`;
 const ImageThek = styled.img`
   width: 100%;
   max-width: 150px;
@@ -75,11 +76,12 @@ const ImageThek = styled.img`
 const MemberBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const addedBags = useSelector((store) => store.theks.items);
-  const { memberId }= useParams() //This is vital so that the id can be taken from the url browser
+  const { memberId } = useParams(); //This is vital so that the id can be taken from the url browser
+  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!accessToken) {
@@ -88,18 +90,17 @@ const MemberBag = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
-    
     const options = {
       method: "GET",
       headers: {
         Authorization: accessToken,
       },
     };
-    setLoading(true)
+    setLoading(true);
     fetch(API_URL(`bags/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         if (data.success) {
           batch(() => {
             dispatch(theks.actions.setItems(data.response));
@@ -111,40 +112,46 @@ const MemberBag = () => {
             dispatch(theks.actions.setError(data.response));
           });
         }
-      }).finally(() => setLoading(false));
+      })
+      .finally(() => setLoading(false));
   }, [accessToken, dispatch, memberId]);
 
   return (
     <>
-    <Box>
-      <Menu/>
-      {loading && <Loader/>}
-      <BagContainer>
-          {addedBags.map((item)=>(
-              <Card key={item._id}>
-              <ImageThek
-              src="./assets/thek-icon-1.png"
-              alt="Thek-friends-bag-logo">
-
-              </ImageThek>
-          <TextWrapper>
-              <CardText>You have donated a {item.colour}-coloured bag</CardText>
-              
-                <CardText>The bag is based in{item.location}</CardText>
-         
-              <CardText>Age-range:{item.age}</CardText>
-              <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
-            </TextWrapper>
+      <Box>
+        <Menu />
+        {loading && <Loader />}
+        <BagContainer>
+          {addedBags.map((item) => (
+           
+            <Card key={item._id}>
+              <img src={image} alt={image} height={150} width={125}/>
+              <TextWrapper>
+                <CardText>
+                  You have donated a {item.colour}-coloured bag, based in {item.location}
+                </CardText>
+                <CardText>Age-range:{item.age}</CardText>
+                <CardText>
+                  {" "}
+                  Available since:{moment(item.createdAt).fromNow()}
+                </CardText>
+              </TextWrapper>
+              <Link to={`/bagDelete/${item._id}`}>
+                <Button>Delete This Thek?</Button>
+              </Link>
+             
             </Card>
           ))}
-       
-      </BagContainer>
-      <Button > 
-        <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
+        </BagContainer>
+        <Button>
+          <Link to="/AllBags" params={accessToken}>
+            Go back to overview
+          </Link>
         </Button>
-      <Logout />
-    </Box>
-    <Footer/>
+        <Logout />
+        {accessToken}
+      </Box>
+      <Footer />
     </>
   );
 };

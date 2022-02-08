@@ -19,6 +19,7 @@ import BagsFound from "./pages/BagsFound";
 import Inspirations from "./pages/Inspirations";
 import About from "./pages/About"
 import MemberBag from "./pages/MemberBag"
+import BagDelete from "./pages/BagDelete"
 
 import member from "./reducers/member";
 import theks from "./reducers/theks";
@@ -55,6 +56,7 @@ export const App = () => {
           <Route path="/inspiration" element={<Inspirations />} />
           <Route path="/about" element={<About />} />
           <Route path="/bags/:memberId" element={<MemberBag />} />
+          <Route path="/bagDelete/:_id" element={<BagDelete />} />
 
           <Route path="/bagsFound" element={<BagsFound />} />
           <Route path="*" element={<NotFound />} />
