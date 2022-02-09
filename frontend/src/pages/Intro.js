@@ -1,9 +1,9 @@
 import React from "react";
 import Lottie from "react-lottie";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Box } from "../components/styling/containers";
+import { Press } from "../components/styling/general";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import animationData from "../animations/star.json";
@@ -16,6 +16,7 @@ const ImageContainer = styled.div`
   flex-direction: row;
   @media (min-width: 768px){
     width:100%;
+    marign-right: 10px;
   }
 `;
 const ImageWritingContainer = styled.section`
@@ -60,10 +61,13 @@ const Startbutton = styled.button`
   box-shadow: 3px 3px 6px #888888;
 `;
 const Buttoncontainer = styled.div`
+
   display: flex;
   justify-content: center;
   align-content: center;
 `;
+
+
 const Intro = () => {
   const defaultOptions = {
     loop: true,
@@ -105,9 +109,9 @@ const Intro = () => {
         </ImageWritingContainer>
 
         <Buttoncontainer>
-          <Link to="/signin">
+          <Press to="/signin">
             <Startbutton>Register</Startbutton>
-          </Link>
+          </Press>
         </Buttoncontainer>
       </Box>
       <Footer />

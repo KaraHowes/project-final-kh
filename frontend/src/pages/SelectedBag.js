@@ -1,30 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
-import Loader from '../components/Loader'
+import Loader from "../components/Loader";
 
-import { Box } from "../components/styling/containers"
-import Footer from '../components/Footer'
-import Menu from '../components/Menu'
+import { Box } from "../components/styling/containers";
+import { Press, Details } from "../components/styling/general";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+import image from '../images/bag.png';
 
-const BagContainer = styled.section`
-  display: flex;
+const ProfileButtonContainer =styled.div`
+display: flex;
+flex-direction: column;
+margin: 30px auto 30px auto;
+padding: 10px;
+justify-content: center;
+@media (min-width: 768px){
+  margin: 30px auto;
   flex-direction: row;
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 0 auto;
-`;
+}
+`
 
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  justify-content: center;
+  margin: 0 auto;
+ 
+`
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  @media (min-width: 768px){
+  justify-content: space-evenly;
+  }
+`;
 const Button = styled.button`
   width: 80%;
   min-width: 200px;
-  height: 50px;
+  height: 45px;
   background-color: #d5f5f2;
   border: none;
   cursor: pointer;
@@ -33,16 +57,24 @@ const Button = styled.button`
   margin: 10px 0;
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888
 `
+const HeaderText = styled.h1`
+font-size: 1.75rem;
+@media (min-width: 768px){
+  font-size: 2rem;
+}
+`
+
 const SelectedBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const chosenBag = useSelector((store) => store.oneThek);
-  const { _id }= useParams() //This is vital so that the id can be taken from the url browser
-  const email = useSelector((store) => store.member.email)
+  const { _id } = useParams(); //This is vital so that the id can be taken from the url browser
+  const email = useSelector((store) => store.member.email);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!accessToken) {
@@ -51,18 +83,16 @@ const SelectedBag = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
-    
     const options = {
       method: "GET",
       headers: {
         Authorization: accessToken,
       },
     };
-    setLoading(true)
+    setLoading(true);
     fetch(API_URL(`bag/${_id}`), options)
       .then((res) => res.json())
       .then((data) => {
-        
         if (data.success) {
           batch(() => {
             dispatch(oneThek.actions.set_Id(data.response._id));
@@ -82,40 +112,58 @@ const SelectedBag = () => {
             dispatch(oneThek.actions.setError(data.response));
           });
         }
-      }).finally(() => setLoading(false));
+      })
+      .finally(() => setLoading(false));
   }, [accessToken, dispatch, _id]);
 
-  const reserveBag = ()=> {
-    swal('Thank you for for reserving a bag from our collection', {icon: 'success', button: 'ok'})
+  const reserveBag = () => {
+    swal("Thank you for for reserving a bag from our collection", {
+      icon: "success",
+      button: "ok",
+    });
     const options = {
       method: "POST",
       headers: {
         Authorization: accessToken,
-        'Content-Type': 'application/json',
-      }, body: JSON.stringify({ email })
-      
-    }
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    };
     fetch(API_URL("reserveBag"), options)
       .then((res) => res.json())
-      .then((data) => console.log(data)).finally(navigate("/"))
-}
+      .then((data) => console.log(data))
+      .finally(navigate("/"));
+  };
   return (
     <>
-    <Box>
-      <Menu/>
-      {loading && <Loader/>}
-      <BagContainer>
-        <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
-        <p>The bag is based in {chosenBag.location}</p>
-  <p> The bag is aimed at {chosenBag.age}</p>
-      </BagContainer>
-      <Button onClick={reserveBag}> Reserve this bag?</Button>
-      <Button > 
-        <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
-        </Button>
-      <Logout />
-    </Box>
-    <Footer/>
+      <Box>
+        <Menu />
+        {loading && <Loader />}
+
+        <ProfileButtonContainer>
+          <ProfileContainer>
+          <img src={image} alt={image} height={150} width={125}/>
+            <HeaderText>
+              {" "}
+              You have chosen a {chosenBag.colour} bag
+            </HeaderText>
+            <Details> The bag is based in {chosenBag.location}</Details>
+         
+          </ProfileContainer>
+
+          <ButtonContainer>
+            <Button onClick={reserveBag}> Reserve this bag?</Button>
+
+            <Button>
+              <Press to="/AllBags" params={accessToken}>
+                Overview
+              </Press>
+            </Button>
+            <Logout />
+          </ButtonContainer>
+        </ProfileButtonContainer>
+      </Box>
+      <Footer />
     </>
   );
 };

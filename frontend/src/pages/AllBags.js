@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import moment from 'moment'
 
@@ -13,6 +13,7 @@ import Menu from '../components/Menu'
 import Filter from '../components/Filter'
 
 import { Box } from "../components/styling/containers"
+import { Press } from "../components/styling/general"
 import { BagContainer, Card, TextWrapper, CardText } from "../components/styling/mapping"
 
 const ImageThek = styled.img`
@@ -73,9 +74,9 @@ const AllBags = () => {
           ></ImageThek>
             <TextWrapper>
               <CardText>Colour:{item.colour}</CardText>
-              <Link to={`/bag/${item._id}`}>
+              <Press to={`/bag/${item._id}`}>
                 <CardText>Location:{item.location}</CardText>
-              </Link>
+              </Press>
               <CardText>Age-range:{item.age}</CardText>
               <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
             </TextWrapper>

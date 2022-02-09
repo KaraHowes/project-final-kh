@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
 
@@ -11,6 +11,7 @@ import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 
 import { Box } from "../components/styling/containers";
+import { Press } from "../components/styling/general";
 import { BagContainer, Card, TextWrapper, CardText } from "../components/styling/mapping"
 
 import Footer from "../components/Footer";
@@ -103,9 +104,9 @@ const MemberBag = () => {
                   Available since:{moment(item.createdAt).fromNow()}
                 </CardText>
               </TextWrapper>
-              <Link to={`/deleteBag/${item._id}`}>
+              <Press to={`/deleteBag/${item._id}`}>
                 <Button>Delete This Thek?</Button>
-              </Link>
+              </Press>
              
             </Card>
           ))}
@@ -113,9 +114,9 @@ const MemberBag = () => {
         
        
         <Button>
-          <Link to="/AllBags" params={accessToken}>
+          <Press to="/AllBags" params={accessToken}>
             Go back to overview
-          </Link>
+          </Press>
         </Button>
         <Logout />
       </Box>

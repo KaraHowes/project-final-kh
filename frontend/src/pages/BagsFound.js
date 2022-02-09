@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import moment from 'moment'
 
@@ -11,6 +10,7 @@ import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
 import { Box } from "../components/styling/containers"
+import { Press } from "../components/styling/general"
 import { BagContainer, Card, TextWrapper, CardText } from "../components/styling/mapping"
 
 
@@ -39,9 +39,9 @@ const BagsFound = () => {
           ></ImageThek>
           <TextWrapper>
           <CardText>Colour:{item.colour}</CardText>
-              <Link to={`/bag/${item._id}`}>
+              <Press to={`/bag/${item._id}`}>
                 <CardText>Location:{item.location}</CardText>
-              </Link>
+              </Press>
               <CardText>Age-range:{item.age}</CardText>
               <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
           </TextWrapper>

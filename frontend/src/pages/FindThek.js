@@ -12,16 +12,6 @@ import Loader from "../components/Loader";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
-const AddWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: white;
-  border: 1px solid black;
-  margin: 0 auto;
-  padding: 30px;
-`;
-
 const Button = styled.button`
   width: 100%;
   height: 40px;

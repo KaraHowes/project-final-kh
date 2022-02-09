@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import swal from "sweetalert"
 
-import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 import Loader from '../components/Loader'
 
 import { Box } from "../components/styling/containers"
+import { Press } from "../components/styling/general"
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
@@ -20,31 +20,7 @@ const BagContainer = styled.section`
   flex-wrap: wrap;
   margin: 0 auto;
 `;
-const Card = styled.div`
-margin: 10px;
-width: 20%;
-border: 2px solid black;
-display: flex;
-flex-direction: column;
-align-content: flex-end;
-text-align: center;
-font-family: "Josefin Sans", sans-serif;
-max-width: 200px;
-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
-background: white;
 
-`;
-const TextWrapper = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-const CardText = styled.p`
-  background-color: #d5f5f2;
-  padding: 5px 0;
-`;
 const Button = styled.button`
   width: 80%;
   min-width: 200px;
@@ -92,8 +68,7 @@ const BagDelete = () => {
       }).then((result) => {
         if (result) {
           swal(`You have deleted the Thek!`, { icon: 'success' });
-          console.log(`You've deleted this game from the database`);
-        
+          
           const options = {
             method: 'DELETE',
             headers: {
@@ -126,7 +101,7 @@ const BagDelete = () => {
       </BagContainer>
     
       <Button > 
-        <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
+        <Press to="/AllBags"params={accessToken}>Go back to overview</Press>
         </Button>
       <Logout />
     </Box>

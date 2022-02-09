@@ -15,20 +15,9 @@ import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
 
-const AddWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: white;
-  border: 1px solid black;
-  margin: 0 auto;
-  padding: 30px;
-  
-`;
-
 const Button = styled.button`
   width: 100%;
-  height: 50px;
+  height: 40px;
   background-color: #d5f5f2;
   border: none;
   cursor: pointer;
@@ -36,7 +25,8 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
-  box-shadow: 3px 3px 6px #888888
+  box-shadow: 3px 3px 6px #888888;
+  margin-bottom: 15px;
 `;
 
 const AddThek = () => {
@@ -97,7 +87,7 @@ const AddThek = () => {
     <Box>
       <Menu/>
       {loading && <Loader/>}
-      <AddWrapper>
+  
       <Form onSubmit={onFormSubmit}>
 
           <Select
@@ -180,7 +170,7 @@ const AddThek = () => {
 
       </Form>
    
-    </AddWrapper>
+   
     </Box>
     <Footer />
     </>

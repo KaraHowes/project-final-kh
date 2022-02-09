@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from "react-redux";
 
-
+import { Press } from "./styling/general"
 const NoBagFound =()=> {
 
      const accessToken = useSelector((store) => store.member.accessToken) 
@@ -13,7 +12,7 @@ const NoBagFound =()=> {
         greater selection</p>
      
       <button>
-          <Link to="/AllBags" params={accessToken}>Allbags</Link>
+          <Press to="/AllBags" params={accessToken}>Allbags</Press>
       </button>
       </div>
     )

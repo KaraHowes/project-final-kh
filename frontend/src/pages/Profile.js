@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Lottie from "react-lottie";
@@ -11,7 +10,8 @@ import Logout from "../components/Logout";
 import member from "../reducers/member";
 
 import Loader from '../components/Loader'
-import { Box, Header, Details } from "../components/styling/containers"
+import { Box } from "../components/styling/containers"
+import { Press, Colour, Header, Details } from "../components/styling/general"
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
@@ -65,22 +65,12 @@ const Button = styled.button`
   font-family: 'Josefin Sans', sans-serif;
   box-shadow: 3px 3px 6px #888888
 `
-const Press =styled(Link)`
-text-decoration: none;
-&:visited{
-  color:black;
-}
-`
 const SmallText = styled.p`
 font-size: 0.75rem;
 @media (min-width: 768px){
   font-size: 1rem;
 }
 `
-const Colour = styled.span`
-color: #878df7;
-font-weight: 800;`
-
 
 const Profile = () => {
 

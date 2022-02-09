@@ -89,7 +89,7 @@ const Inspirations = () => {
           });
         }
       }).finally(() => setLoading(false));
-  }, []);
+  },dispatch, []);
 
   return (
     <>

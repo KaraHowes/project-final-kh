@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Footer from "../components/Footer";
+import { Press } from "../components/styling/general"
 
 const Image = styled.img`
   width: 100%;
@@ -42,6 +42,7 @@ const Buttoncontainer = styled.div`
   height: 100px;
   margin-bottom: 50px;
 `;
+
 const Starter = () => {
   return (
     <>
@@ -51,9 +52,9 @@ const Starter = () => {
           alt="Thek-friends-written-logo"
         ></Image>
         <Buttoncontainer>
-          <Link to="/intro">
+          <Press to="/intro">
             <Startbutton>Enter</Startbutton>
-          </Link>
+          </Press>
         </Buttoncontainer>
       </Box>
       <Footer />
