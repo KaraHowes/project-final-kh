@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import swal from 'sweetalert';
 
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
@@ -48,10 +49,12 @@ const Register = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate("/welcome");
+      swal('Welcome Thek-Friend! Thank you for becomming a member, you wonderful person!', {icon: 'success', button: 'ok'})
+      navigate("/signin");
     }
   }, [accessToken, navigate]);
 
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
 

@@ -6,7 +6,6 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { NotFound } from "./pages/NotFound";
-import Welcome from "./pages/Welcome";
 import Profile from "./pages/Profile";
 import AddThek from "./pages/AddThek";
 import AllBags from "./pages/AllBags";
@@ -43,7 +42,6 @@ export const App = () => {
         <Routes>
           <Route path="/starter" element={<Starter />} />
           <Route path="/member/:memberId" element={<Profile />} />
-          <Route path="/welcome" element={<Welcome />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AddThek" element={<AddThek />} />
