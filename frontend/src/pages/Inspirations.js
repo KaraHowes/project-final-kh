@@ -18,10 +18,11 @@ const Box = styled.div`
   width: 60%;
   padding: 50px 25px;
   background: white;
-  margin: 20px auto;
+  margin: 150px auto;
   border: 5px solid black;
   box-shadow: 10px 10px #878df7;
   font-family: "Josefin Sans", sans-serif;
+  max-width: 700px;
  
 `;
 const Button = styled.button`

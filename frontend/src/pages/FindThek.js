@@ -89,7 +89,7 @@ const FindThek = () => {
     <Box>
       <Menu/>
       {loading && <Loader/>}
-      <AddWrapper>
+ 
         <Form onSubmit={onFormSubmit}>
           <Select
             id="colourInput"
@@ -128,7 +128,7 @@ const FindThek = () => {
           {errors && <p className="warning-login">Something went wrong!!!</p>}
           <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>
-      </AddWrapper>
+    
     </Box>
     <Footer/>
     </>

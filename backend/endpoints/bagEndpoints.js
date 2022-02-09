@@ -67,34 +67,6 @@ export const addBag = async (req,res) => {
     }
   }
 
-  // Endpoint to update bag
-
-  export const updateBag = async (req, res) => {
-    const { _id } = req.params;
-    const { bag } = req.body;
-    try {
-      
-      const updateBag = await Bag.findByIdAndUpdate(
-        _id, 
-        { $set: { bag: bag } },
-        { new: true }
-      ).exec();
-if (updateBag) {
-  res.status(200).json({
-    response: updateBag,
-    success: true,
-  });
-} else {
-  res.status(404).json({
-    message: 'Could not find bag',
-    sucess: false,
-  })
-}
-      
-    } catch (error) {
-      res.status(400).json({ response: error, success: false });
-    }
-  }
 
 // finding bag associated with member
   export const bagByMember = async (req,res) => {
@@ -136,4 +108,5 @@ export const deleteBag = async (req,res) => {
     });
   }
 }
+
 

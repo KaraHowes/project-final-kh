@@ -3,25 +3,44 @@ import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Box } from "../components/styling/containers"
-import Footer from '../components/Footer'
+import { Box } from "../components/styling/containers";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 import animationData from "../animations/star.json";
-import Menu from '../components/Menu'
 
 const ImageWords = styled.img`
   width: 100%;
 `;
 const ImageContainer = styled.div`
-display: flex;
-flex-direction: row;`;
+  display: flex;
+  flex-direction: row;
+  @media (min-width: 768px){
+    width:100%;
+  }
+`;
 const ImageWritingContainer = styled.section`
   width: 95%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px){
+    flex-direction:row;
+    margin-bottom: 20px;
+  }
 `;
 const ImageThek = styled.img`
   width: 100%;
   max-width: 150px;
 `;
-const TextContainer = styled.div``;
+const LottieContainer = styled.div`
+  margin: 60px 0 0 -10px;
+  @media (min-width: 768px){
+    display: none;
+  }
+`;
+const TextContainer = styled.div`
+@media (min-width: 768px){
+  float: right;
+}`;
 const TitleText = styled.h1``;
 const MainText = styled.p`
   text-align: justify;
@@ -44,8 +63,6 @@ const Buttoncontainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 100px;
-  margin-bottom: 50px;
 `;
 const Intro = () => {
   const defaultOptions = {
@@ -58,41 +75,42 @@ const Intro = () => {
   };
   return (
     <>
-    <Box>
-      <Menu/>
-      <ImageWords
-        src="./assets/thek-friends-01.png"
-        alt="Thek-friends-written-logo"
-      ></ImageWords>
-      <ImageWritingContainer>
-        <ImageContainer>
-          <ImageThek
-            src="./assets/thek-icon-1.png"
-            alt="Thek-friends-bag-logo"
-          ></ImageThek>
+      <Box>
+        <Menu />
+        <ImageWords
+          src="./assets/thek-friends-01.png"
+          alt="Thek-friends-written-logo"
+        ></ImageWords>
+        <ImageWritingContainer>
+          <ImageContainer>
+            <ImageThek
+              src="./assets/thek-icon-1.png"
+              alt="Thek-friends-bag-logo"
+            ></ImageThek>
+            <LottieContainer>
+              <Lottie options={defaultOptions} height={150} width={150} />
+            </LottieContainer>
+          </ImageContainer>
 
-          <Lottie options={defaultOptions} height={150} width={150}/>
-        </ImageContainer>
+          <TextContainer>
+            <TitleText>Welcome to Thek-Friends</TitleText>
+            <MainText>
+              {" "}
+              Every year. thousands of Children start the Swiss School system.
+              As we all know, The Thek is an integral part of the process.
+              Become a Thek-Friend and helps us to reduce the waste of unused
+              and unloved Theks and give them a new home.
+            </MainText>
+          </TextContainer>
+        </ImageWritingContainer>
 
-        <TextContainer>
-          <TitleText>Welcome to Thek-Friends</TitleText>
-          <MainText>
-            {" "}
-            Every year. thousands of Children start the Swiss School system. As
-            we all know, The Thek is an integral part of the process. Become a Thek-Friend
-            and helps us to reduce the waste of unused and unloved Theks
-            and give them a new home.
-          </MainText>
-        </TextContainer>
-      </ImageWritingContainer>
-
-      <Buttoncontainer>
-        <Link to="/signin">
-          <Startbutton>Register</Startbutton>
-        </Link>
-      </Buttoncontainer>
-    </Box>
-    <Footer/>
+        <Buttoncontainer>
+          <Link to="/signin">
+            <Startbutton>Register</Startbutton>
+          </Link>
+        </Buttoncontainer>
+      </Box>
+      <Footer />
     </>
   );
 };

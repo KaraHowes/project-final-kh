@@ -40,21 +40,20 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<Intro />} />
           <Route path="/starter" element={<Starter />} />
-          <Route path="/member/:memberId" element={<Profile />} />
-          <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/member/:memberId" element={<Profile />} />
           <Route path="/AddThek" element={<AddThek />} />
           <Route path="/FindThek" element={<FindThek />} />
           <Route path="/AllBags" element={<AllBags />} />
           <Route path="/bag/:_id" element={<SelectedBag />} />
-          <Route path="/intro" element={<Intro />} />
-          <Route path="/inspiration" element={<Inspirations />} />
-          <Route path="/about" element={<About />} />
           <Route path="/bags/:memberId" element={<MemberBag />} />
           <Route path="/deleteBag/:_id" element={<BagDelete />} />
-
           <Route path="/bagsFound" element={<BagsFound />} />
+          <Route path="/inspiration" element={<Inspirations />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

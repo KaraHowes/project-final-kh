@@ -20,9 +20,10 @@ padding: 10px;
 color: black;
 text-decoration: none;
 &:hover{
-background-color: #20C6BA,
-colour: pink:
+background-color: #878df7;
 border-radius: 5px;
+color: white;
+
 }`;
 
 const Hamburger = styled.div`
@@ -64,6 +65,7 @@ export const Menu = () => {
         <span />
       </Hamburger>
       <Nav isOpen={isOpen}>
+      <NavLink to="/"> Home</NavLink>
         <NavLink to="/about"> About</NavLink>
         <NavLink to="/signin"> Log-in</NavLink>
         <NavLink to="/inspiration"> Inspiration</NavLink>

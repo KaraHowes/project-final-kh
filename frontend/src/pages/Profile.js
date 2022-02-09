@@ -15,15 +15,19 @@ import { Box, Header, Details } from "../components/styling/containers"
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
-
+const All = styled.div`
+display: flex;
+flex-direction: column;
+`
 const ProfileButtonContainer =styled.div`
 display: flex;
 flex-direction: column;
-margin: -50px auto 30px auto;
+margin: 30px auto 30px auto;
 padding: 10px;
 justify-content: center;
 @media (min-width: 768px){
   margin: 30px auto;
+  flex-direction: row;
 }
 `
 
@@ -34,12 +38,18 @@ const ProfileContainer = styled.div`
   width: 80%;
   justify-content: center;
   margin: 0 auto;
+  @media (min-width: 768px){
+    margin: 0 30px 0 auto;
+  }
 `
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
+  @media (min-width: 768px){
+    margin: 0 auto 0 30px;
+  }
 `;
 const Button = styled.button`
   width: 80%;
@@ -53,10 +63,24 @@ const Button = styled.button`
   margin: 10px 0;
   border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888
 `
 const Press =styled(Link)`
-text-deoration: none;
+text-decoration: none;
+&:visited{
+  color:black;
+}
 `
+const SmallText = styled.p`
+font-size: 0.75rem;
+@media (min-width: 768px){
+  font-size: 1rem;
+}
+`
+const Colour = styled.span`
+color: #878df7;
+font-weight: 800;`
+
 
 const Profile = () => {
 
@@ -117,14 +141,16 @@ const Profile = () => {
      
        {loading && <Loader/>}
        <Menu/>
-      <ProfileButtonContainer>
-      <Lottie options={defaultOptions} height={150} width={150}/>
+       <All>
+       <Lottie options={defaultOptions} height={150} width={150}/>
+       <ProfileButtonContainer>
+     
       <ProfileContainer>
-        <Header> {profile.membername}!</Header>
-        <Details> Thek-Friend Status: {profile.status}</Details>
-        <Details>Email address: {profile.email}</Details>
-        <Details> Location: {profile.location}</Details>
-        {profile.status==="Donor"?<Details> Already added a bag? Click <Link to={`/bags/${memberId}`}>Here to see it</Link></Details>:<div></div>}
+        <Header> <Colour>{profile.membername}!</Colour></Header>
+        <Details> Thek-Friend Status: <Colour>{profile.status}</Colour></Details>
+        <Details>Email address: <Colour>{profile.email}</Colour></Details>
+        <Details> Location: <Colour>{profile.location}</Colour></Details>
+        {profile.status==="Donor"?<SmallText> Already added a bag? Click <Press to={`/bags/${memberId}`}>Here to see it</Press></SmallText>:<div></div>}
     
       </ProfileContainer>
       
@@ -133,13 +159,15 @@ const Profile = () => {
       {profile.status==="Donor"? <Press to="/AddThek">Add a bag?</Press>:<Press to="/FindThek">Find a bag</Press>}
         </Button>
         <Button>
-          <Press to="/AllBags"> see all bags</Press>
+          <Press to="/AllBags">All bags</Press>
         </Button>
         <Logout />
       </ButtonContainer>
     
       </ProfileButtonContainer>
   
+       </All>
+     
      </Box>
      <Footer/>
      </> 

@@ -35,7 +35,12 @@ const Button = styled.button`
   font-family: 'Josefin Sans', sans-serif;
   box-shadow: 3px 3px 6px #888888;
 `;
-
+const Press =styled(Link)`
+text-decoration: none;
+&:visited{
+  color:black;
+}
+`
 const Login = () => {
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
@@ -119,7 +124,7 @@ const Login = () => {
         <ButtonContainer>
           <Button type="submit">Sign-in</Button>
           <Button>
-            <Link to="/register">Register</Link>
+            <Press to="/register">Register</Press>
           </Button>
         </ButtonContainer>
 		{errors && <p className="warning-login">Your Username or password do not match our records</p>}

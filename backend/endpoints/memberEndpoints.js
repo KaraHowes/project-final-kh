@@ -88,7 +88,7 @@ import bcrypt from "bcrypt";
     res.status(200).json({ response: member, success: true });
   }
 
-  //endpoint to update profile
+
 
 
   

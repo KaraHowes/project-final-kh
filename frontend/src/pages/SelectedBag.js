@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import styled from "styled-components";
+import swal from 'sweetalert';
 
 import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
@@ -37,6 +38,7 @@ const SelectedBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const chosenBag = useSelector((store) => store.oneThek);
   const { _id }= useParams() //This is vital so that the id can be taken from the url browser
+  const email = useSelector((store) => store.member.email)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const SelectedBag = () => {
   }, [accessToken, navigate]);
 
   useEffect(() => {
-    console.log(accessToken)
+    
     const options = {
       method: "GET",
       headers: {
@@ -83,6 +85,20 @@ const SelectedBag = () => {
       }).finally(() => setLoading(false));
   }, [accessToken, dispatch, _id]);
 
+  const reserveBag = ()=> {
+    swal('Thank you for for reserving a bag from our collection', {icon: 'success', button: 'ok'})
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: accessToken,
+        'Content-Type': 'application/json',
+      }, body: JSON.stringify({ email })
+      
+    }
+    fetch(API_URL("reserveBag"), options)
+      .then((res) => res.json())
+      .then((data) => console.log(data)).finally(navigate("/"))
+}
   return (
     <>
     <Box>
@@ -91,8 +107,9 @@ const SelectedBag = () => {
       <BagContainer>
         <h1> You have chosen a {chosenBag.colour}-coloured bag</h1>
         <p>The bag is based in {chosenBag.location}</p>
+  <p> The bag is aimed at {chosenBag.age}</p>
       </BagContainer>
-      <Button > Reserve this bag?</Button>
+      <Button onClick={reserveBag}> Reserve this bag?</Button>
       <Button > 
         <Link to="/AllBags"params={accessToken}>Go back to overview</Link>
         </Button>
