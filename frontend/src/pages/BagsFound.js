@@ -51,7 +51,7 @@ const BagsFound = () => {
           <CardText>Colour: {item.colour}</CardText>
           <CardText>Location: {item.location}</CardText>
           <CardText>Age-range: {item.age}</CardText>
-              <CardText> Available since: {moment(item.createdAt).fromNow()}</CardText>
+              <CardText> Available since: {moment(item.createdAt).format('Do MMMM YYYY')}</CardText>
               <Press to={`/bag/${item._id}`}>
                 <CardText>More details</CardText>
               </Press>

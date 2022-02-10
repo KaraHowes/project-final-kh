@@ -110,7 +110,7 @@ const Register = () => {
         />
         <Input
           id="emailInput"
-          type="text"
+          type="email"
           value={email}
           onChange={(e) => setEmailAddress(e.target.value)}
           required
@@ -129,6 +129,7 @@ const Register = () => {
           id="locationInput"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          required
         >
           <option disabled value="">
             Select nearest city:
@@ -157,6 +158,7 @@ const Register = () => {
           id="statusInput"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
+          required
         >
           <option disabled value="">
             Thek-friends status:

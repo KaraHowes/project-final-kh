@@ -39,7 +39,7 @@ const Logout = () => {
         batch(() => {
           dispatch(member.actions.setMembername(null));
           dispatch(member.actions.setAccessToken(null));
-    
+          dispatch(member.actions.setMemberId(null))
         });
       };
     return (

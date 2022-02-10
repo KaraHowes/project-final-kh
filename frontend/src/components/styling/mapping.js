@@ -21,7 +21,7 @@ flex-direction: column;
 align-content: flex-end;
 text-align: center;
 font-family: "Josefin Sans", sans-serif;
-max-width: 200px;
+max-width: 250px;
 box-shadow: 8px 8px #fff000;
 background: white;
 @media (min-width: 768px){
@@ -31,12 +31,12 @@ background: white;
 
 export const CardText = styled.p`
   background-color: #d5f5f2;
-  padding: 5px 0;
-  margin: 10px 0;
+  padding: 10px 0;
+  margin: 15px 0;
 `;
 
 export const TextWrapper = styled.div`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

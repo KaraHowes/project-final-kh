@@ -152,7 +152,7 @@ app.post("/reserveBag", async (req,res) => {
     to: email, // list of receivers
     subject: "Interested in Thek", // Subject line
     text: "Thank you for registering your interest in the Thek, we will get back to you shortly", // plain text body
-    html: "<b>You are awesome</b>", // html body
+    html: "<b>Thank you for registering your interest in the Thek, we will get back to you shortly. You really are awesome</b>", // html body
   });
 
   transporter.sendMail(mailOptions, (error, info) => {
