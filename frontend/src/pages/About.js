@@ -3,17 +3,8 @@ import styled from "styled-components";
 
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
+import { Box } from "../components/styling/containers";
 
-const Box = styled.div`
-width: 60%;
-padding: 75px 25px;
-background: white;
-margin: 50px auto 100px auto;
-border: 5px solid black;
-box-shadow: 10px 10px #878df7;
-font-family: "Josefin Sans", sans-serif;
-
-`
 const TitleText = styled.h1``;
 const Text = styled.p`
 line-height: 22px;

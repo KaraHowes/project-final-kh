@@ -8,6 +8,7 @@ import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
+import { Press } from "../components/styling/general";
 import Loader from "../components/Loader";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
@@ -32,6 +33,7 @@ const FindThek = () => {
 
   const errors = useSelector((store) => store.member.error);
   const accessToken = useSelector((store) => store.member.accessToken);
+  const memberId = useSelector((store) => store.member.memberId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -116,6 +118,9 @@ const FindThek = () => {
           <Button type="submit">Find my Thek!</Button>
 
           {errors && <p className="warning-login">Something went wrong!!!</p>}
+          <Button> 
+        <Press to={`/member/${memberId}`}params={accessToken, memberId}>Profile</Press>
+        </Button>
           <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>
     

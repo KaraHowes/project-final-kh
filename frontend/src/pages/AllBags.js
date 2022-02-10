@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Filter from "../components/Filter";
 
-import { Box } from "../components/styling/containers";
+import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
 import {
   BagContainer,
@@ -28,10 +28,24 @@ const ImageThek = styled.img`
   margin: 0 auto;
 `;
 
+const Button = styled.button`
+  width: 100%;
+  height: 40px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  margin: 0 auto 20px auto;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888
+`
+
 const AllBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
   const accessToken = useSelector((store) => store.member.accessToken);
-
+  const memberId = useSelector((store) => store.member.memberId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -92,8 +106,13 @@ const AllBags = () => {
           ))}
         </BagContainer>
         <Filter />
-
+        <ButtonContainer>
+        <Button > 
+        <Press to={`/member/${memberId}`}params={accessToken, memberId}>My Profile</Press>
+        </Button>
         <Logout />
+        </ButtonContainer>
+        
       </Box>
       <Footer />
     </>

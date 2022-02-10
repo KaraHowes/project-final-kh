@@ -9,7 +9,7 @@ import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 
-import { Box } from "../components/styling/containers";
+import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press, Details } from "../components/styling/general";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
@@ -41,16 +41,7 @@ const ProfileContainer = styled.div`
 `
 const Image = styled.div`
 margin: 0 auto;`
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: 100%;
-  @media (min-width: 768px){
-  
-  }
-`;
+
 const Button = styled.button`
   width: 100%;
   min-width: 200px;
@@ -133,7 +124,7 @@ const SelectedBag = () => {
         Authorization: accessToken,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, accessToken }),
     };
     fetch(API_URL("reserveBag"), options)
       .then((res) => res.json())

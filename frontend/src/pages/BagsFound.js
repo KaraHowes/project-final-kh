@@ -20,6 +20,20 @@ const ImageThek = styled.img`
   display: flex;
   margin: 0 auto;
 `;
+const Button = styled.button`
+  width: 100%;
+  min-width: 200px;
+  height: 45px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  margin: 10px 0;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 3px 3px 6px #888888
+`
 const OverallContainer= styled.section`
 width: 100%,
 margin: 0 auto;`
@@ -31,7 +45,8 @@ margin: 20px auto;`
 const BagsFound = () => {
 
   const foundBags = useSelector((store) => store.searched.items);
-  
+  const memberId = useSelector((store) => store.member.memberId)
+  const accessToken = useSelector((store)=> store.member.accessToken)
   return (  
     <>
     <Box>
@@ -62,6 +77,9 @@ const BagsFound = () => {
       ))}
       </BagContainer>
       <LogoutContainer>
+      <Button > 
+        <Press to={`/member/${memberId}`}params={accessToken, memberId}>My Profile</Press>
+        </Button>
       <Logout/>
       </LogoutContainer>
    

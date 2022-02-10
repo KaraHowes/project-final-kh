@@ -98,7 +98,7 @@ const Filter = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.response);
+       
         if (data.success) {
           batch(() => {
             dispatch(searched.actions.setItems(data.response));

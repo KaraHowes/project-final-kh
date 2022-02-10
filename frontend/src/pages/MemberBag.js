@@ -70,7 +70,7 @@ const MemberBag = () => {
     fetch(API_URL(`bags/${memberId}`), options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+       
         if (data.success) {
           batch(() => {
             dispatch(theks.actions.setItems(data.response));
@@ -123,9 +123,8 @@ const MemberBag = () => {
         </BagContainer>
         <ButtonContainer>
         <Button>
-          <Press to="/AllBags" params={accessToken}>
-            Go back to overview
-          </Press>
+        <Press to={`/member/${memberId}`}params={accessToken, memberId}>My Profile</Press>
+
         </Button>
         <Logout />
           </ButtonContainer>    
