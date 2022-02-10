@@ -26,7 +26,7 @@ font-size: 1.25rem;
   }`
 
 export const Details = styled.p`
-font-size: 0.75rem;
+font-size: 1rem;
 margin: 5px 0;
 @media (min-width: 768px){
     font-size: 1.5rem;

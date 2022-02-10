@@ -31,12 +31,7 @@ const Button = styled.button`
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
 `;
-const ImageThek = styled.img`
-  width: 100%;
-  max-width: 150px;
-  display: flex;
-  margin: 0 auto;
-`;
+
 const MemberBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
   const addedBags = useSelector((store) => store.theks.items);

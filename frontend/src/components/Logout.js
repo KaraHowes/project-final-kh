@@ -7,6 +7,7 @@ import member from "../reducers/member";
 
 const Button = styled.button`
 width: 100%;
+
 height: 40px;
 background-color: #F175A5;
 border: none;
@@ -39,14 +40,12 @@ const Logout = () => {
           dispatch(member.actions.setMembername(null));
           dispatch(member.actions.setAccessToken(null));
     
-          //localStorage.removeItem('user')
         });
       };
     return (
-        //this link will be changed to a homepage when it has been made
         <div>
             
-            <Link to="/signin">
+            <Link to="/">
                 <Button onClick={logout}>Logout</Button>
             </Link>
         </div>

@@ -20,6 +20,14 @@ const ImageThek = styled.img`
   display: flex;
   margin: 0 auto;
 `;
+const OverallContainer= styled.section`
+width: 100%,
+margin: 0 auto;`
+
+const LogoutContainer =styled.div`
+width: 100%;
+max-width: 200px;
+margin: 20px auto;`
 const BagsFound = () => {
 
   const foundBags = useSelector((store) => store.searched.items);
@@ -28,8 +36,10 @@ const BagsFound = () => {
     <>
     <Box>
       <Menu/>
-      <BagContainer>
-      {foundBags.length===0?<NoBagFound />:<div></div>}
+      
+      {foundBags.length===0?<NoBagFound />:
+        <OverallContainer>
+<BagContainer>
       {foundBags.map((item) => (
 
         <Card key={item.bagId}>
@@ -38,19 +48,27 @@ const BagsFound = () => {
             alt="Thek-friends-bag-logo"
           ></ImageThek>
           <TextWrapper>
-          <CardText>Colour:{item.colour}</CardText>
+          <CardText>Colour: {item.colour}</CardText>
+          <CardText>Location: {item.location}</CardText>
+          <CardText>Age-range: {item.age}</CardText>
+              <CardText> Available since: {moment(item.createdAt).fromNow()}</CardText>
               <Press to={`/bag/${item._id}`}>
-                <CardText>Location:{item.location}</CardText>
+                <CardText>More details</CardText>
               </Press>
-              <CardText>Age-range:{item.age}</CardText>
-              <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
+              
           </TextWrapper>
           
         </Card>
       ))}
       </BagContainer>
-   
+      <LogoutContainer>
       <Logout/>
+      </LogoutContainer>
+   
+        </OverallContainer>
+        
+      }
+      
     </Box>
     <Footer/>
     </>

@@ -15,10 +15,14 @@ import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import image from '../images/bag.png';
 
+const All = styled.div`
+display: flex;
+flex-direction: column;
+`
 const ProfileButtonContainer =styled.div`
 display: flex;
 flex-direction: column;
-margin: 30px auto 30px auto;
+margin: 0 auto;
 padding: 10px;
 justify-content: center;
 @media (min-width: 768px){
@@ -30,23 +34,25 @@ justify-content: center;
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 80%;
+  width: 100%;
   justify-content: center;
   margin: 0 auto;
  
 `
+const Image = styled.div`
+margin: 0 auto;`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
+  width: 100%;
   @media (min-width: 768px){
-  justify-content: space-evenly;
+  
   }
 `;
 const Button = styled.button`
-  width: 80%;
+  width: 100%;
   min-width: 200px;
   height: 45px;
   background-color: #d5f5f2;
@@ -139,12 +145,12 @@ const SelectedBag = () => {
       <Box>
         <Menu />
         {loading && <Loader />}
-
+        <All>
+        <Image><img src={image} alt={image} height={150} width={125}/></Image>
         <ProfileButtonContainer>
           <ProfileContainer>
-          <img src={image} alt={image} height={150} width={125}/>
+          
             <HeaderText>
-              {" "}
               You have chosen a {chosenBag.colour} bag
             </HeaderText>
             <Details> The bag is based in {chosenBag.location}</Details>
@@ -153,7 +159,6 @@ const SelectedBag = () => {
 
           <ButtonContainer>
             <Button onClick={reserveBag}> Reserve this bag?</Button>
-
             <Button>
               <Press to="/AllBags" params={accessToken}>
                 Overview
@@ -162,6 +167,8 @@ const SelectedBag = () => {
             <Logout />
           </ButtonContainer>
         </ProfileButtonContainer>
+        </All>
+
       </Box>
       <Footer />
     </>

@@ -2,19 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import moment from 'moment'
+import moment from "moment";
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 import Logout from "../components/Logout";
-import Loader from '../components/Loader'
-import Footer from '../components/Footer'
-import Menu from '../components/Menu'
-import Filter from '../components/Filter'
+import Loader from "../components/Loader";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+import Filter from "../components/Filter";
 
-import { Box } from "../components/styling/containers"
-import { Press } from "../components/styling/general"
-import { BagContainer, Card, TextWrapper, CardText } from "../components/styling/mapping"
+import { Box } from "../components/styling/containers";
+import { Press } from "../components/styling/general";
+import {
+  BagContainer,
+  Card,
+  TextWrapper,
+  CardText,
+} from "../components/styling/mapping";
 
 const ImageThek = styled.img`
   width: 100%;
@@ -29,7 +34,7 @@ const AllBags = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!accessToken) {
@@ -44,51 +49,54 @@ const AllBags = () => {
         Authorization: accessToken,
       },
     };
-    setLoading(true)
+    setLoading(true);
     fetch(API_URL("bags"), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-        dispatch(theks.actions.setItems(data.response));
+          dispatch(theks.actions.setItems(data.response));
           dispatch(theks.actions.setError(null));
         } else {
           dispatch(theks.actions.setItems([]));
           dispatch(theks.actions.setError(data.response));
         }
-      }).finally(() => setLoading(false));
+      })
+      .finally(() => setLoading(false));
   }, [accessToken, dispatch]);
 
   return (
     <>
+      <Box>
+        <Menu />
+        {loading && <Loader />}
 
-    <Box>
-      <Menu/>
-       {loading && <Loader/>}
-   
-      <BagContainer>
-        {theksItems.map((item) => (
-          <Card key={item._id}>
+        <BagContainer>
+          {theksItems.map((item) => (
+            <Card key={item._id}>
               <ImageThek
-            src="./assets/thek-icon-1.png"
-            alt="Thek-friends-bag-logo"
-          ></ImageThek>
-            <TextWrapper>
-              <CardText>Colour:{item.colour}</CardText>
-              <Press to={`/bag/${item._id}`}>
-                <CardText>Location:{item.location}</CardText>
-              </Press>
-              <CardText>Age-range:{item.age}</CardText>
-              <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
-            </TextWrapper>
-          </Card>
-        ))}
-      </BagContainer>
-      <Filter/>
-      
-      <Logout/>
-    </Box>
-    <Footer/>
-</>
+                src="./assets/thek-icon-1.png"
+                alt="Thek-friends-bag-logo"
+              ></ImageThek>
+              <TextWrapper>
+                <CardText>Colour: {item.colour}</CardText>
+                <CardText>Location: {item.location}</CardText>
+                <CardText>Age-range: {item.age}</CardText>
+                <CardText>
+                  Available since: {moment(item.createdAt).format('Do MMMM YYYY')}
+                </CardText>
+                <Press to={`/bag/${item._id}`}>
+                  <CardText>More details</CardText>
+                </Press>
+              </TextWrapper>
+            </Card>
+          ))}
+        </BagContainer>
+        <Filter />
+
+        <Logout />
+      </Box>
+      <Footer />
+    </>
   );
 };
 

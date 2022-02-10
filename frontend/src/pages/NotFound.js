@@ -2,6 +2,7 @@ import React from 'react';
 import Lottie from "react-lottie";
 import animationData from '../animations/notfound.json'
 
+import { Box } from "../components/styling/containers"
 export const NotFound = () => {
   
     const defaultOptions = {
@@ -15,13 +16,13 @@ export const NotFound = () => {
 
     return (
 
-        <div>
+        <Box>
         <Lottie 
             options={defaultOptions}
-            height={800}
-            width={800}
+            height={600}
+            width={600}
           />
-        </div>
+        </Box>
       
     
     );

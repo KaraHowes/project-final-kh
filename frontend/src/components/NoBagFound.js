@@ -1,20 +1,51 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
-import { Press } from "./styling/general"
-const NoBagFound =()=> {
+import { Press } from "./styling/general";
+import Logout from "./Logout"
+const NoBagContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 50px auto;
+  max-width: 400px;
+`;
+const Button = styled.button`
+  width: 100%;
+  height: 40px;
+  background-color: #d5f5f2;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 15px 0 15px 0;
+  border-radius: 20px;
+  font-family: "Josefin Sans", sans-serif;
+  box-shadow: 3px 3px 6px #888888;
+  margin-bottom: 15px;
+`;
+const Image = styled.img`
+  width: 70%;
+  margin 0 auto;`;
 
-     const accessToken = useSelector((store) => store.member.accessToken) 
+const NoBagFound = () => {
+  const accessToken = useSelector((store) => store.member.accessToken);
 
-    return(
-        <div>
-        <p>Oh no, that's a pity! Please check our All of the Bags section for a
-        greater selection</p>
-     
-      <button>
-          <Press to="/AllBags" params={accessToken}>Allbags</Press>
-      </button>
-      </div>
-    )
-}
-export default NoBagFound
+  return (
+    <NoBagContainer>
+      <Image src="./assets/octopus.png"></Image>
+      <p>
+        Oh no, that's a pity! Please check the All Bags section for a greater
+        selection
+      </p>
+
+      <Button>
+        <Press to="/AllBags" params={accessToken}>
+          All bags
+        </Press>
+      </Button>
+      <Logout/>
+    </NoBagContainer>
+  );
+};
+export default NoBagFound;

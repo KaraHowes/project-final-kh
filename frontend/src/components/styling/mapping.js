@@ -22,7 +22,7 @@ align-content: flex-end;
 text-align: center;
 font-family: "Josefin Sans", sans-serif;
 max-width: 200px;
-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
+box-shadow: 8px 8px #fff000;
 background: white;
 @media (min-width: 768px){
   width:45%;
@@ -32,6 +32,7 @@ background: white;
 export const CardText = styled.p`
   background-color: #d5f5f2;
   padding: 5px 0;
+  margin: 10px 0;
 `;
 
 export const TextWrapper = styled.div`
