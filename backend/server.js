@@ -10,15 +10,12 @@ import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
 import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag} from "./endpoints/bagEndpoints.js"
 
-import dotenv from "dotenv";
-import cloudinaryFramework from "cloudinary";
-import multer from "multer";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 mongoose.Promise = Promise;
 
@@ -32,26 +29,7 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 
-//------------ Image set-up----------------------------
-
-const cloudinary = cloudinaryFramework.v2;
-cloudinary.config({
-  cloud_name: "khf1nal",
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "theks",
-    allowedFormats: ["jpg", "png", "jpeg"],
-    transformation: [{ width: 500, height: 500, crop: "limit" }],
-  },
-});
-
-const parser = multer({ storage });
-
+//----------Routes---------------
 app.get("/", (req, res) => {
   res.send(
     "Hello all, Welcome to Thek-Friends. Add /endpoints in URL bar to view all RESTful endpoints"
