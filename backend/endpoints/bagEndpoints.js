@@ -1,6 +1,6 @@
 const Member = require('../Schemas/member.js')
 const Bag = require('../Schemas/bag.js')
-
+import nodemailer from "nodemailer"
 
 //Endpoint to add a bag
 export const addBag = async (req,res) => {
@@ -107,6 +107,51 @@ export const deleteBag = async (req,res) => {
       success: false,
     });
   }
+}
+
+export const reserveBag = async (req,res) => {
+  const { email }= req.body
+  const main = async () =>{
+// Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+  
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "KHFinal22@outlook.com", 
+      pass: "blanket1815", 
+    },
+  });
+
+  // send mail with defined transport object
+  let mailOptions = await transporter.sendMail({
+    from: '"KH" <KHFinal22@outlook.com>', // sender address
+    to: email, // list of receivers
+    subject: "Interested in Thek", // Subject line
+    text: "Thank you for registering your interest in the Thek, we will get back to you shortly", // plain text body
+    html: "<b>Thank you for registering your interest in the Thek, we will get back to you shortly. You really are awesome</b>", // html body
+  });
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error)
+      res.status(400).json({ response: 'error', success: false })
+    } else {
+      console.log('Email sent: ' + info.response)
+      res.status(200).json({ response: 'Email sent', success: true })
+    }
+  })
+  console.log("Message sent: %s", info.messageId);
+ 
+
+  }
+  
+main().catch(console.error);
+
 }
 
 

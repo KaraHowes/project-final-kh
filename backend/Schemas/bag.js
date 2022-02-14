@@ -20,7 +20,13 @@ export const BagSchema = new mongoose.Schema({
     },
     member: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Member'}
+        ref: 'Member'
+    },
+    isAvailable: {
+        type: Boolean,
+        default: true,
+    }   
+
 });
 
 const Bag = mongoose.model("Bag", BagSchema);
