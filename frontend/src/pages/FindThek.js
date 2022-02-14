@@ -119,7 +119,7 @@ const FindThek = () => {
 
           {errors && <p className="warning-login">Something went wrong!!!</p>}
           <Button> 
-        <Press to={`/member/${memberId}`}params={accessToken, memberId}>Profile</Press>
+        <Press to={`/member/${memberId}`}params={memberId}>Profile</Press>
         </Button>
           <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>

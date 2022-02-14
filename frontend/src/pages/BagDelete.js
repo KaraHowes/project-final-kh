@@ -92,7 +92,7 @@ const BagDelete = () => {
         console.log(`You've chosen not to delete this object`);
       }
     }).finally(() => setLoading(false));
-  }, [accessToken, _id]);
+  }, [navigate, accessToken, _id]);
   return (
     <>
       <Box>

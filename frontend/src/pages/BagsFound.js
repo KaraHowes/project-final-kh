@@ -46,7 +46,7 @@ const BagsFound = () => {
 
   const foundBags = useSelector((store) => store.searched.items);
   const memberId = useSelector((store) => store.member.memberId)
-  const accessToken = useSelector((store)=> store.member.accessToken)
+ 
   return (  
     <>
     <Box>
@@ -78,7 +78,7 @@ const BagsFound = () => {
       </BagContainer>
       <LogoutContainer>
       <Button > 
-        <Press to={`/member/${memberId}`}params={accessToken, memberId}>My Profile</Press>
+        <Press to={`/member/${memberId}`}params={memberId}>My Profile</Press>
         </Button>
       <Logout/>
       </LogoutContainer>

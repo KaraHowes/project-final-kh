@@ -123,7 +123,7 @@ const MemberBag = () => {
         </BagContainer>
         <ButtonContainer>
         <Button>
-        <Press to={`/member/${memberId}`}params={accessToken, memberId}>My Profile</Press>
+        <Press to={`/member/${memberId}`}params={memberId}>My Profile</Press>
 
         </Button>
         <Logout />

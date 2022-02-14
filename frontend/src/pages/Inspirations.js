@@ -45,7 +45,6 @@ const Quote = styled.h1 `
 font-size: 25px;
 text-align: left;
 font-weight: 700;
-
 `
 const Source = styled.h2`
 text-align: right;
@@ -89,7 +88,7 @@ const Inspirations = () => {
           });
         }
       }).finally(() => setLoading(false));
-  },dispatch, []);
+  }, [dispatch], []);
 
   return (
     <>
