@@ -10,9 +10,9 @@
   "author": "Kara Howes",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.16.10",
+    "@babel/core": "^7.17.2",
     "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.28.1",
     "cors": "^2.8.5",

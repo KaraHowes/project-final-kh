@@ -6,6 +6,8 @@ import moment from 'moment'
 
 import searched from "../reducers/searched";
 import { API_URL } from "../utils/urls";
+
+import Loader from '../components/Loader'
 import { Form, Select } from "../components/styling/formStyle";
 
 const Button = styled.button`
@@ -118,7 +120,7 @@ const Filter = () => {
   return (
     <>
         <Form onSubmit={onFormSubmit}>
-          
+        {loading && <Loader/>}
           <Select
             id="locationInput"
             value={location}

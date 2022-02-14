@@ -91,7 +91,7 @@ const BagDelete = () => {
       } else {
         console.log(`You've chosen not to delete this object`);
       }
-    });
+    }).finally(() => setLoading(false));
   }, [accessToken, _id]);
   return (
     <>
@@ -101,7 +101,7 @@ const BagDelete = () => {
         <All>
           {loading && <Loader />}
           <Image>
-            <img src={image} alt={image} height={150} width={125} />
+            <img src={image} alt={image} height={150} width={125}/>
           </Image>
           <ButtonContainer>
           <Button>
