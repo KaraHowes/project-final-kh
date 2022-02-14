@@ -45,6 +45,7 @@ The idea was to create a resource whereby authenticated users could access the b
  The FE was built using React, Redux and various libraries (StyledComponents, Lottie Animations, Sweetalert, Moment). 
 ## View it live
 
+https://kh-thek-friends.herokuapp.com/
 
 
 
