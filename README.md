@@ -47,6 +47,8 @@ The idea was to create a resource whereby authenticated users could access the b
 
 https://kh-thek-friends.herokuapp.com/
 
+https://thek-friends.netlify.app/
+
 
 
 

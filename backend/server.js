@@ -18,8 +18,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
+  useUnifiedTopology: true
 });
 mongoose.Promise = Promise;
 
