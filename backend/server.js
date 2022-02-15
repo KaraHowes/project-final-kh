@@ -35,8 +35,8 @@ app.get("/", (req, res) => {
     "Hello all, Welcome to Thek-Friends. Add /endpoints in URL bar to view all RESTful endpoints"
   );
 });
-// to view all endpoints
-app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));
+
+app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));// to view all endpoints
 
 // -------member endpoints----------
 
@@ -65,7 +65,6 @@ const QuoteSchema = new mongoose.Schema({
 });
 
 const Quote = mongoose.model("Quote", QuoteSchema);
-
 
 
 app.get("/inspiration", async (req, res) => {
