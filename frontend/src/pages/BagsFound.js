@@ -42,6 +42,7 @@ const LogoutContainer =styled.div`
 width: 100%;
 max-width: 200px;
 margin: 20px auto;`
+
 const BagsFound = () => {
 
   const foundBags = useSelector((store) => store.searched.items);

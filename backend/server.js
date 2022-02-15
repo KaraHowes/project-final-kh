@@ -40,37 +40,21 @@ app.get("/endpoints", (req, res) => res.send(listEndpoints(app)));
 
 // -------member endpoints----------
 
-app.post("/signup", register)
-
-//endpoint to sign-in
-app.post("/signin", signIn)
-
-//create end-point to view all members
-app.get("/members", authenticateMember, allMembers);
-
-// endpoint to find one member for profile page
-
-app.get("/member/:memberId", authenticateMember, profile);
+app.post("/signup", register)//endpoint to register
+app.post("/signin", signIn)//endpoint to sign-in
+app.get("/members", authenticateMember, allMembers);//create end-point to view all members
+app.get("/member/:memberId", authenticateMember, profile);// endpoint to find one member for profile page
 
 
 //-------Bag Endpoints----------
 
-//, parser.single('image')
-//endpoint to add a bag to the database, again to authorized members
-app.post("/bags", authenticateMember, addBag);
-
-app.get("/bags", authenticateMember, allBags);
-
-app.get("/bag/:_id", authenticateMember, bagById);
-app.delete("/deleteBag/:_id", authenticateMember, deleteBag);
-
-
-app.get("/searchbags", authenticateMember, searchBags);
-
-app.get("/bags/:memberId", authenticateMember, bagByMember)
-
-// endpoint to reserve bag
-app.post("/reserveBag", authenticateMember, reserveBag)
+app.post("/bags", authenticateMember, addBag);//add a bag to the database, again to authorized members
+app.get("/bags", authenticateMember, allBags);// gets all bags in the system
+app.get("/bag/:_id", authenticateMember, bagById);//gets one particular bag by it's id
+app.delete("/deleteBag/:_id", authenticateMember, deleteBag);//deletes one particular bag by it's id
+app.get("/searchbags", authenticateMember, searchBags); //searches the bag database
+app.get("/bags/:memberId", authenticateMember, bagByMember)//gets bags added by one particular member
+app.post("/reserveBag", authenticateMember, reserveBag)// endpoint to reserve bag
 
 
 //--------- for inspiration api--------
@@ -82,19 +66,7 @@ const QuoteSchema = new mongoose.Schema({
 
 const Quote = mongoose.model("Quote", QuoteSchema);
 
-//Fills database with data from my API
-if (process.env.RESET_DB) {
-  // need to use an async function so that the users are deleted before
-  const seedDatabase = async () => {
-    await Quote.deleteMany({});
 
-    quotesData.forEach((item) => {
-      const newQuote = new Quote(item);
-      newQuote.save();
-    });
-  };
-  seedDatabase();
-}
 
 app.get("/inspiration", async (req, res) => {
   const Quotes = await Quote.find({});
@@ -104,8 +76,6 @@ app.get("/inspiration", async (req, res) => {
   res.status(200).json({ 
    response: random, success: true });
 });
-
-
 
 
 // Start the server
