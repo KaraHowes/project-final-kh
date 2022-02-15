@@ -38,11 +38,7 @@ const About = () => {
         <Menu />
         <TitleText>How Thek-Friends started</TitleText>
         <Text>
-          It started with a bag. Sat in a Child's room. Used and loved for three years and then
-          swapped out for another. Then inspiration struck: why not build a
-          resource to facilitate the donation and receivership of these bags?
-          The premise is simple: Thek-Friends would like to reduce the waste of unused and now-unloved Theks and give
-          them a new home. 
+       lorum ipsoem
         </Text>
 
         <Text>
