@@ -65,7 +65,19 @@ const QuoteSchema = new mongoose.Schema({
 });
 
 const Quote = mongoose.model("Quote", QuoteSchema);
+//Fills database with data from my API
+if (process.env.RESET_DB) {
+  // need to use an async function so that the users are deleted before
+  const seedDatabase = async () => {
+    await Quote.deleteMany({});
 
+    quotesData.forEach((item) => {
+      const newQuote = new Quote(item);
+      newQuote.save();
+    });
+  };
+  seedDatabase();
+}
 
 app.get("/inspiration", async (req, res) => {
   const Quotes = await Quote.find({});
