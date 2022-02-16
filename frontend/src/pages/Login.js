@@ -6,11 +6,10 @@ import styled from "styled-components";
 import { API_URL } from "../utils/urls";
 import member from "../reducers/member";
 
-import { Box } from "../components/styling/containers"
-import { Form, Input } from "../components/styling/formStyle"
-import Footer from '../components/Footer'
-import Menu from '../components/Menu'
-
+import { Box } from "../components/styling/containers";
+import { Form, Input } from "../components/styling/formStyle";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 
 const SigninWrapper = styled.div`
   display: flex;
@@ -31,28 +30,27 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   padding: 15px 0 15px 0;
-  border-radius: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  box-shadow: 5px 5px 10px #888888
+  border-radius: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  box-shadow: 5px 5px 10px #888888;
 `;
-const Press =styled(Link)`
-text-decoration: none;
-&:visited{
-  color:black;
-}
-`
+const Press = styled(Link)`
+  text-decoration: none;
+  &:visited {
+    color: black;
+  }
+`;
 const Login = () => {
   const [membername, setMembername] = useState("");
   const [password, setPassword] = useState("");
 
-
   const accessToken = useSelector((store) => store.member.accessToken);
   const errors = useSelector((store) => store.member.error);
-  const memberId = useSelector((store) => store.member.memberId)
-  
+  const memberId = useSelector((store) => store.member.memberId);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (accessToken) {
       navigate(`/member/${memberId}`);
@@ -68,13 +66,12 @@ const Login = () => {
         "Content-Type": "application/json",
       },
 
-      body: JSON.stringify({ membername, password}),
+      body: JSON.stringify({ membername, password }),
     };
 
     fetch(API_URL("signin"), options)
       .then((res) => res.json())
       .then((data) => {
-      
         if (data.success) {
           batch(() => {
             dispatch(member.actions.setMemberId(data.response._id));
@@ -97,46 +94,50 @@ const Login = () => {
       });
   };
 
-  return(
- <>
- <Box>
-   <Menu/>
- <SigninWrapper>
-      <Form onSubmit={onFormSubmit}>
-        <Input
-          id="membernameInput"
-          type="text"
-          value={membername}
-          onChange={(e) => setMembername(e.target.value)}
-          minLength="5"
-          required
-          placeholder="User name"
-        />
-        <Input
-          id="passwordInput"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          placeholder="Password"
-        />
-        
-        <ButtonContainer>
-          <Button type="submit">Sign-in</Button>
-          <Button>
-            <Press to="/register">Register</Press>
-          </Button>
-        </ButtonContainer>
-		{errors && <p className="warning-login">Your Username or password do not match our records</p>}
+  return (
+    <>
+      <Box>
+        <Menu />
+        <SigninWrapper>
+          <Form onSubmit={onFormSubmit}>
+            <label htmlFor="membernameInput"></label>
+            <Input
+              id="membernameInput"
+              type="text"
+              value={membername}
+              onChange={(e) => setMembername(e.target.value)}
+              minLength="5"
+              required
+              placeholder="User name"
+            />
 
-      </Form>
-    </SigninWrapper>
+            <label htmlFor="passwordInput"></label>
+            <Input
+              id="passwordInput"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Password"
+            />
 
- </Box>
- <Footer/>
- </>
-  )
+            <ButtonContainer>
+              <Button type="submit">Sign-in</Button>
+              <Button>
+                <Press to="/register">Register</Press>
+              </Button>
+            </ButtonContainer>
+            {errors && (
+              <p className="warning-login">
+                Your Username or password do not match our records
+              </p>
+            )}
+          </Form>
+        </SigninWrapper>
+      </Box>
+      <Footer />
+    </>
+  );
 };
 
 export default Login;
-

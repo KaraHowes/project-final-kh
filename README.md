@@ -1,6 +1,6 @@
 # Final Project
 
-This project was built for the Final project of the Technigo Frontend Development Bootcamp. It was built during 4 weeks, solely by Kara Howes.
+This project was built for the Final project of the Technigo Frontend Development Bootcamp. It was built during 4 weeks, by Kara Howes.
 
 MODELS:
 
@@ -28,7 +28,7 @@ For bags:
 
 For affirmations:
 
-- /inspiration - GET request which is returned one random affirmation.
+- /inspiration - GET request which returns one random affirmation.
 
 ## The problem
 
@@ -37,12 +37,18 @@ The idea was to create a resource whereby authenticated users could access the b
  - A donor can add a bag to the collection, view any bags they have added and view all of the bags in the collection.
  - A recipient can pick their bag from the collection and view all bags. 
 
- In addition, I wanted to build a child-appropriate affirmation generator. I hard-coded the json data, seeded the database and built a function for any user (authentication not required) to acess the affirmations.
+ In addition, I wanted to build a child-appropriate affirmation generator. I hard-coded the json data, seeded the database and built a function for any user (authentication not required) to access the affirmations.
  
- The Thek-Friends website includes and Introduction page, About section, Register/Log-in page and an Inspiration/Affirmation page. Navigation to these pages is by useNavigate from the React-Router-Dom.
+ The Thek-Friends website includes and Introduction page, About section, Register/Log-in page and an Inspiration/Affirmation page. Navigation to these pages is by useNavigate from the React-Router-Dom package.
 
  The BE of this project was built using Node.js, Mongoose and a few libraries (Nodemailer, crypto) The Database was built using MongoDB.
  The FE was built using React, Redux and various libraries (StyledComponents, Lottie Animations, Sweetalert, Moment). 
+
+The accessibility of the website was checked using the WAVE Chrome extension, which checked the HTML of the website.
+
+I would like to thank Amanda Tilly for allowing me too use her Hamburger/Menu reuseable component, Linnea Isebrink for introducing me to the SweetAlert library and to all of my fellow Hippos for their help, advice and support throughout the Bootcamp.
+
+
 ## View it live
 
 https://kh-thek-friends.herokuapp.com/

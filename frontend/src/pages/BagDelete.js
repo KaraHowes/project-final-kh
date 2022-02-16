@@ -28,8 +28,9 @@ const Button = styled.button`
   font-size: 24px;
   padding: 15px 0 15px 0;
   margin: 10px 0;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
+  box-shadow: 5px 5px 10px #888888;
 `;
 const Image = styled.div`
   margin: 0 auto;

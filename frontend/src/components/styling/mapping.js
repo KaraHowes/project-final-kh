@@ -30,9 +30,10 @@ background: white;
 `;
 
 export const CardText = styled.p`
-  background-color: #d5f5f2;
   padding: 10px 0;
-  margin: 15px 0;
+  margin: 15px;
+  border: 2px solid black;
+  box-shadow: 4px 4px #878df7;
 `;
 
 export const TextWrapper = styled.div`

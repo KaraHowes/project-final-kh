@@ -24,7 +24,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   padding: 15px 0 15px 0;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 5px 5px 10px #888888;
   margin-bottom: 15px;
@@ -33,8 +33,7 @@ const ButtonContainer = styled.div`
 width: 100%,
 display: flex; 
 flex-direction: column;
-`
-
+`;
 
 const AddThek = () => {
   const [colour, setColour] = useState("");
@@ -99,6 +98,7 @@ const AddThek = () => {
         {loading && <Loader />}
 
         <Form onSubmit={onFormSubmit}>
+          <label htmlFor="colourInput"></label>
           <Select
             id="colourInput"
             value={colour}
@@ -116,6 +116,7 @@ const AddThek = () => {
             <option value="Multi">Multi-coloured</option>
           </Select>
 
+          <label htmlFor="locationInput"></label>
           <Select
             id="locationInput"
             value={location}
@@ -132,6 +133,7 @@ const AddThek = () => {
             <option value="Lugano">Lugano</option>
           </Select>
 
+          <label htmlFor="ageInput"></label>
           <Select
             id="ageInput"
             value={age}

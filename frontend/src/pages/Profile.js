@@ -11,7 +11,7 @@ import member from "../reducers/member";
 
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
-import { Press, Colour, Header, Details } from "../components/styling/general"
+import { Press, Colour, Header, SubTitle } from "../components/styling/general"
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
@@ -61,9 +61,9 @@ const Button = styled.button`
   font-size: 24px;
   padding: 15px 0 15px 0;
   margin: 10px 0;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: 'Josefin Sans', sans-serif;
-  box-shadow: 5px 5px 10px #888888
+  box-shadow: 5px 5px 10px #888888;
 `
 const SmallText = styled.p`
 font-size: 0.75rem;
@@ -137,9 +137,9 @@ const Profile = () => {
      
       <ProfileContainer>
         <Header> <Colour>Hey {profile.membername}!</Colour></Header>
-        <Details> Thek-Friend Status: <Colour>{profile.status}</Colour></Details>
-        <Details>Email address: <Colour>{profile.email}</Colour></Details>
-        <Details> Location: <Colour>{profile.location}</Colour></Details>
+        <SubTitle> Thek-Friend Status: <Colour>{profile.status}</Colour></SubTitle>
+        <SubTitle>Email address: <Colour>{profile.email}</Colour></SubTitle>
+        <SubTitle> Location: <Colour>{profile.location}</Colour></SubTitle>
         {profile.status==="Donor"?<SmallText> Already added a bag? Click <Press to={`/bags/${memberId}`}>Here to see it</Press></SmallText>:<div></div>}
     
       </ProfileContainer>

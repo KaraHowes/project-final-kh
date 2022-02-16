@@ -62,9 +62,10 @@ const Startbutton = styled.button`
   cursor: pointer;
   font-size: 24px;
   padding: 15px;
-  border-radius: 20px;
+  font-weight: 800;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888;
 `;
 const Buttoncontainer = styled.div`
   display: flex;

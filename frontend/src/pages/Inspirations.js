@@ -33,30 +33,42 @@ const Button = styled.button`
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 1.5rem;
   padding: 15px 0 15px 0;
   margin: 30px auto 10px auto;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
-  
+  box-shadow: 5px 5px 10px #888888;
+  @media (min-width: 768px){
+    font-size:2rem;
+  }
 `;
-const Quote = styled.h1 `
-font-size: 25px;
+const Quote = styled.h1`
+font-size: 1.5rem;
 text-align: left;
 font-weight: 700;
+line-height: 1.75rem;
+@media (min-width: 768px){
+  font-size:2rem;
+  line-height: 2.5rem;
+}
 `
 const Source = styled.h2`
 text-align: right;
-font-size: 20px;
-font-weight: 500;
+font-size: 1.25rem;
+font-weight: 900;
 font-family: 'Roboto Mono', monospace;
 color: #878df7; 
+@media (min-width: 768px){
+  font-size:1.75rem;
+}
 `
 const TextButtonContainer = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: center;`
+justify-content: center;
+width: 80%;
+margin: 0 auto;`
 
 const Inspirations = () => {
   const affirmation = useSelector((store) => store.quote);

@@ -25,15 +25,15 @@ import image from "../images/bag.png";
 const Button = styled.button`
   width: 100%;
   height: 45px;
-  background-color: #d5f5f2;
+  background-color: white;
   border: none;
   cursor: pointer;
   font-size: 18px;
   padding: 15px 0 15px 0;
   margin: 0 auto 15px auto;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888
 `;
 const Image = styled.div`
   margin: 0 auto;
@@ -107,10 +107,10 @@ const MemberBag = () => {
                 <CardText>
                   You have donated a {item.colour} bag, based in {item.location}
                 </CardText>
-                <CardText>Age-range:{item.age}</CardText>
+                <CardText>Age-range: {item.age}</CardText>
                 <CardText>
                   {" "}
-                  Available since:
+                  Available since: 
                   {moment(item.createdAt).format("Do MMMM YYYY")}
                 </CardText>
                 <Button>

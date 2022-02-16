@@ -13,55 +13,76 @@ import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press, Details } from "../components/styling/general";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
-import image from '../images/bag.png';
+import image from "../images/bag.png";
 
 const All = styled.div`
-display: flex;
-flex-direction: column;
-`
-const ProfileButtonContainer =styled.div`
-display: flex;
-flex-direction: column;
-margin: 0 auto;
-padding: 10px;
-justify-content: center;
-@media (min-width: 768px){
-  margin: 30px auto;
-  flex-direction: row;
-}
-`
+  display: flex;
+  flex-direction: column;
+ 
+`;
+const ProfileButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px;
+  justify-content: center;
+  @media (min-width: 768px) {
+    margin: 30px auto;
+   
+  }
+`;
 
-const ProfileContainer = styled.div`
+const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: center;
   margin: 0 auto;
- 
-`
-const Image = styled.div`
-margin: 0 auto;`
+  text-align: center;
+  @media (min-width: 768px) {
+    width: 45%;
+  }
 
+`;
+const Image = styled.div`
+margin: 0 auto;
+`;
+const DetailsTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+const TextContainer = styled.div`
+width: 100%;
+@media (min-width: 768px) {
+  width: 55%;
+}
+`;
+const Text = styled.p`
+font-size: 1rem;
+line-height: 1.2rem;
+@media (min-width: 768px) {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+`;
 const Button = styled.button`
   width: 100%;
   min-width: 200px;
   height: 45px;
-  background-color: #d5f5f2;
+  background-color: white;
   border: none;
   cursor: pointer;
   font-size: 24px;
   padding: 15px 0 15px 0;
   margin: 10px 0;
-  border-radius: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  box-shadow: 3px 3px 6px #888888
-`
-const HeaderText = styled.h1`
-font-size: 1.75rem;
-@media (min-width: 768px){
-  font-size: 2rem;
-}
-`
+  border-radius: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  box-shadow: 5px 5px 10px #888888;
+`;
+
 
 const SelectedBag = () => {
   const accessToken = useSelector((store) => store.member.accessToken);
@@ -137,29 +158,38 @@ const SelectedBag = () => {
         <Menu />
         {loading && <Loader />}
         <All>
-        <Image><img src={image} alt={image} height={150} width={125}/></Image>
-        <ProfileButtonContainer>
-          <ProfileContainer>
-          
-            <HeaderText>
-              You have chosen a {chosenBag.colour} bag
-            </HeaderText>
-            <Details> The bag is based in {chosenBag.location}</Details>
-         
-          </ProfileContainer>
+          <ProfileButtonContainer>
+            <DetailsTextContainer>
+              <DetailsContainer>
+                <Image>
+                  <img src={image} alt={image} height={150} width={125} />
+                </Image>
+                <Details> Colour: {chosenBag.colour}</Details>
+                <Details> Location: {chosenBag.location}</Details>
+                <Details> Age-range: {chosenBag.age}</Details>
+              </DetailsContainer>
+              <TextContainer>
+                <Text>
+                  It’s great that you like a bag, hopefully soon you will be
+                  it’s new owner! If you would like the bag listed/shown below,
+                  please confirm by clicking the button below. An email will be
+                  sent to you at your given email address to confirm whether you
+                  can give this lovely bag a new home.
+                </Text>
+              </TextContainer>
+            </DetailsTextContainer>
 
-          <ButtonContainer>
-            <Button onClick={reserveBag}> Reserve this bag?</Button>
-            <Button>
-              <Press to="/AllBags" params={accessToken}>
-                Overview
-              </Press>
-            </Button>
-            <Logout />
-          </ButtonContainer>
-        </ProfileButtonContainer>
+            <ButtonContainer>
+              <Button onClick={reserveBag}> Reserve this bag?</Button>
+              <Button>
+                <Press to="/AllBags" params={accessToken}>
+                  All Bags
+                </Press>
+              </Button>
+              <Logout />
+            </ButtonContainer>
+          </ProfileButtonContainer>
         </All>
-
       </Box>
       <Footer />
     </>

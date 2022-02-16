@@ -10,8 +10,8 @@ import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
 import Loader from "../components/Loader";
-import Footer from '../components/Footer'
-import Menu from '../components/Menu'
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 
 const Button = styled.button`
   width: 100%;
@@ -22,9 +22,9 @@ const Button = styled.button`
   font-size: 24px;
   padding: 10px 15px;
   margin: 0 0 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888;
 `;
 
 const FindThek = () => {
@@ -78,11 +78,12 @@ const FindThek = () => {
   };
   return (
     <>
-    <Box>
-      <Menu/>
-      {loading && <Loader/>}
- 
+      <Box>
+        <Menu />
+        {loading && <Loader />}
+
         <Form onSubmit={onFormSubmit}>
+          <label htmlFor="colourInput"></label>
           <Select
             id="colourInput"
             value={colour}
@@ -99,6 +100,8 @@ const FindThek = () => {
             <option value="Orange">Orange</option>
             <option value="Multi">Multi-coloured</option>
           </Select>
+
+          <label htmlFor="locationInput"></label>
           <Select
             id="locationInput"
             value={location}
@@ -118,14 +121,15 @@ const FindThek = () => {
           <Button type="submit">Find my Thek!</Button>
 
           {errors && <p className="warning-login">Something went wrong!!!</p>}
-          <Button> 
-        <Press to={`/member/${memberId}`}params={memberId}>Profile</Press>
-        </Button>
+          <Button>
+            <Press to={`/member/${memberId}`} params={memberId}>
+              Profile
+            </Press>
+          </Button>
           <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>
-    
-    </Box>
-    <Footer/>
+      </Box>
+      <Footer />
     </>
   );
 };

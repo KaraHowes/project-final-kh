@@ -28,9 +28,9 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888;
 `;
 
 const Register = () => {
@@ -99,6 +99,8 @@ const Register = () => {
      <Menu/>
     {loading && <Loader/>}
       <Form onSubmit={onFormSubmit}>
+
+      <label htmlFor="membernameInput"></label>
         <Input
           id="membernameInput"
           type="text"
@@ -108,6 +110,8 @@ const Register = () => {
           required
           placeholder="User name"
         />
+       
+       <label htmlFor="emailInput"></label>
         <Input
           id="emailInput"
           type="email"
@@ -116,6 +120,8 @@ const Register = () => {
           required
           placeholder="Email"
         />
+      
+      <label htmlFor="passwordInput"></label>
         <Input
           id="passwordInput"
           type="password"
@@ -125,6 +131,7 @@ const Register = () => {
           placeholder="Password"
         />
 
+      <label htmlFor="locationInput"></label>
         <Select
           id="locationInput"
           value={location}
@@ -154,6 +161,7 @@ const Register = () => {
           </option>
         </Select>
 
+       <label htmlFor="statusInput"></label>
         <Select
           id="statusInput"
           value={status}

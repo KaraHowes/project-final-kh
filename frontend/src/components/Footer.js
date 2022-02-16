@@ -10,6 +10,8 @@ width:100%;
 text-align:center;
 padding: 15px;
 font-family: "Josefin Sans", sans-serif;
+font-size: 24px;
+font-weight: 800;
 `
 
 

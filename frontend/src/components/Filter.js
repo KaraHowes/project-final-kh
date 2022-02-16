@@ -9,6 +9,8 @@ import { API_URL } from "../utils/urls";
 
 import Loader from '../components/Loader'
 import { Form, Select } from "../components/styling/formStyle";
+import { BagContainer, Card, CardText, TextWrapper} from "../components/styling/mapping";
+import { Press, SubTitle } from "../components/styling/general";
 
 const Button = styled.button`
   width: 100%;
@@ -19,54 +21,18 @@ const Button = styled.button`
   font-size: 24px;
   padding: 10px 15px;
   margin: 0 0 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888
 `;
-const BagContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  @media (min-width: 768px){
-    flex-direction:row;
-  }
-`;
-const Card = styled.div`
-width: 100%;
-margin: 10px auto;
-padding: 10px 0;
-border: 2px solid black;
-display: flex;
-flex-direction: column;
-align-content: flex-end;
-text-align: center;
-font-family: "Josefin Sans", sans-serif;
-max-width: 200px;
-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5)
-background: white;
-@media (min-width: 768px){
-  width:45%;
-}
-`;
+
 const ImageThek = styled.img`
   width: 100%;
   max-width: 150px;
   display: flex;
   margin: 0 auto;
 `;
-const TextWrapper = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-const CardText = styled.p`
-  background-color: #d5f5f2;
-  padding: 5px 0;
-`;
+
 
 const Filter = () => {
   const [location, setLocation] = useState("");
@@ -119,7 +85,9 @@ const Filter = () => {
   };
   return (
     <>
+
         <Form onSubmit={onFormSubmit}>
+        <SubTitle>You can search for a bag by location:</SubTitle>
         {loading && <Loader/>}
           <Select
             id="locationInput"
@@ -152,10 +120,10 @@ const Filter = () => {
           ></ImageThek>
             <TextWrapper>
               <CardText>Colour:{item.colour}</CardText>
-              <Link to={`/bag/${item._id}`}>
+              <Press to={`/bag/${item._id}`}>
               <CardText>Colour:{item.location}</CardText>
               
-              </Link>
+              </Press>
               <CardText>Age-range:{item.age}</CardText>
               <CardText> Available since:{moment(item.createdAt).fromNow()}</CardText>
             </TextWrapper>

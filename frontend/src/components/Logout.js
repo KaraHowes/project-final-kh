@@ -14,8 +14,9 @@ border: none;
 cursor: pointer;
 font-size: 24px;
 padding: 15px;
+margin: 10px 0;
 align-content: center;
-border-radius: 20px;
+border-radius: 10px;
 font-family: 'Josefin Sans', sans-serif;
 box-shadow: 5px 5px 10px #888888;`
 

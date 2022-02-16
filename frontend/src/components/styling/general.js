@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Press = styled(Link)`
 text-decoration: none;
+align-items: center;
 &:visited{
   color:black;
 }
@@ -25,7 +26,7 @@ font-size: 1.25rem;
     font-size: 1.5rem;
   }`
 
-export const Details = styled.p`
+export const Details = styled.h3`
 font-size: 1rem;
 margin: 5px 0;
 @media (min-width: 768px){
