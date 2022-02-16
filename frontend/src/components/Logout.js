@@ -7,17 +7,17 @@ import member from "../reducers/member";
 
 const Button = styled.button`
 width: 100%;
-
 height: 40px;
-background-color: #F175A5;
+color: white;
+background-color: #878df7;
 border: none;
 cursor: pointer;
 font-size: 24px;
-padding: 15px 0;
+padding: 15px;
 align-content: center;
 border-radius: 20px;
 font-family: 'Josefin Sans', sans-serif;
-box-shadow: 3px 3px 6px #888888`
+box-shadow: 5px 5px 10px #888888;`
 
 const Logout = () => {
 

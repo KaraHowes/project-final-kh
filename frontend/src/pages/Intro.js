@@ -14,9 +14,11 @@ const ImageWords = styled.img`
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 20px auto 0 auto;
   @media (min-width: 768px){
     width:100%;
-    marign-right: 10px;
+    margin: 0 10px 0 auto;
+    align-items: center;
   }
 `;
 const ImageWritingContainer = styled.section`
@@ -25,15 +27,19 @@ const ImageWritingContainer = styled.section`
   flex-direction: column;
   @media (min-width: 768px){
     flex-direction:row;
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
 `;
 const ImageThek = styled.img`
-  width: 100%;
-  max-width: 150px;
+  width: 150px;
+  height: 180px;
+  @media (min-width: 768px){
+    margin-right: 30px;
+    height: 180px;
+  }
 `;
 const LottieContainer = styled.div`
-  margin: 60px 0 0 -10px;
+  margin: 60px 0 0 -40px;
   @media (min-width: 768px){
     display: none;
   }
@@ -61,7 +67,6 @@ const Startbutton = styled.button`
   box-shadow: 3px 3px 6px #888888;
 `;
 const Buttoncontainer = styled.div`
-
   display: flex;
   justify-content: center;
   align-content: center;

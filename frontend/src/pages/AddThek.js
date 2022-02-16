@@ -19,14 +19,14 @@ import Menu from "../components/Menu";
 const Button = styled.button`
   width: 100%;
   height: 40px;
-  background-color: #d5f5f2;
+  background-color: white;
   border: none;
   cursor: pointer;
   font-size: 24px;
   padding: 15px 0 15px 0;
   border-radius: 20px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 3px 3px 6px #888888;
+  box-shadow: 5px 5px 10px #888888;
   margin-bottom: 15px;
 `;
 const ButtonContainer = styled.div`
