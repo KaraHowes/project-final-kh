@@ -1,10 +1,7 @@
 const Member = require('../Schemas/member.js')
 const Bag = require('../Schemas/bag.js')
 import nodemailer from "nodemailer"
-import dotenv from "dotenv";
 
-
-dotenv.config();
 //Endpoint to add a bag
 export const addBag = async (req,res) => {
     const { colour, location, age, memberId } = req.body;
@@ -115,11 +112,7 @@ export const deleteBag = async (req,res) => {
 export const reserveBag = async (req,res) => {
   const { email }= req.body
   const main = async () =>{
-// Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  
 
-  // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
     port: 587,
@@ -130,9 +123,9 @@ export const reserveBag = async (req,res) => {
     },
   });
 
-  // send mail with defined transport object
+ 
   let mailOptions = await transporter.sendMail({
-    from: process.env.EMAIL, // sender address '"KH" <KHFinal22@outlook.com>'
+    from: process.env.EMAIL, 
     to: email, // list of receivers
     subject: "Interested in Thek", // Subject line
     text: "Thank you for registering your interest in the Thek, we will get back to you shortly", // plain text body

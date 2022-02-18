@@ -5,9 +5,9 @@ import styled from "styled-components";
 import swal from "sweetalert";
 
 import { API_URL } from "../utils/urls";
+
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
-
 import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
 import Footer from "../components/Footer";

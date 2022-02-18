@@ -22,6 +22,7 @@ margin:0;
 export const SubTitle = styled.h2`
 margin: 5px 0;
 font-size: 1.25rem;
+font-weight: 400;
 @media (min-width: 768px){
     font-size: 1.5rem;
   }`

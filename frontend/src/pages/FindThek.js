@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import searched from "../reducers/searched";
 import { API_URL } from "../utils/urls";
+
 import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";

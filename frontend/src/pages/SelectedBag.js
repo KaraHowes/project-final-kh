@@ -6,9 +6,9 @@ import swal from "sweetalert";
 
 import oneThek from "../reducers/oneThek";
 import { API_URL } from "../utils/urls";
+
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
-
 import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press, Details } from "../components/styling/general";
 import Footer from "../components/Footer";

@@ -6,13 +6,12 @@ import swal from "sweetalert";
 
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
-import Logout from "../components/Logout";
 
+import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
-
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
@@ -106,7 +105,7 @@ const AddThek = () => {
             required
           >
             <option disabled value="">
-              Select Main colour:
+              Main colour:
             </option>
             <option value="Blue">Blue</option>
             <option value="Green">Green</option>
@@ -123,7 +122,7 @@ const AddThek = () => {
             onChange={(e) => setLocation(e.target.value)}
           >
             <option disabled value="">
-              Select nearest city:
+              Nearest city:
             </option>
             <option value="Zurich">Zurich</option>
             <option value="Basel">Basel</option>
@@ -140,7 +139,7 @@ const AddThek = () => {
             onChange={(e) => setAge(e.target.value)}
           >
             <option disabled value="">
-              Age-range of the bag:
+              Age-range:
             </option>
             <option value="1stGrade">1st Grade, 6-9 years</option>
             <option value="4thGrade">4th Grade, 9-12 years</option>

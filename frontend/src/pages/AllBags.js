@@ -6,12 +6,12 @@ import moment from "moment";
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
+
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Filter from "../components/Filter";
-
 import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press, SubTitle } from "../components/styling/general";
 import {

@@ -2,11 +2,13 @@ import React from "react";
 import Lottie from "react-lottie";
 import styled from "styled-components";
 
+import animationData from "../animations/star.json";
+
 import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
-import animationData from "../animations/star.json";
+
 
 const ImageWords = styled.img`
   width: 100%;

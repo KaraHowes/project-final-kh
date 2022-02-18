@@ -4,6 +4,7 @@ import { useSelector, useDispatch, batch } from "react-redux";
 
 import quote from "../reducers/quote";
 import { API_URL } from "../utils/urls";
+
 import Loader from '../components/Loader'
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'

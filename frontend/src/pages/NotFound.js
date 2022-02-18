@@ -1,8 +1,10 @@
 import React from 'react';
 import Lottie from "react-lottie";
+
 import animationData from '../animations/notfound.json'
 
 import { Box } from "../components/styling/containers"
+
 export const NotFound = () => {
   
     const defaultOptions = {

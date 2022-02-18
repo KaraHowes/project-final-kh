@@ -4,13 +4,11 @@ import styled from "styled-components";
 
 import animationData from '../animations/rainbowloader.json'
 
-
 const LoadWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin 0 auto;
 `;
-
 
 const Loader = () => {
   

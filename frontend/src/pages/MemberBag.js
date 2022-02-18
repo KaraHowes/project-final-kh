@@ -6,9 +6,9 @@ import moment from "moment";
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
+
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
-
 import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
 import {
@@ -17,7 +17,6 @@ import {
   TextWrapper,
   CardText,
 } from "../components/styling/mapping";
-
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import image from "../images/bag.png";
