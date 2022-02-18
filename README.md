@@ -48,7 +48,7 @@ The accessibility of the website was checked using the WAVE Chrome extension, wh
 
 I would like to thank Amanda Tilly for allowing me too use her Hamburger/Menu reuseable component, Linnea Isebrink for introducing me to the SweetAlert library and to all of my fellow Hippos for their help, advice and support throughout the Bootcamp.
 
-NB: I have just realised that at the moment, the email function is not working. It was perfectly fine when working locally, but since I deployed to Heroku it doesn't seem to be working. I presume I am missing some config vars or something similiar to get nodemailer to work. 
+NB: I have just realised that occassionally the email function doesn't fully work because my email provider thinks I am spamming people. The code and the logic are correct, it's just an issue with the email provider I am using.
 
 
 ## View it live

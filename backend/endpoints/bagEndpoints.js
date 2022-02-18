@@ -1,7 +1,10 @@
 const Member = require('../Schemas/member.js')
 const Bag = require('../Schemas/bag.js')
 import nodemailer from "nodemailer"
+import dotenv from "dotenv";
 
+
+dotenv.config();
 //Endpoint to add a bag
 export const addBag = async (req,res) => {
     const { colour, location, age, memberId } = req.body;
@@ -122,14 +125,14 @@ export const reserveBag = async (req,res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "KHFinal22@outlook.com", 
-      pass: "blanket1815", 
+      user: process.env.EMAIL, 
+      pass: process.env.PASSWORD
     },
   });
 
   // send mail with defined transport object
   let mailOptions = await transporter.sendMail({
-    from: '"KH" <KHFinal22@outlook.com>', // sender address
+    from: process.env.EMAIL, // sender address '"KH" <KHFinal22@outlook.com>'
     to: email, // list of receivers
     subject: "Interested in Thek", // Subject line
     text: "Thank you for registering your interest in the Thek, we will get back to you shortly", // plain text body
