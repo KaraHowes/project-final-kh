@@ -1,6 +1,9 @@
-# Final Project
+Kara Howes: THEK-FRIENDS
 
-This project was built for the Final project of the Technigo Frontend Development Bootcamp. It was built during 4 weeks, by Kara Howes.
+Every year thousands of Children start the Swiss School system. The Thek (SchulThek - Swiss German for rucksack) is an integral part of the process. And an expensive one. These bags can cost 200-300 CHF (rougly 200-250 Euros). I wanted to build a resource where people could donate their used bags and give them a new home: to reduce waste and the financial burden for many families.
+This project was built for the Final project of the Technigo Frontend Development Bootcamp. It was built during 4 weeks, by Kara Howes. It is a multi-page application, wherein the Frontend(FE) was built using React, Redux and styled with Styled Components. The backend (BE) was built using Node.js, Express and Mongoose. The application was deployed using Heroku, MongoDB and Netlify.
+
+-------- FEATURES------------
 
 MODELS:
 
@@ -30,7 +33,7 @@ For affirmations:
 
 - /inspiration - GET request which returns one random affirmation.
 
-## The problem
+---------THE APPROACH ------------
 
 The idea was to create a resource whereby authenticated users could access the bags in the database, or indeed add to the bags collection. Therefore it is necessary for the User to create an account and therefore become a Thek-Friend. Depending on the users Status (donor or recipient), their profile page (and therefore what they can access) differs:
 
@@ -41,20 +44,45 @@ The idea was to create a resource whereby authenticated users could access the b
  
  The Thek-Friends website includes and Introduction page, About section, Register/Log-in page and an Inspiration/Affirmation page. Navigation to these pages is by useNavigate from the React-Router-Dom package.
 
- The BE of this project was built using Node.js, Mongoose and a few libraries (Nodemailer, crypto) The Database was built using MongoDB.
+ The BE of this project was built using Node.js, Express, Mongoose and a few libraries (Nodemailer, crypto) The Database was built using MongoDB.
  The FE was built using React, Redux and various libraries (StyledComponents, Lottie Animations, Sweetalert, Moment). 
 
 The accessibility of the website was checked using the WAVE Chrome extension, which checked the HTML of the website.
 
 I would like to thank Amanda Tilly for allowing me too use her Hamburger/Menu reuseable component, Linnea Isebrink for introducing me to the SweetAlert library and to all of my fellow Hippos for their help, advice and support throughout the Bootcamp.
 
-NB: I have just realised that occassionally the email function doesn't fully work because my email provider thinks I am spamming people. The code and the logic are correct, it's just an issue with the email provider I am using.
+----- TECH & TOOLS -----
 
+Tech:
 
-## View it live
+JavaScript ES6
+React
+Redux
+React router
+Node express
+MongoDB / Mongoose
+Styled components
+Lottie,
+SweetAlert,
+Moment,
+Nodemailer
+Crypto
 
+Tools:
+
+Postman
+VS Code
+GitHub
+MongoDB Compass
+Figma
+Slack
+Stack Overflow
+
+----------DEPLOYMENT------------
+BE:
 https://kh-thek-friends.herokuapp.com/
 
+FE:
 https://thek-friends.netlify.app/
 
 

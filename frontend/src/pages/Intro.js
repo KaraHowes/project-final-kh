@@ -108,9 +108,9 @@ const Intro = () => {
             <TitleText>Welcome to Thek-Friends</TitleText>
             <MainText>
               {" "}
-              Every year. thousands of Children start the Swiss School system.
+              Every year thousands of Children start the Swiss School system.
               As we all know, The Thek is an integral part of the process.
-              Become a Thek-Friend and helps us to reduce the waste of unused
+              Become a Thek-Friend and help us to reduce the waste of unused
               and unloved Theks and give them a new home.
             </MainText>
           </TextContainer>
