@@ -60,6 +60,7 @@ const About = () => {
               href="https://linkedin.com/in/karahowes"
               aria-label="link to Linked-in  profile"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <i class="fab fa-linkedin"></i>
             </Link>
@@ -67,6 +68,7 @@ const About = () => {
               href="https://github.com/KaraHowes"
               aria-label="Link to Github account"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <i class="fab fa-github"></i>
             </Link>
@@ -74,6 +76,7 @@ const About = () => {
               href="https://stackoverflow.com/users/16680893/karahowes"
               aria-label="link to stackoverflow profile"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <i class="fab fa-stack-overflow"></i>
             </Link>

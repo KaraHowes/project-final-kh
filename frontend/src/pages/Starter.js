@@ -49,10 +49,10 @@ const Starter = () => {
       <Box>
         <Image
           src="./assets/thek-friends-01.png"
-          alt="Thek-friends-written-logo"
-        ></Image>
+          alt="Thek friends written logo"
+        />
         <Buttoncontainer>
-          <Press to="/intro">
+          <Press to="/">
             <Startbutton>Enter</Startbutton>
           </Press>
         </Buttoncontainer>
