@@ -182,7 +182,7 @@ const SelectedBag = () => {
             <ButtonContainer>
               <Button onClick={reserveBag}> Reserve this bag?</Button>
               <Button>
-                <Press to="/AllBags" params={accessToken}>
+                <Press to="/allBags" params={accessToken}>
                   All Bags
                 </Press>
               </Button>

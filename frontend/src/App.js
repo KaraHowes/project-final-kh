@@ -45,9 +45,9 @@ export const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/member/:memberId" element={<Profile />} />
-          <Route path="/AddThek" element={<AddThek />} />
-          <Route path="/FindThek" element={<FindThek />} />
-          <Route path="/AllBags" element={<AllBags />} />
+          <Route path="/addThek" element={<AddThek />} />
+          <Route path="/findThek" element={<FindThek />} />
+          <Route path="/allBags" element={<AllBags />} />
           <Route path="/bag/:_id" element={<SelectedBag />} />
           <Route path="/bags/:memberId" element={<MemberBag />} />
           <Route path="/deleteBag/:_id" element={<BagDelete />} />

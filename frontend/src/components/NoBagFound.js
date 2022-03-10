@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Press } from "./styling/general";
 import Logout from "./Logout"
+
 const NoBagContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,14 +34,14 @@ const NoBagFound = () => {
 
   return (
     <NoBagContainer>
-      <Image src="./assets/octopus.png"></Image>
+      <Image src="./assets/octopus.png"/>
       <p>
         Oh no, that's a pity! Please check the All Bags section for a greater
         selection
       </p>
 
       <Button>
-        <Press to="/AllBags" params={accessToken}>
+        <Press to="/allBags" params={accessToken}>
           All bags
         </Press>
       </Button>

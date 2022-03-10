@@ -162,13 +162,13 @@ const Profile = () => {
             <ButtonContainer>
               <Button>
                 {profile.status === "Donor" ? (
-                  <Press to="/AddThek">Add a bag?</Press>
+                  <Press to="/addThek">Add a bag?</Press>
                 ) : (
-                  <Press to="/FindThek">Find a bag</Press>
+                  <Press to="/findThek">Find a bag</Press>
                 )}
               </Button>
               <Button>
-                <Press to="/AllBags">All bags</Press>
+                <Press to="/allBags">All bags</Press>
               </Button>
               <Logout />
             </ButtonContainer>

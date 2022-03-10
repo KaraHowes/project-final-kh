@@ -85,7 +85,6 @@ const Filter = () => {
   };
   return (
     <>
-
         <Form onSubmit={onFormSubmit}>
         <SubTitle>You can search for a bag by location:</SubTitle>
         {loading && <Loader/>}
@@ -116,8 +115,8 @@ const Filter = () => {
           <Card key={item._id}>
               <ImageThek
             src="./assets/thek-icon-1.png"
-            alt="Thek-friends-bag-logo"
-          ></ImageThek>
+            alt="Thek friends bag"
+          />
             <TextWrapper>
               <CardText>Colour:{item.colour}</CardText>
               <Press to={`/bag/${item._id}`}>
