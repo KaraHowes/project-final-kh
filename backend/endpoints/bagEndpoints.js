@@ -51,7 +51,7 @@ export const addBag = async (req,res) => {
     try {
       const foundBags = await Bag.find(req.query);
   
-      if (foundBags.length === 0) {
+      if (!foundBags.length) {
         res.status(404).json({
           response: "no bags found",
           success: false,
@@ -141,9 +141,6 @@ export const reserveBag = async (req,res) => {
       res.status(200).json({ response: 'Email sent', success: true })
     }
   })
-  console.log("Message sent: %s", info.messageId);
- 
-
   }
   
 main().catch(console.error);

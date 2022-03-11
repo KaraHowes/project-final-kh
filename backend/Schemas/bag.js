@@ -11,7 +11,7 @@ export const BagSchema = new mongoose.Schema({
         required: true,
     }, 
     createdAt: {
-      type: Date,
+      type: Number,
       default: Date.now,
       required: true,
     },

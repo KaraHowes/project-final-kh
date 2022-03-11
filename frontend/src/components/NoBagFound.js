@@ -34,7 +34,7 @@ const NoBagFound = () => {
 
   return (
     <NoBagContainer>
-      <Image src="./assets/octopus.png"/>
+      <Image src="./assets/octopus.png" alt="sad octopus"/>
       <p>
         Oh no, that's a pity! Please check the All Bags section for a greater
         selection
