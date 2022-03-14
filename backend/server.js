@@ -9,7 +9,7 @@ import quotesData from "./data/quotes.json";
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
 import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag} from "./endpoints/bagEndpoints.js"
-
+import { generateQuote } from "./endpoints/quoteEndpoint.js"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
@@ -58,36 +58,7 @@ app.post("/reserveBag", authenticateMember, reserveBag)// endpoint to reserve ba
 
 
 //--------- for inspiration api--------
-// stays in server.js due to functions performed
-const QuoteSchema = new mongoose.Schema({
-  quote: { type: String },
-  source: { type: String },
-});
-
-const Quote = mongoose.model("Quote", QuoteSchema);
-//Fills database with data from my API
-if (process.env.RESET_DB) {
-  // need to use an async function so that the users are deleted before
-  const seedDatabase = async () => {
-    await Quote.deleteMany({});
-
-    quotesData.forEach((item) => {
-      const newQuote = new Quote(item);
-      newQuote.save();
-    });
-  };
-  seedDatabase();
-}
-
-app.get("/inspiration", async (req, res) => {
-  const Quotes = await Quote.find({});
-  const getRandomAffirmation = () =>
-    Quotes[Math.floor(Math.random() * Quotes.length)];
-    const random = getRandomAffirmation()
-  res.status(200).json({ 
-   response: random, success: true });
-});
-
+app.get("/inspiration", generateQuote)
 
 // Start the server
 app.listen(port, () => {
