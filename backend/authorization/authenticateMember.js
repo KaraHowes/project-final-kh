@@ -16,7 +16,7 @@ const authenticateMember = async (req, res, next) => {
         });
       }
     } catch (error) {
-      res.status(400).json({ message: "Invalid request", response: error, success: false });
+      res.status(400).json({ response: "Invalid request", success: false });
     }
   };
 

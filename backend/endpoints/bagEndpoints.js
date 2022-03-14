@@ -26,7 +26,7 @@ export const addBag = async (req,res) => {
         success: true,
       });
     } catch (error) {
-      res.status(400).json({ response: error, success: false });
+      res.status(400).json({ response: "Could not add bag to the system", success: false });
     }
   }
 
@@ -80,14 +80,14 @@ export const addBag = async (req,res) => {
         });
       } else {
         res.status(404).json({
-          message: "Could not find tasks",
+          response: "Could not find tasks",
           success: false,
         });
       }
 
      
     } catch (error) {
-      res.status(400).json({ message: "Invalid request", response: error, success: false });
+      res.status(400).json({ response: "Invalid request", response: error, success: false });
     }
   }
 
