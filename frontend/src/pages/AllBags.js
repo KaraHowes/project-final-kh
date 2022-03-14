@@ -92,8 +92,8 @@ const AllBags = () => {
             <Card key={item._id}>
               <ImageThek
                 src="./assets/thek-icon-1.png"
-                alt="Thek-friends-bag-logo"
-              ></ImageThek>
+                alt="Thek friends bag"
+              />
               <TextWrapper>
                 <CardText>Colour: {item.colour}</CardText>
                 <CardText>Location: {item.location}</CardText>

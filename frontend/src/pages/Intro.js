@@ -91,14 +91,14 @@ const Intro = () => {
         <Menu />
         <ImageWords
           src="./assets/thek-friends-01.png"
-          alt="Thek-friends-written-logo"
-        ></ImageWords>
+          alt="Thek friends text"
+        />
         <ImageWritingContainer>
           <ImageContainer>
             <ImageThek
               src="./assets/thek-icon-1.png"
-              alt="Thek-friends-bag-logo"
-            ></ImageThek>
+              alt="Thek friends bag"
+           />
             <LottieContainer>
               <Lottie options={defaultOptions} height={150} width={150} />
             </LottieContainer>
