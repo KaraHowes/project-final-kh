@@ -9,7 +9,7 @@ import quotesData from "./data/quotes.json";
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
 import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag} from "./endpoints/bagEndpoints.js"
-
+import { generateQuote } from "./endpoints/quoteEndpoint"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
 mongoose.connect(mongoUrl, {
@@ -58,9 +58,10 @@ app.post("/reserveBag", authenticateMember, reserveBag)// endpoint to reserve ba
 
 
 //--------- for inspiration api--------
+app.get("/inspiration", generateQuote)
 
 // stays in server.js due to functions performed
-const QuoteSchema = new mongoose.Schema({
+{/*const QuoteSchema = new mongoose.Schema({
   quote: { type: String },
   source: { type: String },
 });
@@ -89,7 +90,7 @@ app.get("/inspiration", async (req, res) => {
    response: random, success: true });
 });
 
-
+*/}
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line

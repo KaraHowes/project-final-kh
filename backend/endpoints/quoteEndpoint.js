@@ -1,5 +1,5 @@
 
-{/*const Quote = require('../Schemas/quote.js')
+const Quote = require('../Schemas/quote.js')
 
 export const generateQuote = async (req, res) => {
 
@@ -9,4 +9,4 @@ export const generateQuote = async (req, res) => {
       const random = getRandomAffirmation()
     res.status(200).json({ 
      response: random, success: true });
-  };*/}
+  };
