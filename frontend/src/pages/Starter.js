@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Footer from "../components/Footer";
 import { Press } from "../components/styling/general"
 
 const Image = styled.img`
@@ -45,7 +44,7 @@ const Buttoncontainer = styled.div`
 
 const Starter = () => {
   return (
-    <>
+
       <Box>
         <Image
           src="./assets/thek-friends-01.png"
@@ -57,8 +56,6 @@ const Starter = () => {
           </Press>
         </Buttoncontainer>
       </Box>
-      <Footer />
-    </>
   );
 };
 

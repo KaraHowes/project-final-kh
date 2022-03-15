@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import { Box } from "../components/styling/containers";
 
@@ -35,7 +34,7 @@ const Link = styled.a`
 
 const About = () => {
   return (
-    <>
+   
       <Box>
         <Menu />
         <TitleText>How Thek-Friends started</TitleText>
@@ -83,9 +82,6 @@ const About = () => {
           </Nav>
         </SocialContainer>
       </Box>
-
-      <Footer />
-    </>
   );
 };
 

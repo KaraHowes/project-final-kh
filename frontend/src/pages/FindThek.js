@@ -11,7 +11,6 @@ import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
 import Loader from "../components/Loader";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
 const Button = styled.button`
@@ -78,8 +77,7 @@ const FindThek = () => {
       .finally(() => setLoading(false));
   };
   return (
-    <>
-      <Box>
+     <Box>
         <Menu />
         {loading && <Loader />}
 
@@ -130,8 +128,6 @@ const FindThek = () => {
           <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>
       </Box>
-      <Footer />
-    </>
   );
 };
 export default FindThek;

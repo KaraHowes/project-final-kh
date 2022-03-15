@@ -10,7 +10,6 @@ import member from "../reducers/member";
 import Loader from '../components/Loader'
 import { Box } from "../components/styling/containers"
 import { Select, Input, Form } from "../components/styling/formStyle"
-import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
 
@@ -94,7 +93,6 @@ const Register = () => {
   };
 
   return (
-    <>
    <Box>
      <Menu/>
     {loading && <Loader/>}
@@ -193,8 +191,6 @@ const Register = () => {
       </Form>
     
    </Box>
-   <Footer/>
-   </>
   );
 };
 

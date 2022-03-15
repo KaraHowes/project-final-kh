@@ -17,7 +17,6 @@ import {
   TextWrapper,
   CardText,
 } from "../components/styling/mapping";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import image from "../images/bag.png";
 
@@ -86,7 +85,6 @@ const MemberBag = () => {
   }, [accessToken, dispatch, memberId]);
 
   return (
-    <>
       <Box>
         <Menu />
         {loading && <Loader />}
@@ -129,8 +127,6 @@ const MemberBag = () => {
           </ButtonContainer>    
         
       </Box>
-      <Footer />
-    </>
   );
 };
 export default MemberBag;

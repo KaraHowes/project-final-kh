@@ -11,7 +11,6 @@ import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 import { Box, ButtonContainer } from "../components/styling/containers";
 import { Press, Details } from "../components/styling/general";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import image from "../images/bag.png";
 
@@ -153,7 +152,7 @@ const SelectedBag = () => {
       .finally(navigate("/"));
   };
   return (
-    <>
+    
       <Box>
         <Menu />
         {loading && <Loader />}
@@ -191,8 +190,6 @@ const SelectedBag = () => {
           </ProfileButtonContainer>
         </All>
       </Box>
-      <Footer />
-    </>
   );
 };
 

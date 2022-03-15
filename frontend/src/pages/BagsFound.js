@@ -5,7 +5,6 @@ import moment from "moment";
 
 import NoBagFound from "../components/NoBagFound";
 import Logout from "../components/Logout";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
@@ -51,7 +50,6 @@ const BagsFound = () => {
   const memberId = useSelector((store) => store.member.memberId);
 
   return (
-    <>
       <Box>
         <Menu />
 
@@ -93,8 +91,6 @@ const BagsFound = () => {
           </OverallContainer>
         )}
       </Box>
-      <Footer />
-    </>
   );
 };
 

@@ -19,6 +19,8 @@ import About from "./pages/About"
 import MemberBag from "./pages/MemberBag"
 import BagDelete from "./pages/BagDelete"
 
+import Footer from "./components/Footer"
+
 import member from "./reducers/member";
 import theks from "./reducers/theks";
 import oneThek from "./reducers/oneThek";
@@ -56,6 +58,7 @@ export const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </Provider>
   );

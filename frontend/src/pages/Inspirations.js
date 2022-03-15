@@ -6,7 +6,6 @@ import quote from "../reducers/quote";
 import { API_URL } from "../utils/urls";
 
 import Loader from '../components/Loader'
-import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
 const Div = styled.div`
@@ -104,7 +103,7 @@ const Inspirations = () => {
   }, [dispatch], []);
 
   return (
-    <>
+    
     <Box>
       <Menu/>
        {loading && <Loader/>}
@@ -117,8 +116,6 @@ const Inspirations = () => {
        </TextButtonContainer>
       
     </Box>
-    <Footer/>
-    </>
   );
 };
 export default Inspirations;

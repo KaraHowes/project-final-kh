@@ -6,7 +6,6 @@ import animationData from "../animations/star.json";
 
 import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
 
@@ -86,7 +85,6 @@ const Intro = () => {
     },
   };
   return (
-    <>
       <Box>
         <Menu />
         <ImageWords
@@ -122,8 +120,6 @@ const Intro = () => {
           </Press>
         </Buttoncontainer>
       </Box>
-      <Footer />
-    </>
   );
 };
 

@@ -8,7 +8,6 @@ import member from "../reducers/member";
 
 import { Box } from "../components/styling/containers";
 import { Form, Input } from "../components/styling/formStyle";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
 const SigninWrapper = styled.div`
@@ -95,7 +94,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    
       <Box>
         <Menu />
         <SigninWrapper>
@@ -135,8 +134,6 @@ const Login = () => {
           </Form>
         </SigninWrapper>
       </Box>
-      <Footer />
-    </>
   );
 };
 

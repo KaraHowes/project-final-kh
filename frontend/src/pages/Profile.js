@@ -11,7 +11,6 @@ import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 import { Box } from "../components/styling/containers";
 import { Press, Colour, Header, SubTitle } from "../components/styling/general";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
 const All = styled.div`
@@ -129,7 +128,7 @@ const Profile = () => {
   }, [dispatch, accessToken, memberId]);
 
   return (
-    <>
+  
       <Box>
         {loading && <Loader />}
         <Menu />
@@ -175,8 +174,6 @@ const Profile = () => {
           </ProfileButtonContainer>
         </All>
       </Box>
-      <Footer />
-    </>
   );
 };
 export default Profile;

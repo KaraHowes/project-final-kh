@@ -12,7 +12,6 @@ import Loader from "../components/Loader";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
-import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
 const Button = styled.button`
@@ -91,7 +90,7 @@ const AddThek = () => {
   };
 
   return (
-    <>
+ 
       <Box>
         <Menu />
         {loading && <Loader />}
@@ -164,8 +163,6 @@ const AddThek = () => {
           )}
         </Form>
       </Box>
-      <Footer />
-    </>
   );
 };
 
