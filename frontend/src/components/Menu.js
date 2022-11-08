@@ -5,7 +5,7 @@ import styled from "styled-components";
 const NavContainer = styled.div`
   width: 100%;
   margin-bottom: 30px;
-  border-bottom: 2px solid black;
+  border-bottom: 5px solid black;
   padding-bottom: 10px;
   display: flex;
   justify-content: space-evenly;
@@ -17,13 +17,14 @@ const NavContainer = styled.div`
 const NavLink = styled(Link)`
 height:10px;
 padding: 10px;
+margin-bottom: 20px;
 color: black;
 text-decoration: none;
 &:hover{
-background-color: #878df7;
-border-radius: 5px;
-color: white;
-
+text-decoration: underline;
+text-decoration-color:#F675A8;
+text-decoration-thickness: 5px;
+text-decoration-padding-bottom: 10px;
 }`;
 
 const Hamburger = styled.div`

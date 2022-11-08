@@ -57,16 +57,15 @@ const MainText = styled.p`
 const Startbutton = styled.button`
   width: 100%;
   height: 50px;
-  color: white;
-  background-color: #878df7;
-  border: none;
   cursor: pointer;
   font-size: 24px;
   padding: 15px;
   font-weight: 800;
-  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
+  color: white;
+  background-color:#F675A8;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
 `;
 const Buttoncontainer = styled.div`
   display: flex;
