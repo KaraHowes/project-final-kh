@@ -62,8 +62,7 @@ const Startbutton = styled.button`
   padding: 15px;
   font-weight: 800;
   font-family: "Josefin Sans", sans-serif;
-  color: white;
-  background-color:#F675A8;
+  background-color:white;
   border: 3px solid black;
   box-shadow: 8px 8px yellow;
 `;
