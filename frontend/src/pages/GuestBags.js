@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 
-import Logout from "../components/Logout";
+
 import Loader from "../components/Loader";
 import Menu from "../components/Menu";
 import Filter from "../components/Filter";
-import { Box, ButtonContainer } from "../components/styling/containers";
+import { Box } from "../components/styling/containers";
 import { Press } from "../components/styling/general";
 import {
   BagContainer,
@@ -27,44 +27,22 @@ const ImageThek = styled.img`
   margin: 0 auto;
 `;
 
-const Button = styled.button`
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  padding: 15px 0 15px 0;
-  margin: 30px auto;
-  border-radius: 10px;
-  font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
-  align-items: center;
-`;
-
-const AllBags = () => {
+const GuestBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
-  const accessToken = useSelector((store) => store.member.accessToken);
-  const memberId = useSelector((store) => store.member.memberId);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const accessToken = useSelector((store) => store.member.accessToken);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!accessToken) {
-      navigate("/signin");
+      navigate("/guestBags");
     }
-  }, [accessToken, navigate]);
-
-  useEffect(() => {
     const options = {
-      method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
-    };
+        method: "GET"
+      };
     setLoading(true);
-    fetch(API_URL("bags"), options)
+    fetch(API_URL("guestBags"), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -76,7 +54,10 @@ const AllBags = () => {
         }
       })
       .finally(() => setLoading(false));
-  }, [accessToken, dispatch]);
+  }, [dispatch, accessToken, navigate]);  
+
+
+  
 
   return (
     
@@ -109,16 +90,9 @@ const AllBags = () => {
           ))}
         </BagContainer>
        
-        <ButtonContainer>
-          <Button>
-            <Press to={`/member/${memberId}`} params={memberId}>
-              My Profile
-            </Press>
-          </Button>
-          <Logout />
-        </ButtonContainer>
+        
       </Box>
   );
 };
 
-export default AllBags;
+export default GuestBags;

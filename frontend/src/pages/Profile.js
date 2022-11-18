@@ -55,17 +55,17 @@ const ButtonContainer = styled.div`
 `;
 const Button = styled.button`
   width: 100%;
+  height: 50px;
   min-width: 200px;
-  height: 40px;
-  background-color: white;
   border: none;
   cursor: pointer;
   font-size: 24px;
-  padding: 15px 0 15px 0;
+  padding: 15px 0;
   margin: 10px 0;
-  border-radius: 10px;
+  background-color: white;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
 `;
 const SmallText = styled.p`
   font-size: 0.75rem;

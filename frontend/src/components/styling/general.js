@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Press = styled(Link)`
 text-decoration: none;
+color: black;
 align-items: center;
 &:visited{
   color:black;

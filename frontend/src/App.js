@@ -18,6 +18,7 @@ import Inspirations from "./pages/Inspirations";
 import About from "./pages/About"
 import MemberBag from "./pages/MemberBag"
 import BagDelete from "./pages/BagDelete"
+import GuestBags from "./pages/GuestBags"
 
 import Footer from "./components/Footer"
 
@@ -56,6 +57,7 @@ export const App = () => {
           <Route path="/bagsFound" element={<BagsFound />} />
           <Route path="/inspiration" element={<Inspirations />} />
           <Route path="/about" element={<About />} />
+          <Route path="/guestBags" element={<GuestBags />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer/>

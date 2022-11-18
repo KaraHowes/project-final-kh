@@ -67,9 +67,10 @@ export const Menu = () => {
       </Hamburger>
       <Nav isOpen={isOpen}>
       <NavLink to="/"> Home</NavLink>
-        <NavLink to="/about"> About</NavLink>
         <NavLink to="/signin"> Log-in</NavLink>
-        <NavLink to="/inspiration"> Inspiration</NavLink>
+        <NavLink to="/about"> About</NavLink>
+        <NavLink to="/guestBags"> Bags</NavLink>
+        <NavLink to="/inspiration"> Inspiration</NavLink> 
       </Nav>
     </NavContainer>
   );
