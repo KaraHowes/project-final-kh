@@ -57,8 +57,6 @@ const GuestBags = () => {
   }, [dispatch, accessToken, navigate]);  
 
 
-  
-
   return (
     
       <Box>
