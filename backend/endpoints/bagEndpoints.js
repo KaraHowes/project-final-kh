@@ -36,7 +36,10 @@ export const addBag = async (req,res) => {
     const bags = await Bag.find({});
     res.status(201).json({ response: bags, success: true });
   }
- 
+  export const guestBags = async (req,res) =>  {
+    const bags = await Bag.find({});
+    res.status(201).json({ response: bags, success: true });
+  }
   //endpoint to 
    export const bagById = async (req,res) => {
     const { _id } = req.params;

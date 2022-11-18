@@ -38,6 +38,7 @@ const GuestBags = () => {
     if (!accessToken) {
       navigate("/guestBags");
     }
+
     const options = {
         method: "GET"
       };
