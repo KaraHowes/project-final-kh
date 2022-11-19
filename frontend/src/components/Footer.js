@@ -15,7 +15,7 @@ const StyleFooter = styled.footer`
 `;
 
 const Footer = () => {
-  return <StyleFooter>This website was built by Testy Testy Howes</StyleFooter>;
+  return <StyleFooter>This website was built by Kara Howes</StyleFooter>;
 };
 
 export default Footer;
