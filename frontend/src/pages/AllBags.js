@@ -29,7 +29,7 @@ const ImageThek = styled.img`
 
 const Button = styled.button`
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: white;
   border: none;
   cursor: pointer;
@@ -47,6 +47,7 @@ const AllBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
   const accessToken = useSelector((store) => store.member.accessToken);
   const memberId = useSelector((store) => store.member.memberId);
+  const filteredBags = useSelector((store)=> store.searched.items.length);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -85,30 +86,33 @@ const AllBags = () => {
         <Menu />
         {loading && <Loader />}
         <Filter />
-     
+
+        {filteredBags===0 && 
         <BagContainer>
         
-          {theksItems.map((item) => (
-            <Card key={item._id}>
-              <ImageThek
-                src="./assets/thek-icon-1.png"
-                alt="Thek friends bag"
-              />
-              <TextWrapper>
-                <CardText>Colour: {item.colour}</CardText>
-                <CardText>Location: {item.location}</CardText>
-                <CardText>Age-range: {item.age}</CardText>
-                <CardText>
-                  Available since:{" "}
-                  {moment(item.createdAt).format("Do MMMM YYYY")}
-                </CardText>
-                <Press to={`/bag/${item._id}`}>
-                  <CardText>More details</CardText>
-                </Press>
-              </TextWrapper>
-            </Card>
-          ))}
-        </BagContainer>
+        {theksItems.map((item) => (
+          <Card key={item._id}>
+            <ImageThek
+              src="./assets/thek-icon-1.png"
+              alt="Thek friends bag"
+            />
+            <TextWrapper>
+              <CardText>Colour: {item.colour}</CardText>
+              <CardText>Location: {item.location}</CardText>
+              <CardText>Age-range: {item.age}</CardText>
+              <CardText>
+                Available since:{" "}
+                {moment(item.createdAt).format("Do MMMM YYYY")}
+              </CardText>
+              <Press to={`/bag/${item._id}`}>
+                <CardText>More details</CardText>
+              </Press>
+            </TextWrapper>
+          </Card>
+        ))}
+      </BagContainer>
+        }
+        
        
         <ButtonContainer>
           <Button>

@@ -53,7 +53,7 @@ app.get("/bags", authenticateMember, allBags);// gets all bags in the system
 app.get("/guestBags", guestBags);// gets all bags in the system
 app.get("/bag/:_id", authenticateMember, bagById);//gets one particular bag by it's id
 app.delete("/deleteBag/:_id", authenticateMember, deleteBag);//deletes one particular bag by it's id
-app.get("/searchbags", authenticateMember, searchBags); //searches the bag database
+app.get("/searchbags", searchBags); //searches the bag database
 app.get("/bags/:memberId", authenticateMember, bagByMember)//gets bags added by one particular member
 app.post("/reserveBag", authenticateMember, reserveBag)// endpoint to reserve bag
 
@@ -61,37 +61,7 @@ app.post("/reserveBag", authenticateMember, reserveBag)// endpoint to reserve ba
 //--------- for inspiration api--------
 app.get("/inspiration", generateQuote)
 
-// stays in server.js due to functions performed
-{/*const QuoteSchema = new mongoose.Schema({
-  quote: { type: String },
-  source: { type: String },
-});
 
-const Quote = mongoose.model("Quote", QuoteSchema);
-//Fills database with data from my API
-if (process.env.RESET_DB) {
-  // need to use an async function so that the users are deleted before
-  const seedDatabase = async () => {
-    await Quote.deleteMany({});
-
-    quotesData.forEach((item) => {
-      const newQuote = new Quote(item);
-      newQuote.save();
-    });
-  };
-  seedDatabase();
-}
-
-app.get("/inspiration", async (req, res) => {
-  const Quotes = await Quote.find({});
-  const getRandomAffirmation = () =>
-    Quotes[Math.floor(Math.random() * Quotes.length)];
-    const random = getRandomAffirmation()
-  res.status(200).json({ 
-   response: random, success: true });
-});
-
-*/}
 // Start the server
 app.listen(port, () => {
   // eslint-disable-next-line

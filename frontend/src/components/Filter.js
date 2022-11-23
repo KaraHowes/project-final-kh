@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 import moment from 'moment'
 
 import searched from "../reducers/searched";
+
 import { API_URL } from "../utils/urls";
 
 import Loader from '../components/Loader'
@@ -39,26 +40,18 @@ const Filter = () => {
   const [location, setLocation] = useState("");
 
   const errors = useSelector((store) => store.member.error);
-  const accessToken = useSelector((store) => store.member.accessToken);
+  //const accessToken = useSelector((store) => store.member.accessToken);
   const bagCity = useSelector((store)=> store.searched.items) 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate("/signin");
-    }
-  }, [accessToken, navigate]);
 
   const onFormSubmit = (event) => {
     
     event.preventDefault();
     const options = {
-      method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
+      method: "GET"
     };
     setLoading(true);
     fetch(
@@ -71,13 +64,11 @@ const Filter = () => {
         if (data.success) {
           batch(() => {
             dispatch(searched.actions.setItems(data.response));
-            
             dispatch(searched.actions.setError(null));
           });
         } else {
           batch(() => {
             dispatch(searched.actions.setItems([]));
-            
             dispatch(searched.actions.setError(data.response));
           });
         }
