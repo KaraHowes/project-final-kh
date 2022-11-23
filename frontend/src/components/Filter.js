@@ -15,15 +15,16 @@ import { Press, SubTitle } from "../components/styling/general";
 const Button = styled.button`
   width: 100%;
   height: 40px;
-  background-color: #fff000;
   border: none;
   cursor: pointer;
   font-size: 24px;
   padding: 10px 15px;
   margin: 0 0 20px;
-  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
 `;
 
 const ImageThek = styled.img`
@@ -86,7 +87,7 @@ const Filter = () => {
   return (
     <>
         <Form onSubmit={onFormSubmit}>
-        <SubTitle>You can search for a bag by location:</SubTitle>
+        <SubTitle>Search for a bag by location:</SubTitle>
         {loading && <Loader/>}
           <Select
             id="locationInput"

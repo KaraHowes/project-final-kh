@@ -36,9 +36,10 @@ const Button = styled.button`
   font-size: 24px;
   padding: 15px 0 15px 0;
   margin: 30px auto;
-  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
+  color: black;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
   align-items: center;
 `;
 

@@ -28,17 +28,17 @@ const Box = styled.div`
 const Button = styled.button`
   width: 60%;
   min-width: 150px;
-  height: 50px;
-  background-color: #20C6BA;
-  color: white;
+  height: 60px;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   padding: 15px 0 15px 0;
   margin: 30px auto 10px auto;
-  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
+  background-color: white;
+  color: black;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
   @media (min-width: 768px){
     font-size:2rem;
   }
