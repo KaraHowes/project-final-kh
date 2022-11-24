@@ -105,9 +105,11 @@ const removeFilter =()=> {
             </TextWrapper>
           </Card>
         ))}
-      </BagContainer>}
-        
         <Button onClick={removeFilter}>All Bags</Button>
+      </BagContainer>
+      }
+        
+        
       
         <ButtonContainer>
           <Button>
