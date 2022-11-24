@@ -45,25 +45,17 @@ const Button = styled.button`
 
 const AllBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
-  const accessToken = useSelector((store) => store.member.accessToken);
+ 
   const memberId = useSelector((store) => store.member.memberId);
   const filteredBags = useSelector((store)=> store.searched.items.length);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate("/signin");
-    }
-  }, [accessToken, navigate]);
-
+ 
   useEffect(() => {
     const options = {
       method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
     };
     setLoading(true);
     fetch(API_URL("bags"), options)
@@ -78,7 +70,11 @@ const AllBags = () => {
         }
       })
       .finally(() => setLoading(false));
-  }, [accessToken, dispatch]);
+  }, [ dispatch]);
+
+const removeFilter =()=> {
+  window.location.reload();
+}
 
   return (
     
@@ -86,9 +82,9 @@ const AllBags = () => {
         <Menu />
         {loading && <Loader />}
         <Filter />
-      {filteredBags===0&& 
+      {filteredBags===0 && 
       <BagContainer>
-        <p>number of bags is {filteredBags}</p>
+        
         {theksItems.map((item) => (
           <Card key={item._id}>
             <ImageThek
@@ -111,7 +107,7 @@ const AllBags = () => {
         ))}
       </BagContainer>}
         
-        
+        <Button onClick={removeFilter}>All Bags</Button>
       
         <ButtonContainer>
           <Button>

@@ -49,7 +49,7 @@ app.get("/member/:memberId", authenticateMember, profile);// endpoint to find on
 //-------Bag Endpoints----------
 
 app.post("/bags", authenticateMember, addBag);//add a bag to the database, again to authorized members
-app.get("/bags", authenticateMember, allBags);// gets all bags in the system
+app.get("/bags", allBags);// gets all bags in the system
 app.get("/guestBags", guestBags);// gets all bags in the system
 app.get("/bag/:_id", authenticateMember, bagById);//gets one particular bag by it's id
 app.delete("/deleteBag/:_id", authenticateMember, deleteBag);//deletes one particular bag by it's id
