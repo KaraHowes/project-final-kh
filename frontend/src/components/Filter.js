@@ -39,7 +39,7 @@ const ImageThek = styled.img`
 const Filter = () => {
   const [location, setLocation] = useState("");
 
-  const errors = useSelector((store) => store.member.error);
+  const errors = useSelector((store) => store.searched.error);
   //const accessToken = useSelector((store) => store.member.accessToken);
   const bagCity = useSelector((store)=> store.searched.items) 
   const dispatch = useDispatch();

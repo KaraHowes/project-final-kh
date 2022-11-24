@@ -86,10 +86,9 @@ const AllBags = () => {
         <Menu />
         {loading && <Loader />}
         <Filter />
-
-        {filteredBags===0 && 
-        <BagContainer>
-        
+      {filteredBags===0&& 
+      <BagContainer>
+        <p>number of bags is {filteredBags}</p>
         {theksItems.map((item) => (
           <Card key={item._id}>
             <ImageThek
@@ -110,10 +109,10 @@ const AllBags = () => {
             </TextWrapper>
           </Card>
         ))}
-      </BagContainer>
-        }
+      </BagContainer>}
         
-       
+        
+      
         <ButtonContainer>
           <Button>
             <Press to={`/member/${memberId}`} params={memberId}>
