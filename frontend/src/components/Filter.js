@@ -12,6 +12,7 @@ import Loader from '../components/Loader'
 import { Form, Select } from "../components/styling/formStyle";
 import { BagContainer, Card, CardText, TextWrapper} from "../components/styling/mapping";
 import { Press, SubTitle } from "../components/styling/general";
+import RemoveFilter from '../components/RemoveFilter'
 
 const Button = styled.button`
   width: 100%;
@@ -41,10 +42,9 @@ const Filter = () => {
   const errors = useSelector((store) => store.searched.error);
   const bagCity = useSelector((store)=> store.searched.items); 
   const bagCityLength = useSelector((store)=> store.searched.items.length); 
-  const removeFilterBags = useSelector((store) => store.theks.items);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
+  const [isShown, setIsShown] = useState(false);
 
   const onFormSubmit = (event) => {
     
@@ -75,32 +75,11 @@ const Filter = () => {
       .finally(() => setLoading(false));
   };
 
-  const removeFilter =()=> {
-    return (
-      <BagContainer> 
-        {removeFilterBags.map((item) => (
-          <Card key={item._id}>
-            <ImageThek
-              src="./assets/thek-icon-1.png"
-              alt="Thek friends bag"
-            />
-            <TextWrapper>
-              <CardText>Colour: {item.colour}</CardText>
-              <CardText>Location: {item.location}</CardText>
-              <CardText>Age-range: {item.age}</CardText>
-              <CardText>
-                Available since:{" "}
-                {moment(item.createdAt).format("Do MMMM YYYY")}
-              </CardText>
-              <Press to={`/bag/${item._id}`}>
-                <CardText>More details</CardText>
-              </Press>
-            </TextWrapper>
-          </Card>
-        ))}
-      </BagContainer>
-    )
+  const handleRemoval = (event) =>{
+    setIsShown(true)
+    dispatch(searched.actions.setItems([]));
   }
+  
   
   return (
     <>
@@ -149,9 +128,8 @@ const Filter = () => {
         ))}
       </BagContainer>
 
-      {bagCityLength!==0&& <Button onClick={() => removeFilter}>All Bags</Button>
-      }
-      
+      {bagCityLength!==0&& <Button onClick={handleRemoval}>All Bags</Button>}
+        {isShown && <RemoveFilter/> && <p>{bagCityLength}</p>}
     </>
   );
 };
