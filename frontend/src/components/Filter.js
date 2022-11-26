@@ -74,8 +74,8 @@ const Filter = () => {
       })
       .finally(() => setLoading(false));
   };
+
   const removeFilter =()=> {
-    
     return (
       <BagContainer> 
         {removeFilterBags.map((item) => (
@@ -149,7 +149,7 @@ const Filter = () => {
         ))}
       </BagContainer>
 
-      {bagCityLength!==0&& <Button onClick={removeFilter}>All Bags</Button>
+      {bagCityLength!==0&& <Button onClick={() => removeFilter}>All Bags</Button>
       }
       
     </>
