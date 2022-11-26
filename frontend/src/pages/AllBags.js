@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
-import moment from "moment";
-
-import theks from "../reducers/theks";
-import { API_URL } from "../utils/urls";
 
 import Logout from "../components/Logout";
-import Loader from "../components/Loader";
+
 import Menu from "../components/Menu";
 import Filter from "../components/Filter";
 import SeeAllBags from "../components/SeeAllBags"
@@ -35,33 +31,9 @@ const Button = styled.button`
 const AllBags = () => {
   const memberId = useSelector((store) => store.member.memberId);
   const filteredBags = useSelector((store)=> store.searched.items.length);
-  const dispatch = useDispatch();
-  
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const options = {
-      method: "GET",
-    };
-    setLoading(true);
-    fetch(API_URL("bags"), options)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          dispatch(theks.actions.setItems(data.response));
-          dispatch(theks.actions.setError(null));
-        } else {
-          dispatch(theks.actions.setItems([]));
-          dispatch(theks.actions.setError(data.response));
-        }
-      })
-      .finally(() => setLoading(false));
-  }, [ dispatch]);
-
   return (
       <Box>
         <Menu />
-        {loading && <Loader />}
         <Filter />
       {filteredBags===0 && <SeeAllBags />}
         <ButtonContainer>
