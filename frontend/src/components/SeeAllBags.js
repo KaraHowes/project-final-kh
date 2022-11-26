@@ -7,14 +7,14 @@ import moment from "moment";
 import theks from "../reducers/theks";
 import { API_URL } from "../utils/urls";
 
-import Loader from '../components/Loader'
-import { Press } from "../components/styling/general";
+import Loader from './Loader'
+import { Press } from "./styling/general";
 import {
   BagContainer,
   Card,
   TextWrapper,
   CardText,
-} from "../components/styling/mapping";
+} from "./styling/mapping";
 
 const ImageThek = styled.img`
   width: 100%;
@@ -24,7 +24,7 @@ const ImageThek = styled.img`
 `;
 
 
-const RemoveFilter = () => {
+const SeeAllBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
   const dispatch = useDispatch();
   
@@ -78,4 +78,4 @@ const RemoveFilter = () => {
   );
 };
 
-export default RemoveFilter;
+export default SeeAllBags;

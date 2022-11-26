@@ -12,7 +12,7 @@ import Loader from '../components/Loader'
 import { Form, Select } from "../components/styling/formStyle";
 import { BagContainer, Card, CardText, TextWrapper} from "../components/styling/mapping";
 import { Press, SubTitle } from "../components/styling/general";
-import RemoveFilter from '../components/RemoveFilter'
+import SeeAllBags from './SeeAllBags'
 
 const Button = styled.button`
   width: 100%;
@@ -129,7 +129,7 @@ const Filter = () => {
       </BagContainer>
 
       {bagCityLength!==0&& <Button onClick={handleRemoval}>All Bags</Button>}
-        {isShown && <RemoveFilter/> && <p>{bagCityLength}</p>}
+        {isShown && <SeeAllBags/> && <p>{bagCityLength}</p>}
     </>
   );
 };
