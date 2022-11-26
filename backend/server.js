@@ -4,8 +4,6 @@ import mongoose from "mongoose";
 import listEndpoints from "express-list-endpoints";
 
 
-import quotesData from "./data/quotes.json";
-
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
 import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag, guestBags} from "./endpoints/bagEndpoints.js"

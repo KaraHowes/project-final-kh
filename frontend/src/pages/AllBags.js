@@ -45,14 +45,12 @@ const Button = styled.button`
 
 const AllBags = () => {
   const theksItems = useSelector((store) => store.theks.items);
- 
   const memberId = useSelector((store) => store.member.memberId);
   const filteredBags = useSelector((store)=> store.searched.items.length);
   const dispatch = useDispatch();
   
   const [loading, setLoading] = useState(false);
 
- 
   useEffect(() => {
     const options = {
       method: "GET",
@@ -72,9 +70,6 @@ const AllBags = () => {
       .finally(() => setLoading(false));
   }, [ dispatch]);
 
-const removeFilter =()=> {
-  window.location.reload();
-}
 
   return (
     
@@ -83,8 +78,7 @@ const removeFilter =()=> {
         {loading && <Loader />}
         <Filter />
       {filteredBags===0 && 
-      <BagContainer>
-        
+      <BagContainer> 
         {theksItems.map((item) => (
           <Card key={item._id}>
             <ImageThek
@@ -105,12 +99,9 @@ const removeFilter =()=> {
             </TextWrapper>
           </Card>
         ))}
-        <Button onClick={removeFilter}>All Bags</Button>
       </BagContainer>
       }
         
-        
-      
         <ButtonContainer>
           <Button>
             <Press to={`/member/${memberId}`} params={memberId}>

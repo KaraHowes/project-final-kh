@@ -38,12 +38,11 @@ const ImageThek = styled.img`
 
 const Filter = () => {
   const [location, setLocation] = useState("");
-
   const errors = useSelector((store) => store.searched.error);
-  //const accessToken = useSelector((store) => store.member.accessToken);
-  const bagCity = useSelector((store)=> store.searched.items) 
+  const bagCity = useSelector((store)=> store.searched.items); 
+  const bagCityLength = useSelector((store)=> store.searched.items.length); 
+  const removeFilterBags = useSelector((store) => store.theks.items);
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
 
@@ -75,6 +74,34 @@ const Filter = () => {
       })
       .finally(() => setLoading(false));
   };
+  const removeFilter =()=> {
+    
+    return (
+      <BagContainer> 
+        {removeFilterBags.map((item) => (
+          <Card key={item._id}>
+            <ImageThek
+              src="./assets/thek-icon-1.png"
+              alt="Thek friends bag"
+            />
+            <TextWrapper>
+              <CardText>Colour: {item.colour}</CardText>
+              <CardText>Location: {item.location}</CardText>
+              <CardText>Age-range: {item.age}</CardText>
+              <CardText>
+                Available since:{" "}
+                {moment(item.createdAt).format("Do MMMM YYYY")}
+              </CardText>
+              <Press to={`/bag/${item._id}`}>
+                <CardText>More details</CardText>
+              </Press>
+            </TextWrapper>
+          </Card>
+        ))}
+      </BagContainer>
+    )
+  }
+  
   return (
     <>
         <Form onSubmit={onFormSubmit}>
@@ -122,6 +149,9 @@ const Filter = () => {
         ))}
       </BagContainer>
 
+      {bagCityLength!==0&& <Button onClick={removeFilter}>All Bags</Button>
+      }
+      
     </>
   );
 };
