@@ -2,41 +2,47 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import swal from "sweetalert";
 
-import searched from "../reducers/searched";
 import { API_URL } from "../utils/urls";
+import theks from "../reducers/theks";
 
 import Logout from "../components/Logout";
+import Loader from "../components/Loader";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
-import Loader from "../components/Loader";
-import Menu from "../components/Menu";
 
 const Button = styled.button`
   width: 100%;
   height: 40px;
-  background-color: #fff000;
+  background-color: white;
   border: none;
   cursor: pointer;
   font-size: 24px;
-  padding: 10px 15px;
-  margin: 0 0 20px;
+  padding: 15px 0 15px 0;
   border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
   box-shadow: 5px 5px 10px #888888;
+  margin-bottom: 15px;
+`;
+const ButtonContainer = styled.div`
+width: 100%,
+display: flex; 
+flex-direction: column;
 `;
 
-const FindThek = () => {
+const AddTheks = () => {
   const [colour, setColour] = useState("");
   const [location, setLocation] = useState("");
+  const [age, setAge] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const errors = useSelector((store) => store.member.error);
   const accessToken = useSelector((store) => store.member.accessToken);
+  const errors = useSelector((store) => store.member.error);
   const memberId = useSelector((store) => store.member.memberId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!accessToken) {
@@ -46,39 +52,43 @@ const FindThek = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    navigate("/bagsFound");
+    swal(
+      "Thank you for adding a bag to our collection, you wonderful person!",
+      { icon: "success", button: "ok" }
+    );
+    navigate(`/member/${memberId}`, { state: { memberId } });
 
     const options = {
-      method: "GET",
+      method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: accessToken,
       },
+
+      body: JSON.stringify({ colour, location, age, memberId }),
     };
     setLoading(true);
-    fetch(
-      `${API_URL("searchbags")}?colour=${colour}&location=${location}`,
-      options
-    )
+    fetch(API_URL("bags"), options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.response);
         if (data.success) {
           batch(() => {
-            dispatch(searched.actions.setItems(data.response));
-            dispatch(searched.actions.setError(null));
+            dispatch(theks.actions.setItems(data.response));
+            dispatch(theks.actions.setError(null));
           });
         } else {
           batch(() => {
-            dispatch(searched.actions.setItems([]));
-            dispatch(searched.actions.setError(data.response));
+            dispatch(theks.actions.setItems([]));
+            dispatch(theks.actions.setError(data.response));
           });
         }
       })
       .finally(() => setLoading(false));
   };
+
   return (
-     <Box>
-        <Menu />
+ 
+      <Box>
         {loading && <Loader />}
 
         <Form onSubmit={onFormSubmit}>
@@ -96,7 +106,7 @@ const FindThek = () => {
             <option value="Green">Green</option>
             <option value="Pink">Pink</option>
             <option value="Purple">Purple</option>
-            <option value="Orange">Orange</option>
+            <option value="Black">Black</option>
             <option value="Multi">Multi-coloured</option>
           </Select>
 
@@ -107,7 +117,7 @@ const FindThek = () => {
             onChange={(e) => setLocation(e.target.value)}
           >
             <option disabled value="">
-              Location:
+              Nearest city:
             </option>
             <option value="Zurich">Zurich</option>
             <option value="Basel">Basel</option>
@@ -117,17 +127,39 @@ const FindThek = () => {
             <option value="Lugano">Lugano</option>
           </Select>
 
-          <Button type="submit">Find my Thek!</Button>
+          <label htmlFor="ageInput"></label>
+          <Select
+            id="ageInput"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          >
+            <option disabled value="">
+              Age-range:
+            </option>
+            <option value="1stGrade">1st Grade, 6-9 years</option>
+            <option value="4thGrade">4th Grade, 9-12 years</option>
+          </Select>
+          <ButtonContainer>
+            <Button type="submit">Add bag</Button>
+            <Button>
+              <Press
+                to={`/member/${memberId}`}
+                params={(accessToken, memberId)}
+              >
+                My Profile
+              </Press>
+            </Button>
+            <Logout />
+          </ButtonContainer>
 
-          {errors && <p className="warning-login">Something went wrong!!!</p>}
-          <Button>
-            <Press to={`/member/${memberId}`} params={memberId}>
-              Profile
-            </Press>
-          </Button>
-          <Logout style={{ backgroundColor: "#FFF000" }} />
+          {errors && (
+            <p className="warning-login">
+              The Thek has not been added to the database
+            </p>
+          )}
         </Form>
       </Box>
   );
 };
-export default FindThek;
+
+export default AddTheks;

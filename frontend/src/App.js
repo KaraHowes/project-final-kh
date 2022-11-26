@@ -7,9 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { NotFound } from "./pages/NotFound";
 import Profile from "./pages/Profile";
-import AddThek from "./pages/AddThek";
 import AllBags from "./pages/AllBags";
-import FindThek from "./pages/FindThek";
 import SelectedBag from "./pages/SelectedBag";
 import Starter from "./pages/Starter";
 import Intro from "./pages/Intro";
@@ -18,7 +16,6 @@ import Inspirations from "./pages/Inspirations";
 import About from "./pages/About"
 import MemberBag from "./pages/MemberBag"
 import BagDelete from "./pages/BagDelete"
-import GuestBags from "./pages/GuestBags"
 
 import Footer from "./components/Footer"
 
@@ -48,8 +45,6 @@ export const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/member/:memberId" element={<Profile />} />
-          <Route path="/addThek" element={<AddThek />} />
-          <Route path="/findThek" element={<FindThek />} />
           <Route path="/allBags" element={<AllBags />} />
           <Route path="/bag/:_id" element={<SelectedBag />} />
           <Route path="/bags/:memberId" element={<MemberBag />} />
@@ -57,7 +52,6 @@ export const App = () => {
           <Route path="/bagsFound" element={<BagsFound />} />
           <Route path="/inspiration" element={<Inspirations />} />
           <Route path="/about" element={<About />} />
-          <Route path="/guestBags" element={<GuestBags />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer/>

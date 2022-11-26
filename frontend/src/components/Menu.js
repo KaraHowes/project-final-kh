@@ -69,7 +69,7 @@ export const Menu = () => {
       <NavLink to="/"> Home</NavLink>
         <NavLink to="/signin"> Log-in</NavLink>
         <NavLink to="/about"> About</NavLink>
-        <NavLink to="/guestBags"> Bags</NavLink>
+        <NavLink to="/allBags"> Bags</NavLink>
         <NavLink to="/inspiration"> Inspiration</NavLink> 
       </Nav>
     </NavContainer>

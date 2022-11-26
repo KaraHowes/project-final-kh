@@ -21,7 +21,7 @@ const searched = createSlice({
 		setLocation: (store, action) => {
 			store.location = action.payload;
 		},
-	setColour: (store, action) => {
+		setColour: (store, action) => {
 			store.colour = action.payload;
 		},
 		setAge: (store, action) => {

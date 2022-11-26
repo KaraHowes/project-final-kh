@@ -80,7 +80,6 @@ const Filter = () => {
     dispatch(searched.actions.setItems([]));
   }
   
-  
   return (
     <>
         <Form onSubmit={onFormSubmit}>
@@ -129,7 +128,7 @@ const Filter = () => {
       </BagContainer>
 
       {bagCityLength!==0&& <Button onClick={handleRemoval}>All Bags</Button>}
-        {isShown && <SeeAllBags/> && <p>{bagCityLength}</p>}
+        {isShown && <SeeAllBags/>}
     </>
   );
 };

@@ -9,6 +9,8 @@ import member from "../reducers/member";
 
 import Logout from "../components/Logout";
 import Loader from "../components/Loader";
+import AddTheks from "../components/AddTheks"
+import FindTheks from "../components/FindTheks"
 import { Box } from "../components/styling/containers";
 import { Press, Colour, Header, SubTitle } from "../components/styling/general";
 import Menu from "../components/Menu";
@@ -90,7 +92,9 @@ const Profile = () => {
   const memberId = useSelector((store) => store.member.memberId);
   const profile = useSelector((store) => store.member);
   const [loading, setLoading] = useState(false);
-
+  const [isShownAdd, setIsShownAdd] = useState(false);
+  const [isShownTheks, setIsShownTheks] = useState(false);
+  
   useEffect(() => {
     const options = {
       method: "GET",
@@ -127,8 +131,13 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [dispatch, accessToken, memberId]);
 
+  const handleAddThek = (event) =>{
+    setIsShownAdd(true)
+  }
+  const handleFindThek = (event) =>{
+    setIsShownTheks(true)
+  }
   return (
-  
       <Box>
         {loading && <Loader />}
         <Menu />
@@ -159,13 +168,12 @@ const Profile = () => {
             </ProfileContainer>
 
             <ButtonContainer>
-              <Button>
-                {profile.status === "Donor" ? (
-                  <Press to="/addThek">Add a bag?</Press>
-                ) : (
-                  <Press to="/findThek">Find a bag</Press>
-                )}
-              </Button>
+          
+                {profile.status === "Donor" ? <Button onClick={handleAddThek}>Add a bag?</Button> 
+                :<Button onClick={handleFindThek}>Find a bag</Button>
+                }
+                {isShownAdd && <AddTheks />}
+                {isShownTheks && <FindTheks/>}
               <Button>
                 <Press to="/allBags">All bags</Press>
               </Button>

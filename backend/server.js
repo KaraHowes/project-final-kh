@@ -6,7 +6,7 @@ import listEndpoints from "express-list-endpoints";
 
 import authenticateMember from "./authorization/authenticateMember.js"
 import { register, signIn, allMembers, profile } from "./endpoints/memberEndpoints.js"
-import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag, guestBags} from "./endpoints/bagEndpoints.js"
+import { addBag, allBags, bagById, searchBags, bagByMember, deleteBag, reserveBag } from "./endpoints/bagEndpoints.js"
 import { generateQuote } from "./endpoints/quoteEndpoint"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalKH";
@@ -48,7 +48,6 @@ app.get("/member/:memberId", authenticateMember, profile);// endpoint to find on
 
 app.post("/bags", authenticateMember, addBag);//add a bag to the database, again to authorized members
 app.get("/bags", allBags);// gets all bags in the system
-app.get("/guestBags", guestBags);// gets all bags in the system
 app.get("/bag/:_id", authenticateMember, bagById);//gets one particular bag by it's id
 app.delete("/deleteBag/:_id", authenticateMember, deleteBag);//deletes one particular bag by it's id
 app.get("/searchbags", searchBags); //searches the bag database
