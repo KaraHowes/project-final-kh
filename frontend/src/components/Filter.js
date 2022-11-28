@@ -12,7 +12,6 @@ import Loader from '../components/Loader'
 import { Form, Select } from "../components/styling/formStyle";
 import { BagContainer, Card, CardText, TextWrapper} from "../components/styling/mapping";
 import { Press, SubTitle } from "../components/styling/general";
-import SeeAllBags from './SeeAllBags'
 
 const Button = styled.button`
   width: 100%;
@@ -44,7 +43,7 @@ const Filter = () => {
   const bagCityLength = useSelector((store)=> store.searched.items.length); 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [isShown, setIsShown] = useState(false);
+  
 
   const onFormSubmit = (event) => {
     
@@ -76,8 +75,8 @@ const Filter = () => {
   };
 
   const handleRemoval = (event) =>{
-    setIsShown(true)
-    dispatch(searched.actions.setItems([]));
+   
+    dispatch(searched.actions.setItems([]))
   }
   
   return (
@@ -128,7 +127,7 @@ const Filter = () => {
       </BagContainer>
 
       {bagCityLength!==0&& <Button onClick={handleRemoval}>All Bags</Button>}
-        {isShown && <SeeAllBags/>}
+        
     </>
   );
 };
