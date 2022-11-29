@@ -7,23 +7,21 @@ import swal from "sweetalert";
 import { API_URL } from "../utils/urls";
 import theks from "../reducers/theks";
 
-import Logout from "../components/Logout";
 import Loader from "../components/Loader";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
-import { Press } from "../components/styling/general";
+
 
 const Button = styled.button`
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: white;
-  border: none;
   cursor: pointer;
   font-size: 24px;
-  padding: 15px 0 15px 0;
-  border-radius: 10px;
+  padding: 15px 0;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
+  border: 3px solid black;
+  box-shadow: 8px 8px yellow;
   margin-bottom: 15px;
 `;
 const ButtonContainer = styled.div`
@@ -141,15 +139,7 @@ const AddTheks = () => {
           </Select>
           <ButtonContainer>
             <Button type="submit">Add bag</Button>
-            <Button>
-              <Press
-                to={`/member/${memberId}`}
-                params={(accessToken, memberId)}
-              >
-                My Profile
-              </Press>
-            </Button>
-            <Logout />
+        
           </ButtonContainer>
 
           {errors && (

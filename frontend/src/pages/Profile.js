@@ -94,7 +94,9 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [isShownAdd, setIsShownAdd] = useState(false);
   const [isShownTheks, setIsShownTheks] = useState(false);
-  
+  const [isShownAddButton, setIsShownAddButton] = useState(true);
+
+
   useEffect(() => {
     const options = {
       method: "GET",
@@ -133,9 +135,11 @@ const Profile = () => {
 
   const handleAddThek = (event) =>{
     setIsShownAdd(true)
+    setIsShownAddButton(false)
   }
   const handleFindThek = (event) =>{
     setIsShownTheks(true)
+    setIsShownAddButton(false)
   }
   return (
       <Box>
@@ -169,17 +173,17 @@ const Profile = () => {
 
             <ButtonContainer>
           
-                {profile.status === "Donor" ? <Button onClick={handleAddThek}>Add a bag?</Button> 
-                :<Button onClick={handleFindThek}>Find a bag</Button>
-                }
-                {isShownAdd && <AddTheks />}
-                {isShownTheks && <FindTheks/>}
+                {profile.status === "Donor" && isShownAddButton ? <Button onClick={handleAddThek}>Add a bag?</Button> 
+                :null}
+                {profile.status !== "Donor" && isShownAddButton ? <Button onClick={handleFindThek}>Find a bag</Button>:null}
               <Button>
                 <Press to="/allBags">All bags</Press>
               </Button>
               <Logout />
             </ButtonContainer>
           </ProfileButtonContainer>
+          {isShownAdd && <AddTheks />}
+          {isShownTheks && <FindTheks/>}
         </All>
       </Box>
   );
