@@ -6,7 +6,6 @@ import styled from "styled-components";
 import searched from "../reducers/searched";
 import { API_URL } from "../utils/urls";
 
-import Logout from "../components/Logout";
 import { Box } from "../components/styling/containers";
 import { Form, Select } from "../components/styling/formStyle";
 import { Press } from "../components/styling/general";
@@ -15,16 +14,15 @@ import Loader from "../components/Loader";
 
 const Button = styled.button`
   width: 100%;
-  height: 40px;
-  background-color: #fff000;
-  border: none;
+  height: 50px;
+  background-color: white;
+  border: 3px solid purple;
   cursor: pointer;
   font-size: 24px;
   padding: 10px 15px;
   margin: 0 0 20px;
-  border-radius: 10px;
   font-family: "Josefin Sans", sans-serif;
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 8px 8px black;
 `;
 
 const FindTheks = () => {
@@ -124,7 +122,6 @@ const FindTheks = () => {
               Profile
             </Press>
           </Button>
-          <Logout style={{ backgroundColor: "#FFF000" }} />
         </Form>
       </Box>
   );
