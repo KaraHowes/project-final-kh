@@ -15,16 +15,19 @@ const NavContainer = styled.div`
   }
 `;
 const NavLink = styled(Link)`
-height:10px;
-padding: 10px;
-margin-bottom: 20px;
+height: 20px;
+padding: 20px 10px;
 color: black;
 text-decoration: none;
+font-size; 24px;
 &:hover{
 text-decoration: underline;
+text-decoration-style: wavy;
 text-decoration-color:#F675A8;
-text-decoration-thickness: 5px;
+text-decoration-thickness: 3px;
 text-decoration-padding-bottom: 10px;
+text-underline-offset: 5px;
+text-decoration-skip-ink: none;
 }`;
 
 const Hamburger = styled.div`
@@ -47,6 +50,8 @@ const Nav = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  font-size: 24px;
+  padding-bottom: 10px;
   @media (max-width: 768px) {
     overflow: hidden;
     flex-direction: column;

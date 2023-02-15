@@ -7,9 +7,9 @@ padding: 75px 25px;
 background: white;
 margin: 50px auto 100px auto;
 border: 5px solid black;
-box-shadow: 10px 10px #878df7;
+box-shadow: 15px 15px #878df7;
 font-family: "Josefin Sans", sans-serif;
-max-width: 700px;
+max-width: 1000px;
 
 `
  export const ButtonContainer = styled.div`

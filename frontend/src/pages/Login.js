@@ -31,8 +31,8 @@ const Button = styled.button`
   padding: 15px 0 15px 0;
   font-family: "Josefin Sans", sans-serif;
   color: black;
-  border: 3px solid black;
-  box-shadow: 8px 8px yellow;
+  border: 4px solid black;
+  box-shadow: 8px 8px #d5f5f2;
 `;
 const Press = styled(Link)`
   text-decoration: none;

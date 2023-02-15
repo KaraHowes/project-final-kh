@@ -65,6 +65,11 @@ const Startbutton = styled.button`
   background-color:white;
   border: 3px solid black;
   box-shadow: 8px 8px yellow;
+  &:hover{
+    background-color:black;
+    color: white;
+    box-shadow: 8px 8px #878df7;
+  }
 `;
 const Buttoncontainer = styled.div`
   display: flex;
